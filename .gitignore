@@ -1,1 +1,6 @@
 rapport/.texpadtmp/
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
