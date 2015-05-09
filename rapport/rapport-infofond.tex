@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{color}
 
 
@@ -59,22 +60,28 @@ Les contraintes sont les suivantes :
 \section{Q2}
 \subsection {Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité}
 \begin{displaymath}
-\forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : a(e) \mapsto {x} \wedge \mu(x) = (s,t) \wedge \sum a(e) \mapsto {x} \leq c(s)
+\forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : a(e) \mapsto \{x\} \wedge \mu(x) = (s,t) \wedge \sum a(e) \mapsto \{x\} \leq c(s)
 \end{displaymath}	
 
-\subsection {Un étudiant ne peut pas se trouver dans deux salles au même moment}
-
 \subsection {Un étudiant ne peut pas avoir deux examens au même moment}
-
-\subsection {Un professeur ne peut pas se trouver dans deux salles au même moment}
-
+\begin{displaymath}
+\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall e \in E ,\forall t_{1}, t_{2} \in \{1,...,T\} :  a(e) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2}
+\end{displaymath}
+\subsection {Un professeur ne peut pas avoir deux examens au même moment}
+\begin{displaymath}
+\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall p \in P ,\forall t_{1}, t_{2} \in \{1,...,T\} :  b(p) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2}
+\end{displaymath}
 \subsection {Un examen doit avoir au moins un professeur et au un moins un étudiant}
-
+\begin{displaymath}
+\forall x \in X, \exists p \in P, \exists e \in E : a(e) \mapsto \{x\} \wedge b(p) \mapsto \{x\} 
+\end{displaymath}
 \subsection {Un examen a au plus un professeur}
+\begin{displaymath}
+\forall x \in X, \nexists p_{1},p_{2} \in P: p_{1} != p_{2} \wedge b(p_{1}) \mapsto \{x\} \wedge b(p_{2}) \mapsto \{x\} 
+\end{displaymath}
+\subsection {Chaque examen doit se dérouler une seule fois et dans une seule salle}
 
-\subsection {Chaque examen doit se dérouler une seule fois}
-
-\subsection {Dans une salle, il ne peut se déroule qu'un seul examen a la fois}
+\subsection {Dans une salle, il ne peut se dérouler qu'un seul examen a la fois}
 
 
 
