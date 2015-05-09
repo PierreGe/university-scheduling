@@ -95,6 +95,11 @@ Les contraintes sont les suivantes :
 \section{Q3}
 Pour construire la formule en FNC, nous avons besoins de définir de nouvelle variable.
 \begin{itemize}
+    \item \(E\) est le nombre d'étudiants
+    \item \(P\) est le nombre de professeurs
+    \item \(X\) est le nombre d'examens
+    \item \(S\) est le nombre de salles
+    \item \(T\) est le nombre de périodes de temps
 	\item \( A_{e,x}\) telle que l'étudiant e passe l'examen x,
 	\item \(B_{p,x}\) telle que le professeur p donne l'examen x ,
 	\item \(C_{s,i}\) telle que la salle s a la capacité d'accueillir i étudiants,
@@ -107,8 +112,12 @@ Nous avons aussi besoin
 	\item \( AMO(\varepsilon) \), au plus un élément de l'ensemble \(\varepsilon)\) est vrai.
 \end{itemize}
 
+\subsection{Formes normales conjonctives}
 
-\bigwedge
+4
+\begin{displaymath}
+\bigwedge\limits_{x=1}^{X}\bigvee\limits_{p=1}^{P}\bigvee\limits_{e=1}^{E} \neg(\neg(A_{e, x}) \vee \neg(B_{p,x}))
+\end{displaymath}
 
 
 \end{document}
