@@ -71,9 +71,13 @@ Les contraintes sont les suivantes :
 \begin{displaymath}
 \forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall p \in P ,\forall t_{1}, t_{2} \in \{1,...,T\} :  b(p) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2} \wedge x_{1} != x_{2}
 \end{displaymath}
-\subsection {Un examen doit avoir au moins un professeur et au un moins un étudiant}
+\subsection {Un examen doit avoir au moins un professeur}
 \begin{displaymath}
-\forall x \in X, \exists p \in P, \exists e \in E : a(e) \mapsto \{x\} \wedge b(p) \mapsto \{x\} 
+\forall x \in X, \exists p \in P : b(p) \mapsto \{x\} 
+\end{displaymath}
+\subsection {Un examen doit avoir au moins un étudiant}
+\begin{displaymath}
+\forall x \in X, \exists e \in E : a(e) \mapsto \{x\}
 \end{displaymath}
 \subsection {Un examen a au plus un professeur}
 \begin{displaymath}
@@ -116,7 +120,11 @@ Nous avons aussi besoin
 
 4
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigvee\limits_{p=1}^{P}\bigvee\limits_{e=1}^{E} \neg(\neg(A_{e, x}) \vee \neg(B_{p,x}))
+\bigwedge\limits_{x=1}^{X}\bigvee\limits_{p=1}^{P} B_{p, x}
+\end{displaymath}
+5
+\begin{displaymath}
+\bigwedge\limits_{x=1}^{X}\bigvee\limits_{e=1}^{E} A_{e, x}
 \end{displaymath}
 
 
