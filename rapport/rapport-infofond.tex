@@ -114,51 +114,61 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelle va
 \end{itemize}
 
 
-\subsection{Formes normales conjonctives}
-1
+\subsection{Ensemble de FNC}
+(p1)
 \begin{displaymath}
 	\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ M_{x,s,t}}}^{S} C_{s,N_{x}}
 \end{displaymath}
 
-2
+(p2)
 \begin{displaymath}
 \bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{\substack{i=1 \\ A_{e,i}}}^{X}\bigwedge\limits_{j=1}^{i} \neg M_{i, s, t} \vee \neg M_{j, s, t}
 \end{displaymath}
 
-3
+(p3)
 \begin{displaymath}
 \bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{\substack{i=1 \\ B_{p,x}}}^{X}\bigwedge\limits_{j=1}^{i} \neg M_{i, s, t} \vee \neg M_{j, s, t}
 \end{displaymath}
 
-4
+(p4)
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{p=1}^{P} B_{p, x}
 \end{displaymath}
-5
+
+(p5)
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{e=1}^{E} A_{e, x}
 \end{displaymath}
-6
+
+(p6)
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{i=1}^{P}\bigwedge\limits_{j=1}^{i} \neg B_{j,x} \vee \neg B_{i, x}
 \end{displaymath}
-7
+
+(p7)
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{t=1}^{T}\bigvee\limits_{s=1}^{S} M_{x, s, t}
 \end{displaymath}
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{i=1}^{T}\bigwedge\limits_{j=1}^{i} \neg M_{x, s, i} \vee \neg M_{x, s, j}
 \end{displaymath}
-8
+
+(p8)
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{i=1}^{S}\bigwedge\limits_{j=1}^{i} \neg M_{x, i, t} \vee \neg M_{x, j, t}
 \end{displaymath}
 
-9
+(p9)
 \begin{displaymath}
 \bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{i=1}^{X}\bigwedge\limits_{j=1}^{i} \neg M_{i, s, t} \vee \neg M_{j, s, t}
 \end{displaymath}
 
+
+\subsection{FNC final}
+La forme normal conjonctive de la formule est:
+\begin{displaymath}
+\Phi_{I} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p7 \wedge p8 \wedge p9
+\end{displaymath}
 \section{Q10}
 
 LES ETUDIANTS VEULENT BOUFFER LE TEMPS DE MIDI !!!!!!!!!
