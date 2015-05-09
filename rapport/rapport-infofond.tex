@@ -65,11 +65,11 @@ Les contraintes sont les suivantes :
 
 \subsection {Un étudiant ne peut pas avoir deux examens au même moment}
 \begin{displaymath}
-\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall e \in E ,\forall t_{1}, t_{2} \in \{1,...,T\} :  a(e) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2}
+\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall e \in E ,\forall t_{1}, t_{2} \in \{1,...,T\} :  a(e) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2} \wedge x_{1} != x_{2}
 \end{displaymath}
 \subsection {Un professeur ne peut pas avoir deux examens au même moment}
 \begin{displaymath}
-\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall p \in P ,\forall t_{1}, t_{2} \in \{1,...,T\} :  b(p) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2}
+\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall p \in P ,\forall t_{1}, t_{2} \in \{1,...,T\} :  b(p) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2} \wedge x_{1} != x_{2}
 \end{displaymath}
 \subsection {Un examen doit avoir au moins un professeur et au un moins un étudiant}
 \begin{displaymath}
@@ -79,11 +79,19 @@ Les contraintes sont les suivantes :
 \begin{displaymath}
 \forall x \in X, \nexists p_{1},p_{2} \in P: p_{1} != p_{2} \wedge b(p_{1}) \mapsto \{x\} \wedge b(p_{2}) \mapsto \{x\} 
 \end{displaymath}
-\subsection {Chaque examen doit se dérouler une seule fois et dans une seule salle}
-
+\subsection {Chaque examen doit se dérouler une seule fois}
+\begin{displaymath}
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : t_{1} != t_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
+\end{displaymath}
+\subsection {Chaque examen doit se dérouler dans une seule salle}
+\begin{displaymath}
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : s_{1} != s_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
+\end{displaymath}	
 \subsection {Dans une salle, il ne peut se dérouler qu'un seul examen a la fois}
+\begin{displaymath}
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall x_{1},x_{2} \in X, \nexists s \in S : t_{1} = t_{2} \wedge x_{1} != x_{2} \wedge \mu(x_{1}) = (s,t_{1}) \wedge \mu(x_{2}) = (s,t_{2})
+\end{displaymath}	
 
-
-
+\section{Q3}
 
 \end{document}
