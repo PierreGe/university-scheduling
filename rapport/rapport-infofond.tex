@@ -59,7 +59,7 @@ Les contraintes sont les suivantes :
 \section{Q2}
 \subsection {Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité}
 \begin{displaymath}
-\forall x \in X , \forall s \in S ,\forall e \in E : a(e,x) \wedge \mu(x) = (s,.) \wedge \sum a(e,x) \leq c(s)
+\forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : a(e) \mapsto {x} \wedge \mu(x) = (s,t) \wedge \sum a(e) \mapsto {x} \leq c(s)
 \end{displaymath}	
 
 \subsection {Un étudiant ne peut pas se trouver dans deux salles au même moment}
