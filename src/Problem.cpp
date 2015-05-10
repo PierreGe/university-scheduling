@@ -3,10 +3,7 @@
 #include <iostream>
 
 Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
-    std::cout << A(1, 1) << std::endl;
-    std::cout << A(1, 2) << std::endl;
-    std::cout << A(2, 1) << std::endl;
-    std::cout << A(2, 2) << std::endl;
+
 }
 
 bool Problem1::A(int e, int x) {
@@ -24,7 +21,8 @@ bool Problem1::B(int p, int x) {
 }
 
 bool Problem1::C(int s, int i) {
-
+    s--;
+    return (this->_specs.c->at(s) >= i);
 }
 
 bool Problem1::M(int x, int s, int t) {
