@@ -1,16 +1,21 @@
 #include "Problem.hpp"
 
 #include <iostream>
+#include <cassert>
 
 Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
-    std::cout << A(1, 1) << std::endl;
-    std::cout << A(1, 2) << std::endl;
-    std::cout << A(2, 1) << std::endl;
-    std::cout << A(2, 2) << std::endl;
+
+}
+
+void Problem1::test() {
+    assert(A(1, 1));
+    assert(A(1, 2));
+    assert(A(2, 1));
+    assert(A(2, 2) == false);
 }
 
 bool Problem1::A(int e, int x) {
-    e--; x--;
+    e--;
     for (int i = 0; i < this->_specs.a->at(e)->size(); ++i) {
         if (this->_specs.a->at(e)->at(i) == x) {
             return true;
