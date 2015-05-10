@@ -124,7 +124,7 @@ void Problem1::existenceConstraint() {
 void Problem1::constraint() {
     existenceConstraint();
     constraint1();
-    // constraint2();
+    constraint2();
     // constraint3();
     // constraint4();
     // constraint5();
@@ -151,7 +151,7 @@ void Problem1::constraint2() {
         FOR(e, 1, this->_specs.E) {
             FOR(t, 1, this->_specs.T) {
                 FOR(x1, 1, this->_specs.X) {
-                    FOR(x2, 1, x1) {
+                    FOR(x2, x1 + 1, this->_specs.X) {
                         if (A(e, x1) and A(e, x2)) {
                             this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
                                                     ~Lit(this->_props[x2][s][t]));
