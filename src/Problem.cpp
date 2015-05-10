@@ -5,7 +5,6 @@
 
 Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
 
-}
 
 void Problem1::test() {
     assert(A(1, 1));
@@ -40,7 +39,8 @@ bool Problem1::B(int p, int x) {
 }
 
 bool Problem1::C(int s, int i) {
-
+    s--;
+    return (this->_specs.c->at(s) >= i);
 }
 
 int Problem1::N(int x) {
