@@ -115,7 +115,7 @@ void Problem1::constraint() {
     // constraint5();
     // constraint6();
     // constraint7();
-    // constraint8();
+    constraint8();
     // constraint9();
 }
 
@@ -133,16 +133,18 @@ void Problem1::constraint1() {
 }
 
 void Problem1::constraint2() {
-    FOR(t, 1, this->_specs.T) {
-        FOR(s, 1, this->_specs.S) {
-            FOR(e, 1, this->_specs.E) {
-                FOR(i, 1, this->_specs.X) {
-                    if (this->A(e, i)) {
-                        FOR(j, 1, i) {
-                            this->_solver.addBinary(~Lit(this->_props[i][s][t]),
-                                                    ~Lit(this->_props[j][s][t]));
+    FOR(e, 1, this->_specs.E) {
+        FOR(i, 1, this->_specs.X) {
+            FOR(j, 1, i) {
+                if (this->A(e, i) and this->A(e, j)) {
+                    vec<Lit> lits;
+                    FOR(t, 1, this->_specs.T) {
+                        FOR(s, 1, this->_specs.S) {
+                            lits.push(~Lit(this->_props[i][s][t]));
+                            lits.push(~Lit(this->_props[j][s][t]));
                         }
                     }
+                    this->_solver.addClause(lits);
                 }
             }
         }
@@ -219,13 +221,13 @@ void Problem1::constraint7() {
 
 void Problem1::constraint8() {
     FOR(x, 1, this->_specs.X) {
+        vec<Lit> lits;
         FOR(t, 1, this->_specs.T) {
             FOR(i, 1, this->_specs.S) {
-                FOR(j, 1, i) {
-                    this->_solver.addBinary(~Lit(this->_props[x][i][t]), ~Lit(this->_props[x][j][t]));
-                }
+                lits.push(~Lit(this->_props[x][i][t]));
             }
         }
+        this->_solver.addClause(lits);
     }
 }
 
