@@ -43,10 +43,6 @@ bool Problem1::C(int s, int i) {
 
 }
 
-bool Problem1::M(int x, int s, int t) {
-
-}
-
 int Problem1::N(int x) {
 
 }
