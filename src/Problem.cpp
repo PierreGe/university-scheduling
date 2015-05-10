@@ -15,6 +15,10 @@ void Problem1::test() {
     assert(B(1, 2) == false);
     assert(B(2, 1) == false);
     assert(B(2, 2));
+
+
+    assert(N(1) == 2);
+    assert(N(2) == 1);
 }
 
 Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
@@ -48,8 +52,8 @@ bool Problem1::C(int s, int i) {
 
 int Problem1::N(int x) {
     int res = 0;
-    for (int e = 0; e <this->_specs.E ; ++e) {
-        res += A(e,x);
+    for (int e = 0; e < this->_specs.E; ++e) {
+        res += A(e+1,x);
     }
     return res;
 }
