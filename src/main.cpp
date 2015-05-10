@@ -1,5 +1,6 @@
 #include "parser/parser.hpp"
 #include "problem.hpp"
+#include "parser/parser.hpp"
 
 #include <iostream>
 

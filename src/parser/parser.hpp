@@ -4,7 +4,7 @@
 #include <cstddef>
 #include "SchedSpec.hpp"
 
-void parse(std::string& numbers_str) {
+SchedSpec* parse(std::string& numbers_str) {
   std::vector<std::vector<int>* >* data = new std::vector<std::vector<int> *>();
   std::vector<int>* row;
   std::string  temp;
@@ -33,7 +33,7 @@ void parse(std::string& numbers_str) {
     }
     data->push_back(row);                //and put it into the array
   }
-  SchedSpec schedule(data);
+  SchedSpec *schedule = new SchedSpec(data);
     // for (int i = 0; i < data->size(); ++i) {
     //   for (int j = 0; j < data->at(i)->size(); ++j) {
     //     std::cout << data->at(i)->at(j) << ",";
@@ -44,4 +44,5 @@ void parse(std::string& numbers_str) {
       delete data->at(i);
   }
   delete data;
+  return schedule;
 }
