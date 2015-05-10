@@ -13,7 +13,6 @@ private:
     bool A(int e, int x);
     bool B(int p, int x);
     bool C(int s, int i);
-    bool M(int x, int s, int t);
     int N(int x);
 };
 
