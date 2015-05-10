@@ -114,8 +114,8 @@ void Problem1::constraint() {
     //constraint4(); // tested and working
     // constraint5(); // tested and working
     // constraint6(); // tested and working
-    // constraint7();
-    // constraint8();
+    constraint7();
+    constraint8();
      constraint9();
 }
 
