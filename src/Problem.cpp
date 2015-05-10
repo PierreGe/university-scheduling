@@ -142,6 +142,13 @@ void Problem1::constraint5() {
 
 void Problem1::constraint6() {
 
+    FOR(x,1,this->_specs.X){
+        FOR(p,1, this->_specs.P){
+            FOR(j,1,p){
+                this->_solver.addBinary(~Lit(B(j,x)), ~Lit(B(p,x)));
+            }
+        }
+    }
 }
 
 void Problem1::constraint7() {
