@@ -107,7 +107,23 @@ int Problem1::N(int x) {
     return res;
 }
 
+void Problem1::existenceConstraint() {
+    vec<Lit> lits;
+    // Contrainte d'existence
+    FOR(t, 1, this->_specs.T){
+        lits.clear();
+        FOR(x, 1, this->_specs.X){
+            FOR(s, 1, this->_specs.S){
+                lits.push(Lit(this->_props[x][s][t]));
+            }
+        }
+        this->_solver.addClause(lits);
+    }
+
+}
+
 void Problem1::constraint() {
+    existenceConstraint();
     // constraint1(); // tested and working
     // constraint2();
     // constraint3();
@@ -257,3 +273,4 @@ void Problem1::constraint9() {
         }
     }
 }
+

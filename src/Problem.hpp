@@ -21,6 +21,7 @@ protected:
     bool C(int s, int i);
     int N(int x);
     void constraint();
+    void existenceConstraint();
     void constraint1();
     void constraint2();
     void constraint3();
