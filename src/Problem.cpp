@@ -88,9 +88,14 @@ int Problem1::N(int x) {
 
 void Problem1::constraint() {
     constraint1();
+    constraint2();
+    constraint3();
     constraint4();
     constraint5();
-
+    constraint6();
+    constraint7();
+    constraint8();
+    constraint9();
 }
 
 void Problem1::constraint1() {
@@ -102,6 +107,14 @@ void Problem1::constraint1() {
             }
         }
     }
+}
+
+void Problem1::constraint2() {
+
+}
+
+void Problem1::constraint3() {
+
 }
 
 void Problem1::constraint4() {
@@ -126,3 +139,20 @@ void Problem1::constraint5() {
         this->_solver.addClause(lits);
     }
 }
+
+void Problem1::constraint6() {
+
+}
+
+void Problem1::constraint7() {
+
+}
+
+void Problem1::constraint8() {
+
+}
+
+void Problem1::constraint9() {
+
+}
+

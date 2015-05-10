@@ -21,8 +21,14 @@ protected:
     int N(int x);
     void constraint();
     void constraint1();
+    void constraint2();
+    void constraint3();
     void constraint4();
     void constraint5();
+    void constraint6();
+    void constraint7();
+    void constraint8();
+    void constraint9();
 public:
     void test();
 };
