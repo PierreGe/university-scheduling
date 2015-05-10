@@ -128,7 +128,7 @@ void Problem1::constraint() {
     // constraint3();
     constraint4();
     constraint5();
-    // constraint6();
+    constraint6();
     constraint7();
     constraint8();
     constraint9();
@@ -217,21 +217,19 @@ void Problem1::constraint5() {
 
 // Un examen a au plus un professeur
 void Problem1::constraint6() {
-    vec<Lit> lits;
-    FOR(t, 1, this->_specs.T) {
+    FOR(x, 1, this->_specs.X) {
+        vec<Lit> lits;
         FOR(s, 1, this->_specs.S) {
-            FOR(x, 1, this->_specs.X) {
-                lits.clear();
-                FOR(p1,1, this->_specs.P){
-                    FOR(p2, p1 + 1,this->_specs.P){
-                        if (not B(p1, x) or not B(p2, x)) {
-                            lits.push(Lit(this->_props[x][s][t]));
-                        }
+            FOR(t, 1, this->_specs.T) {
+                FOR(p1, 1, this->_specs.P) {
+                    FOR(p2, p1 + 1, this->_specs.P) {
+                        if (not B(p1, x) or not B(p2, x))
+                        lits.push(Lit(this->_props[x][s][t]));
                     }
                 }
-                this->_solver.addClause(lits);
             }
         }
+        this->_solver.addClause(lits);
     }
 }
 
