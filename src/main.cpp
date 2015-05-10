@@ -14,5 +14,6 @@ int main(int argc, char **argv)
     std::string args(argv[1]);
     SchedSpec* specs = parse(args);
     Problem1 problem1(*specs);
+    problem1.test();
     // delete specs;
 }

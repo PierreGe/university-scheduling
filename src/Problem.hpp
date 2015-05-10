@@ -8,6 +8,7 @@ private:
     SchedSpec _specs;
 public:
     Problem1(SchedSpec&);
+    void test();
 private:
     bool A(int e, int x);
     bool B(int p, int x);
