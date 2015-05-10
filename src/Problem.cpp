@@ -32,7 +32,7 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver() {
             }
         }
     }
-    // constraint();
+    constraint();
 }
     
 Problem1::~Problem1() {
@@ -200,7 +200,20 @@ void Problem1::constraint6() {
 }
 
 void Problem1::constraint7() {
-
+    vec<Lit> lits;
+    FOR(x, 1, this->_specs.X) {
+        lits.clear();
+        FOR(t, 1, this->_specs.T) {
+            FOR(s, 1, this->_specs.S) {
+                lits.push(Lit(this->_props[x][s][t]));
+                FOR(i, 1, t) {
+                    this->_solver.addBinary(~Lit(this->_props[x][s][t]),
+                                            ~Lit(this->_props[x][s][i]));
+                }
+            }
+        }
+        this->_solver.addClause(lits);
+    }
 }
 
 void Problem1::constraint8() {
