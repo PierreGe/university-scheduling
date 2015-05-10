@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 
-Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
+Problem1::Problem1(SchedSpec& specs) : _specs(specs) { }
 
 
 void Problem1::test() {
@@ -44,5 +44,9 @@ bool Problem1::C(int s, int i) {
 }
 
 int Problem1::N(int x) {
-
+    int res = 0;
+    for (int e = 0; e <this->_specs.E ; ++e) {
+        res += A(e,x);
+    }
+    return res;
 }
