@@ -53,6 +53,18 @@ bool Problem1::okay() {
     return this->_solver.okay();
 }
 
+void Problem1::display() {
+    FOR(x, 1, this->_specs.X) {
+        FOR(s, 1, this->_specs.S) {
+            FOR(t, 1, this->_specs.T) {
+                if (this->_solver.model[this->_props[x][s][t]] == l_True) {
+                    std::cout << "Examen " << x << " dans la salle " << s << " au temps " << t << std::endl;
+                }
+            }
+        }
+    }
+}
+
 bool Problem1::A(int e, int x) {
     e--;
     for (int i = 0; i < this->_specs.a->at(e)->size(); ++i) {

@@ -25,6 +25,7 @@ int main(int argc, char **argv)
     problem1.solve();
     if (problem1.okay()) {
         std::cout << "okay" << std::endl;
+        problem1.display();
     }
     else {
         std::cout << "not okay" << std::endl;

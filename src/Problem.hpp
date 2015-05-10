@@ -14,6 +14,7 @@ public:
     ~Problem1();
     void solve();
     bool okay();
+    void display();
 protected:
     bool A(int e, int x);
     bool B(int p, int x);
