@@ -224,7 +224,7 @@ void Problem1::constraint8() {
         vec<Lit> lits;
         FOR(t, 1, this->_specs.T) {
             FOR(i, 1, this->_specs.S) {
-                lits.push(~Lit(this->_props[x][i][t]));
+                lits.push(Lit(this->_props[x][i][t]));
             }
         }
         this->_solver.addClause(lits);
