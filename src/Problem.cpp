@@ -123,12 +123,12 @@ void Problem1::existenceConstraint() {
 
 void Problem1::constraint() {
     existenceConstraint();
-    // constraint1();
+    constraint1();
     // constraint2();
     // constraint3();
     // constraint4();
     // constraint5();
-    constraint6();
+    // constraint6();
     constraint7();
     constraint8();
     constraint9();
@@ -138,8 +138,8 @@ void Problem1::constraint1() {
     FOR(t,1,this->_specs.T){
         FOR(x,1,this->_specs.X){
             FOR(s,1, this->_specs.S){
-                if (this->C(s, N(x))) {
-                    this->_solver.addUnit(Lit(this->_props[x][s][t]));
+                if (not this->C(s, N(x))) {
+                    this->_solver.addUnit(~Lit(this->_props[x][s][t]));
                 }
             }
         }
