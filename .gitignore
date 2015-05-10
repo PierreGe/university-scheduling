@@ -11,3 +11,4 @@ src/Makefile
 src/cmake_install.cmake
 src/parser/parser
 src/proj
+.idea/
