@@ -127,7 +127,7 @@ void Problem1::constraint() {
     // constraint2();
     // constraint3();
     constraint4();
-    // constraint5();
+    constraint5();
     // constraint6();
     constraint7();
     constraint8();
@@ -200,20 +200,19 @@ void Problem1::constraint4() {
 // Un examen doit avoir au moins un étudiant
 void Problem1::constraint5() {
     vec<Lit> lits;
-    FOR(t,1,this->_specs.T){
+    FOR(x,1,this->_specs.X){
+        lits.clear();
         FOR(s,1,this->_specs.S){
-            FOR(x,1,this->_specs.X){
-                lits.clear();
+            FOR(t,1,this->_specs.T){
                 FOR(e,1, this->_specs.E){
                     if (A(e,x)) {
                         lits.push(Lit(this->_props[x][s][t]));
                     }
                 }
-                this->_solver.addClause(lits);
             }
         }
+        this->_solver.addClause(lits);
     }
-
 }
 
 // Un examen a au plus un professeur
