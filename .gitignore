@@ -4,3 +4,10 @@ rapport/.texpadtmp/
 *.log
 *.out
 *.toc
+
+src/CMakeCache.txt
+src/CMakeFiles/
+src/Makefile
+src/cmake_install.cmake
+src/parser/parser
+src/proj
