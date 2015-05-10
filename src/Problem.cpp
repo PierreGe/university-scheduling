@@ -125,7 +125,7 @@ void Problem1::constraint() {
     existenceConstraint();
     constraint1();
     constraint2();
-    // constraint3();
+    constraint3();
     // constraint4();
     // constraint5();
     // constraint6();
@@ -164,14 +164,14 @@ void Problem1::constraint2() {
 }
 // Un professeur donne au plus un examen à chaque moment
 void Problem1::constraint3() {
-    FOR(t, 1, this->_specs.T) {
-        FOR(s, 1, this->_specs.S) {
-            FOR(p, 1, this->_specs.P) {
-                FOR(i, 1, this->_specs.X) {
-                    if (this->B(p, i)) {
-                        FOR(j, 1, i) {
-                            this->_solver.addBinary(~Lit(this->_props[i][s][t]),
-                                                    ~Lit(this->_props[j][s][t]));
+    FOR(s, 1, this->_specs.S) {
+        FOR(p, 1, this->_specs.P) {
+            FOR(t, 1, this->_specs.T) {
+                FOR(x1, 1, this->_specs.X) {
+                    FOR(x2, x1 + 1, this->_specs.X) {
+                        if (B(p, x1) and B(p, x2)) {
+                            this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
+                                                    ~Lit(this->_props[x2][s][t]));
                         }
                     }
                 }
@@ -238,11 +238,11 @@ void Problem1::constraint6() {
 
 // Chaque examen se déroule à au plus un moment
 void Problem1::constraint7() {
-    FOR(t, 1, this->_specs.T) {
+    FOR(x, 1, this->_specs.X) {
         FOR(s, 1, this->_specs.S) {
-            FOR(x1, 1, this->_specs.X) {
-                FOR(x2, x1 + 1, this->_specs.X) {
-                    this->_solver.addBinary(~Lit(this->_props[x1][s][t]), ~Lit(this->_props[x2][s][t]));
+            FOR(t1, 1, this->_specs.T) {
+                FOR(t2, t1 + 1, this->_specs.T) {
+                    this->_solver.addBinary(~Lit(this->_props[x][s][t1]), ~Lit(this->_props[x][s][t2]));
                 }
             }
         }
