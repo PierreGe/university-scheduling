@@ -27,6 +27,9 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver() {
         this->_props[i] = new int*[this->_specs.S];
         for (int j = 0; j < this->_specs.S; ++j) {
             this->_props[i][j] = new int[this->_specs.T];
+            for (int k = 0; k < this->_specs.T; ++k) {
+                this->_props[i][j][k] = this->_solver.newVar();
+            }
         }
     }
 }
@@ -39,6 +42,14 @@ Problem1::~Problem1() {
         delete[] this->_props[i];
     }
     delete[] this->_props;
+}
+
+void Problem1::solve() {
+    this->_solver.solve();
+}
+
+bool Problem1::okay() {
+    return this->_solver.okay();
 }
 
 bool Problem1::A(int e, int x) {

@@ -22,5 +22,11 @@ int main(int argc, char **argv)
     std::string args(argv[1]);
     SchedSpec* specs = parse(args);
     Problem1 problem1(*specs);
-    // delete specs;
+    problem1.solve();
+    if (problem1.okay()) {
+        std::cout << "okay" << std::endl;
+    }
+    else {
+        std::cout << "not okay" << std::endl;
+    }
 }

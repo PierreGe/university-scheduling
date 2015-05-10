@@ -12,6 +12,8 @@ protected:
 public:
     Problem1(SchedSpec&);
     ~Problem1();
+    void solve();
+    bool okay();
 protected:
     bool A(int e, int x);
     bool B(int p, int x);
