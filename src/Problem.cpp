@@ -124,9 +124,9 @@ void Problem1::existenceConstraint() {
 void Problem1::constraint() {
     existenceConstraint();
     constraint1();
-    constraint2();
-    constraint3();
-    // constraint4();
+    // constraint2();
+    // constraint3();
+    constraint4();
     // constraint5();
     // constraint6();
     constraint7();
@@ -164,12 +164,12 @@ void Problem1::constraint2() {
 }
 // Un professeur donne au plus un examen à chaque moment
 void Problem1::constraint3() {
-    FOR(s, 1, this->_specs.S) {
-        FOR(p, 1, this->_specs.P) {
+    FOR(p, 1, this->_specs.P) {
+        FOR(s, 1, this->_specs.S) {
             FOR(t, 1, this->_specs.T) {
                 FOR(x1, 1, this->_specs.X) {
-                    FOR(x2, x1 + 1, this->_specs.X) {
-                        if (B(p, x1) and B(p, x2)) {
+                    FOR(x2, 1, this->_specs.X) {
+                        if (B(p, x1) and B(p, x2) and x1 != x2) {
                             this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
                                                     ~Lit(this->_props[x2][s][t]));
                         }
@@ -182,18 +182,18 @@ void Problem1::constraint3() {
 // Un examen doit avoir au moins un professeur
 void Problem1::constraint4() {
     vec<Lit> lits;
-    FOR(t,1,this->_specs.T){
+    FOR(x,1,this->_specs.X){
+        lits.clear();
         FOR(s,1,this->_specs.S){
-            FOR(x,1,this->_specs.X){
-                lits.clear();
+            FOR(t,1,this->_specs.T){
                 FOR(p,1, this->_specs.P){
                     if (B(p,x)) {
                         lits.push(Lit(this->_props[x][s][t]));
                     }
                 }
-                this->_solver.addClause(lits);
             }
         }
+        this->_solver.addClause(lits);
     }
 }
 
