@@ -1,6 +1,9 @@
 #ifndef __SchedSpec__
 #define __SchedSpec__
 
+#include <cstdio>
+#include <vector>
+
 class SchedSpec {
     int T, S, E, P, X;
     std::vector<std::vector<int>*>* a;

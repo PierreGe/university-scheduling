@@ -4,6 +4,8 @@ project(proj)
 add_executable(proj
     minisat/Solver.cpp
     main.cpp
-    problem.cpp
+    Problem.cpp
 )
+
+list( APPEND CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} -g")
 
