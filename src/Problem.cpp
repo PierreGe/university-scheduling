@@ -109,14 +109,14 @@ int Problem1::N(int x) {
 
 void Problem1::constraint() {
     constraint1();
-    constraint2();
-    constraint3();
-    constraint4();
-    constraint5();
-    constraint6();
-    constraint7();
-    constraint8();
-    constraint9();
+    // constraint2();
+    // constraint3();
+    // constraint4();
+    // constraint5();
+    // constraint6();
+    // constraint7();
+    // constraint8();
+    // constraint9();
 }
 
 void Problem1::constraint1() {
