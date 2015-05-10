@@ -103,7 +103,8 @@ void Problem1::constraint1() {
     FOR(t,1,this->_specs.T){
         FOR(x,1,this->_specs.X){
             FOR(s,1, this->_specs.S){
-
+                // this->_solver.addUnit(Lit(this->_props[x][s][t]));
+                // this->_solver.addUnit(Lit(this->C(s, N(x))));
             }
         }
     }
