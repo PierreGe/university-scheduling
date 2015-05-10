@@ -42,7 +42,6 @@ bool Problem1::C(int s, int i) {
     s--;
     return (this->_specs.c->at(s) >= i);
 }
-    
 
 int Problem1::N(int x) {
 
