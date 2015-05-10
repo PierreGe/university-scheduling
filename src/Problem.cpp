@@ -110,29 +110,28 @@ int Problem1::N(int x) {
 void Problem1::existenceConstraint() {
     vec<Lit> lits;
     // Contrainte d'existence
-    FOR(t, 1, this->_specs.T){
+    FOR(x, 1, this->_specs.X){
         lits.clear();
-        FOR(x, 1, this->_specs.X){
-            FOR(s, 1, this->_specs.S){
+        FOR(s, 1, this->_specs.S){
+            FOR(t, 1, this->_specs.T){
                 lits.push(Lit(this->_props[x][s][t]));
             }
         }
         this->_solver.addClause(lits);
     }
-
 }
 
 void Problem1::constraint() {
     existenceConstraint();
-    // constraint1(); // tested and working
+    // constraint1();
     // constraint2();
     // constraint3();
-    //constraint4(); // tested and working
-    // constraint5(); // tested and working
-    // constraint6(); // tested and working
+    //constraint4();
+    // constraint5();
+    // constraint6();
     constraint7();
-    constraint8();
-     constraint9();
+    //constraint8();
+    constraint9();
 }
 
 void Problem1::constraint1() {
@@ -239,11 +238,11 @@ void Problem1::constraint6() {
 
 
 void Problem1::constraint7() {
-    FOR(s, 1, this->_specs.S) {
-        FOR(x, 1, this->_specs.X) {
-            FOR(t1, 1, this->_specs.T) {
-                FOR(t2, t1 + 1, this->_specs.T) {
-                    this->_solver.addBinary(~Lit(this->_props[x][s][t1]), ~Lit(this->_props[x][2][t2]));
+    FOR(t, 1, this->_specs.T) {
+        FOR(s, 1, this->_specs.S) {
+            FOR(x1, 1, this->_specs.X) {
+                FOR(x2, x1 + 1, this->_specs.X) {
+                    this->_solver.addBinary(~Lit(this->_props[x1][s][t]), ~Lit(this->_props[x2][s][t]));
                 }
             }
         }
@@ -263,8 +262,8 @@ void Problem1::constraint8() {
 }
 
 void Problem1::constraint9() {
-    FOR(t, 1, this->_specs.T) {
-        FOR(s, 1, this->_specs.X) {
+    FOR(s, 1, this->_specs.S) {
+        FOR(t, 1, this->_specs.T) {
             FOR(x1, 1, this->_specs.X) {
                 FOR(x2, x1 + 1, this->_specs.X) {
                     this->_solver.addBinary(~Lit(this->_props[x1][s][t]), ~Lit(this->_props[x2][s][t]));
