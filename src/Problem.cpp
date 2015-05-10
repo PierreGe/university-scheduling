@@ -32,6 +32,7 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver() {
             }
         }
     }
+    constraint();
 }
     
 Problem1::~Problem1() {
@@ -106,4 +107,10 @@ void Problem1::constraint4() {
         }
         this->_solver.addClause(lits);
     }
+}
+
+void Problem1::constraint() {
+    constraint1();
+    constraint4();
+
 }
