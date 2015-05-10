@@ -29,4 +29,5 @@ int main(int argc, char **argv)
     else {
         std::cout << "not okay" << std::endl;
     }
+    return 0;
 }
