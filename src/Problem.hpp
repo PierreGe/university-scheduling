@@ -8,12 +8,13 @@ private:
     SchedSpec _specs;
 public:
     Problem1(SchedSpec&);
-    void test();
 private:
     bool A(int e, int x);
     bool B(int p, int x);
     bool C(int s, int i);
     int N(int x);
+public:
+    void test();
 };
 
 #endif // __PROBLEM_HPP
