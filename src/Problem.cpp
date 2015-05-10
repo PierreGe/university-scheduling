@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cassert>
 
+
+
 void Problem1::test() {
     assert(A(1, 1));
     assert(A(1, 2));
@@ -61,5 +63,9 @@ bool Problem1::C(int s, int i) {
 }
 
 int Problem1::N(int x) {
-
+    int res = 0;
+    for (int e = 0; e <this->_specs.E ; ++e) {
+        res += A(e,x);
+    }
+    return res;
 }
