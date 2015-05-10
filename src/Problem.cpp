@@ -110,9 +110,9 @@ int Problem1::N(int x) {
 void Problem1::existenceConstraint() {
     vec<Lit> lits;
     // Contrainte d'existence
-    FOR(t, 1, this->_specs.T){
+    FOR(x, 1, this->_specs.X){
         lits.clear();
-        FOR(x, 1, this->_specs.X){
+        FOR(t, 1, this->_specs.T){
             FOR(s, 1, this->_specs.S){
                 lits.push(Lit(this->_props[x][s][t]));
             }
