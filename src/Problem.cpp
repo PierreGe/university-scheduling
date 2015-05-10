@@ -123,11 +123,37 @@ void Problem1::constraint1() {
 }
 
 void Problem1::constraint2() {
-
+    FOR(t, 1, this->_specs.T) {
+        FOR(s, 1, this->_specs.S) {
+            FOR(e, 1, this->_specs.E) {
+                FOR(i, 1, this->_specs.X) {
+                    if (this->A(e, i)) {
+                        FOR(j, 1, i) {
+                            this->_solver.addBinary(~Lit(this->_props[i][s][t]),
+                                                    ~Lit(this->_props[j][s][t]));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Problem1::constraint3() {
-
+    FOR(t, 1, this->_specs.T) {
+        FOR(s, 1, this->_specs.S) {
+            FOR(p, 1, this->_specs.P) {
+                FOR(i, 1, this->_specs.X) {
+                    if (this->B(p, i)) {
+                        FOR(j, 1, i) {
+                            this->_solver.addBinary(~Lit(this->_props[i][s][t]),
+                                                    ~Lit(this->_props[j][s][t]));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Problem1::constraint4() {
