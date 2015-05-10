@@ -5,7 +5,7 @@ add_executable(proj
     minisat/Solver.cpp
 
     main.cpp
-    parser.cpp
+    parser/parser.cpp
     problem.cpp
 )
 
