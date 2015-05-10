@@ -32,7 +32,7 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver() {
             }
         }
     }
-    constraint();
+    // constraint();
 }
     
 Problem1::~Problem1() {
@@ -57,6 +57,15 @@ void Problem1::display() {
     FOR(x, 1, this->_specs.X) {
         FOR(s, 1, this->_specs.S) {
             FOR(t, 1, this->_specs.T) {
+                // FOR(i, 0, 4096) {
+                //     std::cout<< i;
+                //     if (this->_solver.model[i] == l_True) {
+                //         std::cout << " True" << std::endl;
+                //     }
+                //     else {
+                //         std::cout << " False" << std::endl;
+                //     }
+                // }
                 if (this->_solver.model[this->_props[x][s][t]] == l_True) {
                     std::cout << "Examen " << x << " dans la salle " << s << " au temps " << t << std::endl;
                 }
@@ -115,8 +124,8 @@ void Problem1::constraint1() {
     FOR(t,1,this->_specs.T){
         FOR(x,1,this->_specs.X){
             FOR(s,1, this->_specs.S){
-                // this->_solver.addUnit(Lit(this->_props[x][s][t]));
-                // this->_solver.addUnit(Lit(this->C(s, N(x))));
+                this->_solver.addUnit(Lit(this->_props[x][s][t]));
+                this->_solver.addUnit(Lit(this->C(s, N(x))));
             }
         }
     }
