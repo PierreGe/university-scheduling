@@ -133,18 +133,16 @@ void Problem1::constraint1() {
 }
 
 void Problem1::constraint2() {
-    FOR(e, 1, this->_specs.E) {
-        FOR(i, 1, this->_specs.X) {
-            FOR(j, 1, i) {
-                if (this->A(e, i) and this->A(e, j)) {
-                    vec<Lit> lits;
-                    FOR(t, 1, this->_specs.T) {
-                        FOR(s, 1, this->_specs.S) {
-                            lits.push(~Lit(this->_props[i][s][t]));
-                            lits.push(~Lit(this->_props[j][s][t]));
+    FOR(s, 1, this->_specs.S) {
+        FOR(e, 1, this->_specs.E) {
+            FOR(t, 1, this->_specs.T) {
+                FOR(x1, 1, this->_specs.X) {
+                    FOR(x2, 1, x1) {
+                        if (A(e, x1) and A(e, x2)) {
+                            this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
+                                                    ~Lit(this->_props[x2][s][t]));
                         }
                     }
-                    this->_solver.addClause(lits);
                 }
             }
         }
