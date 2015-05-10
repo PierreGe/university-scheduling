@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cassert>
 
-Problem1::Problem1(SchedSpec& specs) : _specs(specs) { }
 
 
 void Problem1::test() {
@@ -16,6 +15,10 @@ void Problem1::test() {
     assert(B(1, 2) == false);
     assert(B(2, 1) == false);
     assert(B(2, 2));
+}
+
+Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
+
 }
 
 bool Problem1::A(int e, int x) {
