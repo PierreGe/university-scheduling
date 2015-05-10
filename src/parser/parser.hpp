@@ -1,3 +1,7 @@
+#ifndef __parse__
+#define __parse__
+
+
 #include <string> 
 #include <iostream> 
 #include <vector> 
@@ -46,3 +50,5 @@ SchedSpec* parse(std::string& numbers_str) {
   delete data;
   return schedule;
 }
+
+#endif

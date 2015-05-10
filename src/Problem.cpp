@@ -35,29 +35,29 @@ int mainP1(std::vector<std::vector<int> > mat, std::string filename){
 }
 
 void displayP1(std::string filename){
-    if (S1.okay()){
-        FOR (c, 1, K1){
-            //std::cout << "Groupe " << c << ": ";
-            writeInOutputFile(filename, "groupe ");
-            writeInOutputFile(filename, c);
-            writeInOutputFile(filename, ": ");
-            FOR (b, 1, I1){
-                FOR (a, 1, M1){
-                    if (S1.model[propP1(a, b, c)] == l_True){
-                        //std::cout << a << " ";
-                        writeInOutputFile(filename, a);
-                        writeInOutputFile(filename, " ");
-                    }
-                }
-            }
-            //std::cout << std::endl;
-            writeInOutputFile(filename, "\n");
-        }
-    }
-    else{
-        //std::cout << "Non Satifaisable";
-        writeInOutputFile(filename, "impossible");
-    }
+    // if (S1.okay()){
+    //     FOR (c, 1, K1){
+    //         //std::cout << "Groupe " << c << ": ";
+    //         writeInOutputFile(filename, "groupe ");
+    //         writeInOutputFile(filename, c);
+    //         writeInOutputFile(filename, ": ");
+    //         FOR (b, 1, I1){
+    //             FOR (a, 1, M1){
+    //                 if (S1.model[propP1(a, b, c)] == l_True){
+    //                     //std::cout << a << " ";
+    //                     writeInOutputFile(filename, a);
+    //                     writeInOutputFile(filename, " ");
+    //                 }
+    //             }
+    //         }
+    //         //std::cout << std::endl;
+    //         writeInOutputFile(filename, "\n");
+    //     }
+    // }
+    // else{
+    //     //std::cout << "Non Satifaisable";
+    //     writeInOutputFile(filename, "impossible");
+    // }
 }
 
 bool canPlayP1(int a, int b){

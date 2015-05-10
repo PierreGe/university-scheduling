@@ -1,3 +1,6 @@
+#ifndef __SchedSpec__
+#define __SchedSpec__
+
 class SchedSpec {
     int T, S, E, P, X;
     std::vector<std::vector<int>*>* a;
@@ -159,3 +162,5 @@ class SchedSpec {
             delete d;
     }
 };
+
+#endif
