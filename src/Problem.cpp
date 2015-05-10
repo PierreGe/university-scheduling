@@ -126,16 +126,15 @@ void Problem1::constraint() {
     // constraint1();
     // constraint2();
     // constraint3();
-    //constraint4();
+    // constraint4();
     // constraint5();
-    // constraint6();
+    constraint6();
     constraint7();
-    //constraint8();
+    constraint8();
     constraint9();
 }
-
+// Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité
 void Problem1::constraint1() {
-
     FOR(t,1,this->_specs.T){
         FOR(x,1,this->_specs.X){
             FOR(s,1, this->_specs.S){
@@ -146,7 +145,7 @@ void Problem1::constraint1() {
         }
     }
 }
-
+// Un étudiant a au plus un examen à chaque moment
 void Problem1::constraint2() {
     FOR(s, 1, this->_specs.S) {
         FOR(e, 1, this->_specs.E) {
@@ -163,7 +162,7 @@ void Problem1::constraint2() {
         }
     }
 }
-
+// Un professeur donne au plus un examen à chaque moment
 void Problem1::constraint3() {
     FOR(t, 1, this->_specs.T) {
         FOR(s, 1, this->_specs.S) {
@@ -180,7 +179,7 @@ void Problem1::constraint3() {
         }
     }
 }
-
+// Un examen doit avoir au moins un professeur
 void Problem1::constraint4() {
     vec<Lit> lits;
     FOR(t,1,this->_specs.T){
@@ -198,7 +197,7 @@ void Problem1::constraint4() {
     }
 }
 
-
+// Un examen doit avoir au moins un étudiant
 void Problem1::constraint5() {
     vec<Lit> lits;
     FOR(t,1,this->_specs.T){
@@ -217,6 +216,7 @@ void Problem1::constraint5() {
 
 }
 
+// Un examen a au plus un professeur
 void Problem1::constraint6() {
     vec<Lit> lits;
     FOR(t, 1, this->_specs.T) {
@@ -224,7 +224,7 @@ void Problem1::constraint6() {
             FOR(x, 1, this->_specs.X) {
                 lits.clear();
                 FOR(p1,1, this->_specs.P){
-                    FOR(p2,1,p1){
+                    FOR(p2, p1 + 1,this->_specs.P){
                         if (not B(p1, x) or not B(p2, x)) {
                             lits.push(Lit(this->_props[x][s][t]));
                         }
@@ -236,7 +236,7 @@ void Problem1::constraint6() {
     }
 }
 
-
+// Chaque examen se déroule à au plus un moment
 void Problem1::constraint7() {
     FOR(t, 1, this->_specs.T) {
         FOR(s, 1, this->_specs.S) {
@@ -248,7 +248,7 @@ void Problem1::constraint7() {
         }
     }
 }
-
+// Chaque examen dans au plus une salle
 void Problem1::constraint8() {
     FOR(t, 1, this->_specs.T) {
         FOR(x, 1, this->_specs.X) {
@@ -260,7 +260,7 @@ void Problem1::constraint8() {
         }
     }
 }
-
+// Dans une salle, au plus un examen au même moment
 void Problem1::constraint9() {
     FOR(s, 1, this->_specs.S) {
         FOR(t, 1, this->_specs.T) {
