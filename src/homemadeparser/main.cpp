@@ -3,13 +3,13 @@
 #include <vector> 
 #include <cstddef>
 
+#include "SchedSpec.hpp"
+
 int main(void)
 {
-
-
-  std::string numbers_str = "2 ;3 ;1 ;10 ;50 ;2 ;2 ;2 ;1,2 ;1 ;1 ;2 ;";
-  std::vector<std::vector<int> > data;
-  std::vector<int> tempData;
+  std::string numbers_str = "4 ;3 ;10 ;30 ;100 ;100 ;2 ;4 ;1; 1; 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;2,4;";
+  std::vector<std::vector<int>* >* data = new std::vector<std::vector<int> *>();
+  std::vector<int>* row;
   std::string  temp;
   std::string  subtemp;
 
@@ -18,26 +18,34 @@ int main(void)
     size_t  pos = numbers_str.find(";", 0); //store the position of the delimiter
     temp = numbers_str.substr(0, pos);      //get the token
     numbers_str.erase(0, pos + 1);          //erase it from the source 
-    tempData.clear();
+    row = new std::vector<int>();
     if (! (temp.find(",", 0) != std::string::npos)){
-      tempData.push_back(std::stoi(temp));
+      row->push_back(std::stoi(temp));
     }
     else {
       while (temp.find(",", 0) != std::string::npos){
           size_t  pos = temp.find(",", 0); //store the position of the delimiter
           subtemp = temp.substr(0, pos);      //get the token
           temp.erase(0, pos + 1);          //erase it from the source 
-          tempData.push_back(std::stoi(subtemp));                //and put it into the array
+          row->push_back(std::stoi(subtemp));                //and put it into the array
         }
+        size_t  pos = temp.find(";", 0); //store the position of the delimiter
+        subtemp = temp.substr(0, pos);      //get the token
+        temp.erase(0, pos + 1);          //erase it from the source 
+        row->push_back(std::stoi(subtemp));                //and put it into the array
     }
-    data.push_back(tempData);                //and put it into the array
+    data->push_back(row);                //and put it into the array
   }
-
-        for (int i = 0; i < data->size(); ++i) {
-          for (int j = 0; j < data->at(i)->size(); ++j) {
-            std::cout << data->at(i)->at(j) << ",";
-          }
-          std::cout << std::endl;
-        }
+  SchedSpec schedule(data);
+    // for (int i = 0; i < data->size(); ++i) {
+    //   for (int j = 0; j < data->at(i)->size(); ++j) {
+    //     std::cout << data->at(i)->at(j) << ",";
+    //   }
+    //   std::cout << std::endl;
+    // }
+  for (int i = 0; i < data->size(); ++i) {
+      delete data->at(i);
+  }
+  delete data;
   return(0);
 }
