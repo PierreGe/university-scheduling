@@ -5,13 +5,13 @@
 #include <vector>
 
 class SchedSpec {
+    public:
     int T, S, E, P, X;
     std::vector<std::vector<int>*>* a;
     std::vector<std::vector<int>*>* b;
     std::vector<int>* c;
     std::vector<int>* d;
 
-    public:
     SchedSpec(std::vector<std::vector<int>*>* data) {
         std::vector<std::vector<int>*>::iterator it = data->begin();
         // before we read T and S we make sure there are at least 2 elements in
