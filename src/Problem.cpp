@@ -113,7 +113,7 @@ void Problem1::constraint() {
     // constraint3();
     // constraint4();
     constraint5();
-    // constraint6();
+    constraint6();
     // constraint7();
     // constraint8();
     // constraint9();
@@ -199,11 +199,19 @@ void Problem1::constraint5() {
 }
 
 void Problem1::constraint6() {
-
-    FOR(x,1,this->_specs.X){
-        FOR(p,1, this->_specs.P){
-            FOR(j,1,p){
-                this->_solver.addBinary(~Lit(B(j,x)), ~Lit(B(p,x)));
+    vec<Lit> lits;
+    FOR(t, 1, this->_specs.T) {
+        FOR(s, 1, this->_specs.S) {
+            FOR(x, 1, this->_specs.X) {
+                lits.clear();
+                FOR(p1,1, this->_specs.P){
+                    FOR(p2,1,p1){
+                        if (not B(p1, x) or not B(p2, x)) {
+                            lits.push(Lit(this->_props[x][s][t]));
+                        }
+                    }
+                }
+                this->_solver.addClause(lits);
             }
         }
     }
