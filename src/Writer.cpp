@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Nicolas Omer. All rights reserved.
 //
 
-#include "Writer.h"
-
+#include "Writer.hpp"
 void writeInOutputFile(std::string filename, std::string data){
     
     std::ofstream fichier(filename, std::ios::out | std::ios::app);
