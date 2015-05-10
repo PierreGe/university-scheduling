@@ -44,9 +44,6 @@ SchedSpec* parse(std::string& numbers_str) {
     //   }
     //   std::cout << std::endl;
     // }
-  for (int i = 0; i < data->size(); ++i) {
-      delete data->at(i);
-  }
   delete data;
   return schedule;
 }
