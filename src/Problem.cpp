@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Nicolas Omer. All rights reserved.
 //
 
-#include "Problem.h"
+#include "Problem.hpp"
 
 #define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
 
@@ -38,25 +38,25 @@ void displayP1(std::string filename){
     if (S1.okay()){
         FOR (c, 1, K1){
             //std::cout << "Groupe " << c << ": ";
-            writeInFile(filename, "groupe ");
-            writeInFile(filename, c);
-            writeInFile(filename, ": ");
+            writeInOutputFile(filename, "groupe ");
+            writeInOutputFile(filename, c);
+            writeInOutputFile(filename, ": ");
             FOR (b, 1, I1){
                 FOR (a, 1, M1){
                     if (S1.model[propP1(a, b, c)] == l_True){
                         //std::cout << a << " ";
-                        writeInFile(filename, a);
-                        writeInFile(filename, " ");
+                        writeInOutputFile(filename, a);
+                        writeInOutputFile(filename, " ");
                     }
                 }
             }
             //std::cout << std::endl;
-            writeInFile(filename, "\n");
+            writeInOutputFile(filename, "\n");
         }
     }
     else{
         //std::cout << "Non Satifaisable";
-        writeInFile(filename, "impossible");
+        writeInOutputFile(filename, "impossible");
     }
 }
 

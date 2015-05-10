@@ -1,5 +1,5 @@
-#include "parser.h"
-#include "problem.h"
+#include "parser/parser.hpp"
+#include "problem.hpp"
 
 #include <iostream>
 
@@ -31,11 +31,11 @@ int main(int argc, char **argv)
     }
 
     // Parser le fichier de contraintes
-    Parser parser(constraints, syntax_level);
+    //Parser parser(constraints, syntax_level);
 
     // Résoudre le problème
-    Problem problem(parser);
+    //Problem problem(parser);
 
-    problem.solve();
-    problem.write(output);
+    //problem.solve();
+    //problem.write(output);
 }

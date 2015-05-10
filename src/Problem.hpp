@@ -9,8 +9,8 @@
 #ifndef __InfoFond__Problem__
 #define __InfoFond__Problem__
 
-#include "Solver.hpp"
-#include "Writer.h"
+#include "minisat/Solver.hpp"
+#include "Writer.hpp"
 #include <vector>
 #include <algorithm>
 #include <iostream>
