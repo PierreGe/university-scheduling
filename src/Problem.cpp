@@ -109,14 +109,14 @@ int Problem1::N(int x) {
 
 void Problem1::constraint() {
     constraint1();
-    constraint2();
-    constraint3();
-    constraint4();
-    constraint5();
-    constraint6();
-    constraint7();
-    constraint8();
-    constraint9();
+    // constraint2();
+    // constraint3();
+    // constraint4();
+    // constraint5();
+    // constraint6();
+    // constraint7();
+    // constraint8();
+    // constraint9();
 }
 
 void Problem1::constraint1() {
@@ -124,8 +124,9 @@ void Problem1::constraint1() {
     FOR(t,1,this->_specs.T){
         FOR(x,1,this->_specs.X){
             FOR(s,1, this->_specs.S){
-                this->_solver.addUnit(Lit(this->_props[x][s][t]));
-                this->_solver.addUnit(Lit(this->C(s, N(x))));
+                if (this->C(s, N(x))) {
+                    this->_solver.addUnit(Lit(this->_props[x][s][t]));
+                }
             }
         }
     }
