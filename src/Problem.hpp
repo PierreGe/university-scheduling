@@ -2,13 +2,17 @@
 #define __PROBLEM_HPP
 
 #include "parser/SchedSpec.hpp"
+#include "minisat/Solver.hpp"
 
 class Problem1 {
-private:
+protected:
     SchedSpec _specs;
+    Solver _solver;
+    int*** _props;
 public:
     Problem1(SchedSpec&);
-private:
+    ~Problem1();
+protected:
     bool A(int e, int x);
     bool B(int p, int x);
     bool C(int s, int i);
