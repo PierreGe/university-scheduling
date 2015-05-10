@@ -108,12 +108,12 @@ int Problem1::N(int x) {
 }
 
 void Problem1::constraint() {
-    constraint1();
+    constraint1(); // tested and working
     // constraint2();
     // constraint3();
-    // constraint4();
-    constraint5();
-    constraint6();
+    constraint4(); // tested and working
+    constraint5(); // tested and working
+    constraint6(); // tested and working
     // constraint7();
     // constraint8();
     // constraint9();
@@ -170,12 +170,18 @@ void Problem1::constraint3() {
 
 void Problem1::constraint4() {
     vec<Lit> lits;
-    FOR(x,1,this->_specs.X){
-        lits.clear();
-        FOR(p,1, this->_specs.P){
-            lits.push(Lit(B(p,x)));
+    FOR(t,1,this->_specs.T){
+        FOR(s,1,this->_specs.S){
+            FOR(x,1,this->_specs.X){
+                lits.clear();
+                FOR(p,1, this->_specs.P){
+                    if (B(p,x)) {
+                        lits.push(Lit(this->_props[x][s][t]));
+                    }
+                }
+                this->_solver.addClause(lits);
+            }
         }
-        this->_solver.addClause(lits);
     }
 }
 
