@@ -15,8 +15,24 @@ void Problem1::test() {
     assert(B(2, 2));
 }
 
-Problem1::Problem1(SchedSpec& specs) : _specs(specs) {
-
+Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver() {
+    this->_props = new int**[this->_specs.X];
+    for (int i = 0; i < this->_specs.X; ++i) {
+        this->_props[i] = new int*[this->_specs.S];
+        for (int j = 0; j < this->_specs.S; ++j) {
+            this->_props[i][j] = new int[this->_specs.T];
+        }
+    }
+}
+    
+Problem1::~Problem1() {
+    for (int i = 0; i < this->_specs.X; ++i) {
+        for (int j = 0; j < this->_specs.S; ++j) {
+            delete[] this->_props[i][j];
+        }
+        delete[] this->_props[i];
+    }
+    delete[] this->_props;
 }
 
 bool Problem1::A(int e, int x) {
