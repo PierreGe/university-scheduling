@@ -22,6 +22,7 @@ protected:
     void constraint();
     void constraint1();
     void constraint4();
+    void constraint5();
 public:
     void test();
 };

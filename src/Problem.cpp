@@ -86,6 +86,13 @@ int Problem1::N(int x) {
     return res;
 }
 
+void Problem1::constraint() {
+    constraint1();
+    constraint4();
+    constraint5();
+
+}
+
 void Problem1::constraint1() {
 
     FOR(t,1,this->_specs.T){
@@ -98,7 +105,6 @@ void Problem1::constraint1() {
 }
 
 void Problem1::constraint4() {
-
     vec<Lit> lits;
     FOR(x,1,this->_specs.X){
         lits.clear();
@@ -109,8 +115,14 @@ void Problem1::constraint4() {
     }
 }
 
-void Problem1::constraint() {
-    constraint1();
-    constraint4();
 
+void Problem1::constraint5() {
+    vec<Lit> lits;
+    FOR(x,1,this->_specs.X){
+        lits.clear();
+        FOR(e,1, this->_specs.E){
+            lits.push(Lit(A(e,x)));
+        }
+        this->_solver.addClause(lits);
+    }
 }
