@@ -19,6 +19,8 @@ protected:
     bool B(int p, int x);
     bool C(int s, int i);
     int N(int x);
+    void constraint1();
+    void constraint4();
 public:
     void test();
 };

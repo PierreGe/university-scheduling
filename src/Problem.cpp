@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 
-
+#define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
 
 void Problem1::test() {
     assert(A(1, 1));
@@ -22,12 +22,12 @@ void Problem1::test() {
 }
 
 Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver() {
-    this->_props = new int**[this->_specs.X];
-    for (int i = 0; i < this->_specs.X; ++i) {
-        this->_props[i] = new int*[this->_specs.S];
-        for (int j = 0; j < this->_specs.S; ++j) {
-            this->_props[i][j] = new int[this->_specs.T];
-            for (int k = 0; k < this->_specs.T; ++k) {
+    this->_props = new int**[this->_specs.X +1];
+    for (int i = 1; i <= this->_specs.X; ++i) {
+        this->_props[i] = new int*[this->_specs.S+1];
+        for (int j = 1; j <= this->_specs.S; ++j) {
+            this->_props[i][j] = new int[this->_specs.T+1];
+            for (int k = 1; k <= this->_specs.T; ++k) {
                 this->_props[i][j][k] = this->_solver.newVar();
             }
         }
@@ -83,4 +83,27 @@ int Problem1::N(int x) {
         res += A(e+1,x);
     }
     return res;
+}
+
+void Problem1::constraint1() {
+
+    FOR(t,1,this->_specs.T){
+        FOR(x,1,this->_specs.X){
+            FOR(s,1, this->_specs.S){
+
+            }
+        }
+    }
+}
+
+void Problem1::constraint4() {
+
+    vec<Lit> lits;
+    FOR(x,1,this->_specs.X){
+        lits.clear();
+        FOR(p,1, this->_specs.P){
+            lits.push(Lit(B(p,x)));
+        }
+        this->_solver.addClause(lits);
+    }
 }
