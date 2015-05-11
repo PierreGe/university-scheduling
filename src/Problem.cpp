@@ -168,8 +168,8 @@ void Problem1::constraint3() {
         FOR(s, 1, this->_specs.S) {
             FOR(t, 1, this->_specs.T) {
                 FOR(x1, 1, this->_specs.X) {
-                    FOR(x2, 1, this->_specs.X) {
-                        if (B(p, x1) and B(p, x2) and x1 != x2) {
+                    FOR(x2, x1 + 1, this->_specs.X) {
+                        if (B(p, x1) and B(p, x2)) {
                             this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
                                                     ~Lit(this->_props[x2][s][t]));
                         }
@@ -224,7 +224,7 @@ void Problem1::constraint6() {
                 FOR(p1, 1, this->_specs.P) {
                     FOR(p2, p1 + 1, this->_specs.P) {
                         if (not B(p1, x) or not B(p2, x))
-                        lits.push(Lit(this->_props[x][s][t]));
+                            lits.push(Lit(this->_props[x][s][t]));
                     }
                 }
             }
