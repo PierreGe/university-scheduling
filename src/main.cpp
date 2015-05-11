@@ -25,11 +25,11 @@ int main(int argc, char **argv)
         Problem1 problem1(*specs);
         problem1.solve();
         if (problem1.okay()) {
-            std::cout << "okay" << std::endl;
+            std::cout << "Success, the problem has been solve under those constraints !" << std::endl;
             problem1.display();
         }
         else {
-            std::cout << "not okay" << std::endl;
+            std::cout << "Uh .. The problem could not be solve under those constraints" << std::endl;
         }
     }
     catch(const char* error)
