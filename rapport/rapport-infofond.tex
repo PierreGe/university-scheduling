@@ -110,7 +110,6 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelle va
 	\item \( A_{e,x}\) telle que l'étudiant e passe l'examen x,
 	\item \(B_{p,x}\) telle que le professeur p donne l'examen x ,
 	\item \(C_{s,i}\) telle que la salle s a la capacité d'accueillir i étudiants,
-	\item \(M_{x,s,t}\) telle que l'examen x se déroule dans la salle s au temps t,
 	\item \(N_{x}\) telle que la fonction N donne le nombre d'étudiant qui passe l'examen x.
 \end{itemize}
 
@@ -175,10 +174,11 @@ La forme normal conjonctive de la formule est:
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
 
 \section{Q5}
-
+On rajoute une nouvelle variable \( D_{x}\) qui donne la durée de l'examen x
 Les nouvelles contraintes sont 
 \begin{itemize}
-	\item 
+	\item Chaque examen doit avoir un nombre de période de temps égal à sa durée
+  \item Ces périodes de temps doivent être continues.
 \end{itemize}
 
 
