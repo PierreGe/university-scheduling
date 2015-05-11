@@ -62,15 +62,6 @@ void Problem1::display() {
     FOR(x, 1, this->_specs.X) {
         FOR(s, 1, this->_specs.S) {
             FOR(t, 1, this->_specs.T) {
-                // FOR(i, 0, 4096) {
-                //     std::cout<< i;
-                //     if (this->_solver.model[i] == l_True) {
-                //         std::cout << " True" << std::endl;
-                //     }
-                //     else {
-                //         std::cout << " False" << std::endl;
-                //     }
-                // }
                 if (this->_solver.model[this->_props[x][s][t]] == l_True) {
                     std::cout << "Examen " << x << " dans la salle " << s << " au temps " << t << std::endl;
                 }
