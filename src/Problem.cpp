@@ -33,10 +33,9 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver(), _constraints() 
         }
     }
     this->setConstraints();
-    for (std::vector<std::function<void()>>::iterator i = this->_constraints.begin(); 
-        i != this->_constraints.end(); ++i)
+    for (auto& i : this->_constraints)
     {
-        (*i)();
+        i.second();
     }
 }
     
@@ -105,7 +104,7 @@ int Problem1::N(int x) {
 
 void Problem1::setConstraints() {
     // Contrainte d'existence
-    _constraints.push_back([this]() {
+    _constraints["existence"] = [this]() {
         vec<Lit> lits;
         // Contrainte d'existence
         FOR(x, 1, this->_specs.X){
@@ -117,9 +116,9 @@ void Problem1::setConstraints() {
             }
             this->_solver.addClause(lits);
         }
-    });
+    };
     // Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité
-    _constraints.push_back([this]() {
+    _constraints["salle_capacite"] = [this]() {
         FOR(t,1,this->_specs.T){
             FOR(x,1,this->_specs.X){
                 FOR(s,1, this->_specs.S){
@@ -129,9 +128,9 @@ void Problem1::setConstraints() {
                 }
             }
         }
-    });
+    };
     // Un étudiant a au plus un examen à chaque moment
-    _constraints.push_back([this]() {
+    _constraints["etudiant_temps_max"] = [this]() {
         FOR(e, 1, this->_specs.E) {
             FOR(t, 1, this->_specs.T) {
                 FOR(s1, 1, this->_specs.S) {
@@ -148,9 +147,9 @@ void Problem1::setConstraints() {
                 }
             }
         }
-    });
+    };
     // Un professeur donne au plus un examen à chaque moment
-    _constraints.push_back([this]() {
+    _constraints["prof_temps_max"] = [this]() {
         FOR(p, 1, this->_specs.P) {
             FOR(t, 1, this->_specs.T) {
                 FOR(s1, 1, this->_specs.S) {
@@ -167,9 +166,9 @@ void Problem1::setConstraints() {
                 }
             }
         }
-    });
+    };
     // Un examen doit avoir au moins un professeur
-    _constraints.push_back([this]() {
+    _constraints["examen_prof_min"] = [this]() {
         vec<Lit> lits;
         FOR(x,1,this->_specs.X){
             lits.clear();
@@ -184,9 +183,9 @@ void Problem1::setConstraints() {
             }
             this->_solver.addClause(lits);
         }
-    });
+    };
     // Un examen doit avoir au moins un étudiant
-    _constraints.push_back([this]() {
+    _constraints["examen_etudiant_min"] = [this]() {
         vec<Lit> lits;
         FOR(x,1,this->_specs.X){
             lits.clear();
@@ -201,9 +200,9 @@ void Problem1::setConstraints() {
             }
             this->_solver.addClause(lits);
         }
-    });
+    };
     // Un examen a au plus un professeur
-    // _constraints.push_back([this]() {
+    // _constraints["examen_prof_max"] = [this]() {
     //     FOR(x, 1, this->_specs.X) {
     //         vec<Lit> lits;
     //         FOR(s, 1, this->_specs.S) {
@@ -220,7 +219,7 @@ void Problem1::setConstraints() {
     //     }
     // )};
     // Chaque examen se déroule à au plus un moment
-    _constraints.push_back([this]() {
+    _constraints["examen_temps_max"] = [this]() {
         FOR(x, 1, this->_specs.X) {
             FOR(s, 1, this->_specs.S) {
                 FOR(t1, 1, this->_specs.T) {
@@ -230,9 +229,9 @@ void Problem1::setConstraints() {
                 }
             }
         }
-    });
+    };
     // Chaque examen dans au plus une salle
-    _constraints.push_back([this]() {
+    _constraints["examen_salle_max"] = [this]() {
         FOR(t, 1, this->_specs.T) {
             FOR(x, 1, this->_specs.X) {
                 FOR(s1, 1, this->_specs.S) {
@@ -242,9 +241,9 @@ void Problem1::setConstraints() {
                 }
             }
         }
-    });
+    };
     // Dans une salle, au plus un examen au même moment
-    _constraints.push_back([this]() {
+    _constraints["salle_examen_max"] = [this]() {
         FOR(s, 1, this->_specs.S) {
             FOR(t, 1, this->_specs.T) {
                 FOR(x1, 1, this->_specs.X) {
@@ -254,6 +253,6 @@ void Problem1::setConstraints() {
                 }
             }
         }
-    });
+    };
 }
 

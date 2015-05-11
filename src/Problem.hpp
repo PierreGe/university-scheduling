@@ -1,8 +1,9 @@
 #ifndef __PROBLEM_HPP
 #define __PROBLEM_HPP
 
-#include <vector>
+#include <unordered_map>
 #include <functional>
+#include <string>
 
 #include "parser/SchedSpec.hpp"
 #include "minisat/Solver.hpp"
@@ -12,7 +13,7 @@ protected:
     SchedSpec _specs;
     Solver _solver;
     int*** _props;
-    std::vector<std::function<void()>> _constraints;
+    std::unordered_map<std::string, std::function<void()>> _constraints;
 public:
     Problem1(SchedSpec&);
     ~Problem1();
