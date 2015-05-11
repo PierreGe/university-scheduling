@@ -41,13 +41,13 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver(), _constraints() 
 }
     
 Problem1::~Problem1() {
-    /*for (int i = 0; i < this->_specs.X; ++i) {
-        for (int j = 0; j < this->_specs.S; ++j) {
+    for (int i = 1; i <= this->_specs.X; ++i) {
+        for (int j = 1; j <= this->_specs.S; ++j) {
             delete[] this->_props[i][j];
         }
         delete[] this->_props[i];
     }
-    delete[] this->_props; */
+    delete[] this->_props; 
 }
 
 void Problem1::solve() {
