@@ -8,6 +8,8 @@
 #include "parser/SchedSpec.hpp"
 #include "minisat/Solver.hpp"
 
+#define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
+
 class Problem4 {
 protected:
     SchedSpec _specs;
@@ -25,7 +27,9 @@ protected:
     bool B(int p, int x);
     bool C(int s, int i);
     int N(int x);
-    virtual void setConstraints();
+    virtual 
+#define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
+    void setConstraints();
 public:
     void test();
 };

@@ -3,8 +3,6 @@
 #include <iostream>
 #include <cassert>
 
-#define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
-
 void Problem4::test() {
     assert(A(1, 1));
     assert(A(1, 2));

@@ -20,4 +20,19 @@ int Problem5::D(int x) {
 void Problem5::setConstraints(){
     Problem4::setConstraints();
     this->_constraints.erase("examen_temps_max");
+    this->_constraints["examen_duree_max"] = [this]() {
+        FOR(x, 1, this->_specs.X) {
+            FOR(s, 1, this->_specs.S) {
+                FOR(t1, 1, this->_specs.T) {
+                    FOR(t2, 1, this->_specs.T) {
+                        bool in = true;
+                        if (t2 < t1 || t2 >= t1+D(x)) {
+                            this->_solver.addBinary(~Lit(this->_props[x][s][t1]),
+                                                    ~Lit(this->_props[x][s][t2]));
+                        }
+                    }
+                }
+            }
+        }
+    };
 }
