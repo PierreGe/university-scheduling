@@ -1,6 +1,9 @@
 #ifndef __PROBLEM_HPP
 #define __PROBLEM_HPP
 
+#include <vector>
+#include <functional>
+
 #include "parser/SchedSpec.hpp"
 #include "minisat/Solver.hpp"
 
@@ -9,6 +12,7 @@ protected:
     SchedSpec _specs;
     Solver _solver;
     int*** _props;
+    std::vector<std::function<void()>> _constraints;
 public:
     Problem1(SchedSpec&);
     ~Problem1();
@@ -20,17 +24,7 @@ protected:
     bool B(int p, int x);
     bool C(int s, int i);
     int N(int x);
-    void constraint();
-    void existenceConstraint();
-    void constraint1();
-    void constraint2();
-    void constraint3();
-    void constraint4();
-    void constraint5();
-    void constraint6();
-    void constraint7();
-    void constraint8();
-    void constraint9();
+    void virtual setConstraints();
 public:
     void test();
 };
