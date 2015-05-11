@@ -1,6 +1,6 @@
 #include "parser/parser.hpp"
 #include "parser/SchedSpec.hpp"
-#include "Problem.hpp"
+#include "Problem5.hpp"
 
 #include <iostream>
 #include <string>
@@ -8,8 +8,8 @@
 void test() {
     std::string args("2 ;3 ;1 ;10 ;50 ;2 ;2 ;2 ;1,2 ;1 ;1 ;2 ;");
     SchedSpec* specs = parse(args);
-    Problem1 problem1(*specs);
-    problem1.test();
+    Problem5 problem(*specs);
+    problem.test();
 }
 
 int main(int argc, char **argv)
@@ -22,11 +22,11 @@ int main(int argc, char **argv)
     std::string args(argv[1]);
     try {
         SchedSpec* specs = parse(args);
-        Problem1 problem1(*specs);
-        problem1.solve();
-        if (problem1.okay()) {
+        Problem5 problem(*specs);
+        problem.solve();
+        if (problem.okay()) {
             std::cout << "Success, the problem has been solve under those constraints !" << std::endl;
-            problem1.display();
+            problem.display();
         }
         else {
             std::cout << "Uh .. The problem could not be solve under those constraints" << std::endl;

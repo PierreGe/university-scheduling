@@ -1,5 +1,5 @@
-#ifndef __PROBLEM_HPP
-#define __PROBLEM_HPP
+#ifndef __PROBLEM4_HPP
+#define __PROBLEM4_HPP
 
 #include <unordered_map>
 #include <functional>
@@ -8,15 +8,15 @@
 #include "parser/SchedSpec.hpp"
 #include "minisat/Solver.hpp"
 
-class Problem1 {
+class Problem4 {
 protected:
     SchedSpec _specs;
     Solver _solver;
     int*** _props;
     std::unordered_map<std::string, std::function<void()>> _constraints;
 public:
-    Problem1(SchedSpec&);
-    ~Problem1();
+    Problem4(SchedSpec&);
+    ~Problem4();
     void solve();
     bool okay();
     void display();

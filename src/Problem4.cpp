@@ -1,11 +1,11 @@
-#include "Problem.hpp"
+#include "Problem4.hpp"
 
 #include <iostream>
 #include <cassert>
 
 #define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
 
-void Problem1::test() {
+void Problem4::test() {
     assert(A(1, 1));
     assert(A(1, 2));
     assert(A(2, 1));
@@ -21,7 +21,7 @@ void Problem1::test() {
     assert(N(2) == 1);
 }
 
-Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver(), _constraints() {
+Problem4::Problem4(SchedSpec& specs) : _specs(specs), _solver(), _constraints() {
     this->_props = new int**[this->_specs.X +1];
     for (int i = 1; i <= this->_specs.X; ++i) {
         this->_props[i] = new int*[this->_specs.S+1];
@@ -39,7 +39,7 @@ Problem1::Problem1(SchedSpec& specs) : _specs(specs), _solver(), _constraints() 
     }
 }
     
-Problem1::~Problem1() {
+Problem4::~Problem4() {
     for (int i = 1; i <= this->_specs.X; ++i) {
         for (int j = 1; j <= this->_specs.S; ++j) {
             delete[] this->_props[i][j];
@@ -49,15 +49,15 @@ Problem1::~Problem1() {
     delete[] this->_props; 
 }
 
-void Problem1::solve() {
+void Problem4::solve() {
     this->_solver.solve();
 }
 
-bool Problem1::okay() {
+bool Problem4::okay() {
     return this->_solver.okay();
 }
 
-void Problem1::display() {
+void Problem4::display() {
     FOR(x, 1, this->_specs.X) {
         FOR(s, 1, this->_specs.S) {
             FOR(t, 1, this->_specs.T) {
@@ -69,7 +69,7 @@ void Problem1::display() {
     }
 }
 
-bool Problem1::A(int e, int x) {
+bool Problem4::A(int e, int x) {
     e--;
     for (int i = 0; i < this->_specs.a->at(e)->size(); ++i) {
         if (this->_specs.a->at(e)->at(i) == x) {
@@ -79,7 +79,7 @@ bool Problem1::A(int e, int x) {
     return false;
 }
 
-bool Problem1::B(int p, int x) {
+bool Problem4::B(int p, int x) {
     p--;
     for (int i = 0; i < this->_specs.b->at(p)->size(); ++i) {
         if (this->_specs.b->at(p)->at(i) == x) {
@@ -89,12 +89,12 @@ bool Problem1::B(int p, int x) {
     return false;
 }
 
-bool Problem1::C(int s, int i) {
+bool Problem4::C(int s, int i) {
     s--;
     return (this->_specs.c->at(s) >= i);
 }
 
-int Problem1::N(int x) {
+int Problem4::N(int x) {
     int res = 0;
     for (int e = 0; e < this->_specs.E; ++e) {
         res += A(e+1,x);
@@ -102,7 +102,7 @@ int Problem1::N(int x) {
     return res;
 }
 
-void Problem1::setConstraints() {
+void Problem4::setConstraints() {
     // Contrainte d'existence
     _constraints["existence"] = [this]() {
         vec<Lit> lits;
