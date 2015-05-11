@@ -47,12 +47,12 @@
 \section{Q1}
 Les contraintes sont les suivantes :
 \begin{itemize}
+  \item Contrainte d'existence : chaque examen se déroule dans au moins une salle et durant au moins une période de temps,
   \item Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité,
   \item Un étudiant ne peut pas avoir deux examens au même moment,
   \item Un professeur ne peut pas avoir deux examens au même moment,
   \item Un examen doit avoir au moins un professeur,
   \item Un examen doit avoir au moins un étudiant
-  \item Un examen a au plus un professeur,
   \item Chaque examen doit se dérouler une seule fois,
   \item Chaque examen doit se dérouler dans une seule salle,
   \item Dans une salle, il ne peut se déroule qu'un seul examen a la fois.
@@ -60,6 +60,11 @@ Les contraintes sont les suivantes :
 
 
 \section{Q2}
+\subsection{Contrainte d'existence : chaque examen se déroule dans au moins une salle et durant au moins une période de temps}
+\begin{displaymath}
+	\forall x \in X, \exists s \in S, \exists t \in T : \mu(x) = (s,t) 
+\end{displaymath}
+
 \subsection {Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité}
 \begin{displaymath}
 \forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : a(e) \mapsto \{x\} \wedge \mu(x) = (s,t) \wedge \sum a(e) \mapsto \{x\} \leq c(s)
@@ -80,10 +85,6 @@ Les contraintes sont les suivantes :
 \subsection {Un examen doit avoir au moins un étudiant}
 \begin{displaymath}
 \forall x \in X, \exists e \in E : a(e) \mapsto \{x\}
-\end{displaymath}
-\subsection {Un examen a au plus un professeur}
-\begin{displaymath}
-\forall x \in X, \nexists p_{1},p_{2} \in P: p_{1} != p_{2} \wedge b(p_{1}) \mapsto \{x\} \wedge b(p_{2}) \mapsto \{x\} 
 \end{displaymath}
 \subsection {Chaque examen doit se dérouler une seule fois}
 \begin{displaymath}
@@ -117,50 +118,48 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelle va
 \subsection{Ensemble de FNC}
 (p1)
 \begin{displaymath}
-	\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ M_{x,s,t}}}^{S} C_{s,N_{x}}
+	\bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T} M_{s,x,t}
 \end{displaymath}
+
 
 (p2)
 \begin{displaymath}
-\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{\substack{i=1 \\ A_{e,i}}}^{X}\bigwedge\limits_{j=1}^{i} \neg M_{i, s, t} \vee \neg M_{j, s, t}
+	\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ \neg C_{s,N_{x}}}}^{S}  \neg M_{x,s,t}
 \end{displaymath}
 
 (p3)
 \begin{displaymath}
-\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{\substack{i=1 \\ B_{p,x}}}^{X}\bigwedge\limits_{j=1}^{i} \neg M_{i, s, t} \vee \neg M_{j, s, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s1=1}^{S}\bigwedge\limits_{s2=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p4)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigvee\limits_{p=1}^{P} B_{p, x}
+\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s1=1}^{S}\bigwedge\limits_{s2=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p5)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigvee\limits_{e=1}^{E} A_{e, x}
+\bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T}\bigvee\limits_{\substack{p=1 \\ B_{p,x}}}^{P} M_{x, s, t}
 \end{displaymath}
 
 (p6)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{j=1}^{p} \neg B_{j,x} \vee \neg B_{p, x}
+\bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T}\bigvee\limits_{\substack{e=1 \\ A_{e,x}}}^{E} M_{x, s, t}
 \end{displaymath}
 
 (p7)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigvee\limits_{t=1}^{T}\bigvee\limits_{s=1}^{S} M_{x, s, t}
-\end{displaymath}
-\begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{i=1}^{T}\bigwedge\limits_{j=1}^{i} \neg M_{x, s, i} \vee \neg M_{x, s, j}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{t2=t1+1}^{T} \neg M_{x, s, t1} \vee \neg M_{x, s, t2}
 \end{displaymath}
 
 (p8)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{i=1}^{S}\bigwedge\limits_{j=1}^{i} \neg M_{x, i, t} \vee \neg M_{x, j, t}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s1=1}^{S}\bigwedge\limits_{s2=t1+1}^{S} \neg M_{x, s1, t} \vee \neg M_{x, s2, t}
 \end{displaymath}
 
 (p9)
 \begin{displaymath}
-\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{i=1}^{X}\bigwedge\limits_{j=1}^{i} \neg M_{i, s, t} \vee \neg M_{j, s, t}
+\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x1=1}^{X}\bigwedge\limits_{x2=t1+1}^{X} \neg M_{x1, s, t} \vee \neg M_{x2, s, t}
 \end{displaymath}
 
 
@@ -171,8 +170,19 @@ La forme normal conjonctive de la formule est:
 \end{displaymath}
 
 \section{Q4}
+
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
+
+\section{Q5}
+
+Les nouvelles contraintes sont 
+\begin{itemize}
+	\item 
+\end{itemize}
+
+
+
 \section{Q10}
 
 LES ETUDIANTS VEULENT BOUFFER LE TEMPS DE MIDI !!!!!!!!!
