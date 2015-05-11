@@ -39,10 +39,8 @@ SchedSpec* parse(std::string& numbers_str) {
     }
     SchedSpec *schedule = new SchedSpec(data);
     // for (int i = 0; i < data->size(); ++i) {
-    //   for (int j = 0; j < data->at(i)->size(); ++j) {
-    //     std::cout << data->at(i)->at(j) << ",";
-    //   }
-    //   std::cout << std::endl;
+    //     if (data->at(i) != nullptr)
+    //         delete data->at(i);
     // }
     delete data;
     return schedule;
