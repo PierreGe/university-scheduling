@@ -3,9 +3,11 @@
 
 #include <cstdio>
 #include <vector>
+#include <exception>
+
 
 class SchedSpec {
-    public:
+public:
     int T, S, E, P, X;
     std::vector<std::vector<int>*>* a;
     std::vector<std::vector<int>*>* b;
@@ -17,26 +19,26 @@ class SchedSpec {
         // before we read T and S we make sure there are at least 2 elements in
         // the list
         if (data->size() < 2)
-            printf("No values for T and S found.");
+            throw("No values for T and S found.");
         // reading T
         if ((*it)->size() > 1)
-            printf("T should be a single number.");
+            throw("T should be a single number.");
         this->T = (*it)->front();
         delete (*it);
         it++;
         // reading S
         if ((*it)->size() > 1)
-            printf("S should be a single number.");
+            throw("S should be a single number.");
         this->S = (*it)->front();
         delete (*it);
         it++;
         // reading c
         if (data->size() - 2 < this->S)
-            printf("Capacities and room count don't match.");
+            throw("Capacities and room count don't match.");
         this->c = new std::vector<int>();
         for (int i = 0; i < this->S; i++) {
             if ((*it)->size() > 1)
-                printf("Each capacity should be a single number.");
+                throw("Each capacity should be a single number.");
             this->c->push_back((*it)->front());
             delete (*it);
             it++;
@@ -44,28 +46,28 @@ class SchedSpec {
         // before we read E,P,X we make sure there are at least 3 elements in
         // the list
         if (data->size() - (2 + this->c->size()) < 3)
-            printf("No values for E, P and X found.");
+            throw("No values for E, P and X found.");
         // reading E
         if ((*it)->size() > 1)
-            printf("E should be a single number.");
+            throw("E should be a single number.");
         this->E = (*it)->front();
         delete (*it);
         it++;
         // reading P
         if ((*it)->size() > 1)
-            printf("P should be a single number.");
+            throw("P should be a single number.");
         this->P = (*it)->front();
         delete (*it);
         it++;
         // reading X
         if ((*it)->size() > 1)
-            printf("P should be a single number.");
+            throw("P should be a single number.");
         this->X = (*it)->front();
         delete (*it);
         it++;
         // reading a
         if (data->size() - (5 + this->c->size()) < this->E)
-            printf("Student number and exams-per-student "
+            throw("Student number and exams-per-student "
                     "mapping don't match.");
         this->a = new std::vector<std::vector<int>*>();
         for (int i = 0; i < this->E; i++) {
@@ -75,7 +77,7 @@ class SchedSpec {
         // reading b
         if (data->size() - (5 + this->c->size() +
                             this->a->size()) < this->P)
-            printf("Professor number and exams-per-professor "
+            throw("Professor number and exams-per-professor "
                     "mapping don't match.");
         this->b = new std::vector<std::vector<int>*>();
         for (int i = 0; i < this->P; i++) {
@@ -89,11 +91,11 @@ class SchedSpec {
             if (data->size() - (5 + this->c->size() +
                                 this->a->size() +
                                 this->b->size()) < this->X)
-                printf("Exam durations and exam count don't match.");
+                throw("Exam durations and exam count don't match.");
             this->d = new std::vector<int>();
             for (int i = 0; i < this->X; i++) {
                 if ((*it)->size() > 1)
-                    printf("Each duration should be a single number.");
+                    throw("Each duration should be a single number.");
                 this->d->push_back((*it)->front());
                 delete (*it);
                 it++;
@@ -107,14 +109,15 @@ class SchedSpec {
                  it != (*this->a)[student]->end();
                  ++it)
                 if (*it > this->X)
-                    printf("Invalid exam mapped to a student.");
+                    throw("Invalid exam mapped to a student.");
         for (int prof = 0; prof < this->P; prof++)
             for (std::vector<int>::iterator it = (*this->b)[prof]->begin();
                  it != (*this->b)[prof]->end();
                  ++it)
                 if (*it > this->X)
-                    printf("Invalid exam mapped to a professor.");
+                    throw("Invalid exam mapped to a professor.");
         // print information received
+        printf("---------------------------------------- Result ----------------------------------------\n");
         printf("T = %d\n", this->T);
         printf("|S| = %d\n", this->S);
         int i = 0;

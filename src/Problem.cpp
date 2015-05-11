@@ -128,7 +128,7 @@ void Problem1::constraint() {
     constraint3();
     constraint4();
     constraint5();
-    constraint6();
+    // constraint6(); // Not working but not mandatory
     constraint7();
     constraint8();
     constraint9();
@@ -219,6 +219,7 @@ void Problem1::constraint5() {
     }
 }
 
+
 // Un examen a au plus un professeur
 void Problem1::constraint6() {
     FOR(x, 1, this->_specs.X) {
@@ -236,6 +237,7 @@ void Problem1::constraint6() {
         this->_solver.addClause(lits);
     }
 }
+
 
 // Chaque examen se déroule à au plus un moment
 void Problem1::constraint7() {
