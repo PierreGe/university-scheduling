@@ -124,8 +124,8 @@ void Problem1::existenceConstraint() {
 void Problem1::constraint() {
     existenceConstraint();
     constraint1();
-    // constraint2();
-    // constraint3();
+    constraint2();
+    constraint3();
     constraint4();
     constraint5();
     constraint6();
@@ -147,14 +147,16 @@ void Problem1::constraint1() {
 }
 // Un étudiant a au plus un examen à chaque moment
 void Problem1::constraint2() {
-    FOR(s, 1, this->_specs.S) {
-        FOR(e, 1, this->_specs.E) {
-            FOR(t, 1, this->_specs.T) {
-                FOR(x1, 1, this->_specs.X) {
-                    FOR(x2, x1 + 1, this->_specs.X) {
-                        if (A(e, x1) and A(e, x2)) {
-                            this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
-                                                    ~Lit(this->_props[x2][s][t]));
+    FOR(e, 1, this->_specs.E) {
+        FOR(t, 1, this->_specs.T) {
+            FOR(s1, 1, this->_specs.S) {
+                FOR(s2, 1, this->_specs.S) {
+                    FOR(x1, 1, this->_specs.X) {
+                        FOR(x2, x1 + 1, this->_specs.X) {
+                            if (A(e, x1) and A(e, x2)) {
+                                this->_solver.addBinary(~Lit(this->_props[x1][s1][t]),
+                                                        ~Lit(this->_props[x2][s2][t]));
+                            }
                         }
                     }
                 }
@@ -165,13 +167,15 @@ void Problem1::constraint2() {
 // Un professeur donne au plus un examen à chaque moment
 void Problem1::constraint3() {
     FOR(p, 1, this->_specs.P) {
-        FOR(s, 1, this->_specs.S) {
-            FOR(t, 1, this->_specs.T) {
-                FOR(x1, 1, this->_specs.X) {
-                    FOR(x2, x1 + 1, this->_specs.X) {
-                        if (B(p, x1) and B(p, x2)) {
-                            this->_solver.addBinary(~Lit(this->_props[x1][s][t]),
-                                                    ~Lit(this->_props[x2][s][t]));
+        FOR(t, 1, this->_specs.T) {
+            FOR(s1, 1, this->_specs.S) {
+                FOR(s2, 1, this->_specs.S) {
+                    FOR(x1, 1, this->_specs.X) {
+                        FOR(x2, x1 + 1, this->_specs.X) {
+                            if (B(p, x1) and B(p, x2)) {
+                                this->_solver.addBinary(~Lit(this->_props[x1][s1][t]),
+                                                        ~Lit(this->_props[x2][s2][t]));
+                            }
                         }
                     }
                 }
