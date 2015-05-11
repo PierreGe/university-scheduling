@@ -25,7 +25,7 @@ protected:
     bool B(int p, int x);
     bool C(int s, int i);
     int N(int x);
-    void virtual setConstraints();
+    virtual void setConstraints();
 public:
     void test();
 };

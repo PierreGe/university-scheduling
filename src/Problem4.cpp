@@ -32,11 +32,6 @@ Problem4::Problem4(SchedSpec& specs) : _specs(specs), _solver(), _constraints() 
             }
         }
     }
-    this->setConstraints();
-    for (auto& i : this->_constraints)
-    {
-        i.second();
-    }
 }
     
 Problem4::~Problem4() {
@@ -50,6 +45,11 @@ Problem4::~Problem4() {
 }
 
 void Problem4::solve() {
+    this->setConstraints();
+    for (auto& i : this->_constraints)
+    {
+        i.second();
+    }
     this->_solver.solve();
 }
 

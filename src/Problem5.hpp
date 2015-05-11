@@ -11,11 +11,10 @@
 #include "Problem4.hpp"
 
 class Problem5 : public Problem4 {
-
 public:
-    Problem5(SchedSpec&);
-
-    void virtual setConstraints();
+    using Problem4::Problem4;
+protected:
+    virtual void setConstraints();
 
 };
 

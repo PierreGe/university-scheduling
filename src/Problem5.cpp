@@ -4,12 +4,7 @@
 #include <cassert>
 
 
-
-Problem5::Problem5(SchedSpec& specs) : Problem4(specs) {
-
-}
-
-
 void Problem5::setConstraints(){
     Problem4::setConstraints();
+    this->_constraints.erase("examen_temps_max");
 }
