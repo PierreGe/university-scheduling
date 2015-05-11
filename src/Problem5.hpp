@@ -14,8 +14,10 @@ class Problem5 : public Problem4 {
 public:
     using Problem4::Problem4;
 protected:
+    int D(int x);
     virtual void setConstraints();
-
+public:
+    // virtual void test();
 };
 
 #endif // __PROBLEM_HPP
