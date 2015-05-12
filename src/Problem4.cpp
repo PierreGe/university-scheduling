@@ -199,23 +199,6 @@ void Problem4::setConstraints() {
             this->_solver.addClause(lits);
         }
     };
-    // Un examen a au plus un professeur
-    // _constraints["examen_prof_max"] = [this]() {
-    //     FOR(x, 1, this->_specs.X) {
-    //         vec<Lit> lits;
-    //         FOR(s, 1, this->_specs.S) {
-    //             FOR(t, 1, this->_specs.T) {
-    //                 FOR(p1, 1, this->_specs.P) {
-    //                     FOR(p2, p1 + 1, this->_specs.P) {
-    //                         if (not B(p1, x) or not B(p2, x))
-    //                             lits.push(Lit(this->_props[x][s][t]));
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         this->_solver.addClause(lits);
-    //     }
-    // )};
     // Chaque examen se déroule à au plus un moment
     _constraints["examen_temps_max"] = [this]() {
         FOR(x, 1, this->_specs.X) {
