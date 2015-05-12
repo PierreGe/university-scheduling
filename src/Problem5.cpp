@@ -35,4 +35,7 @@ void Problem5::setConstraints(){
             }
         }
     };
+    this->_constraints["examen_duree_min"] = [this]() {
+        
+    };
 }
