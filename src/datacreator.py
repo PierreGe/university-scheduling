@@ -17,7 +17,7 @@ def dump_list(l):
 
 def generate_students(args):
     while True:
-        students = [[random.randint(1, args.X) for j in range(args.E/args.X/2, args.E/args.X)] for i in range(args.E)]
+        students = [set([random.randint(1, args.X) for j in range(args.E/args.X/2, args.E/args.X)]) for i in range(args.E)]
         students_check = set()
         for student in students:
             for exam in student:
@@ -32,7 +32,7 @@ def generate_students(args):
 
 def generate_profs(args):
     while True:
-        profs = [[random.randint(1, args.X) for j in range(args.P/args.X/2, random.randint(1, args.X/4))] for i in range(args.P)]
+        profs = [set([random.randint(1, args.X) for j in range(args.P/args.X/2, random.randint(1, args.X/4))]) for i in range(args.P)]
         profs_check = set()
         for prof in profs:
             for exam in prof:
