@@ -29,6 +29,7 @@ int main(int argc, char **argv)
         }
         else {
             std::cout << "Uh .. The problem could not be solve under those constraints" << std::endl;
+            exit(1);
         }
         problem.output();
     }

@@ -51,6 +51,7 @@ def generate_data(args):
     res += str(args.E) + ";" + str(args.P) + ";" + str(args.X) + ";"
     res += dump_list(generate_students(args))
     res += dump_list(generate_profs(args))
+    res += dump_list([random.randint(1, 4) for i in range(args.X)])
     return res
 
 if __name__ == '__main__':
@@ -66,6 +67,6 @@ if __name__ == '__main__':
 
 
     data = generate_data(args)
-    if os.system("./projq4.out \"" + data + "\"") == 0:
+    if os.system("./projq5.out \"" + data + "\"") == 0:
         with open(args.filename, "w") as f:
             f.write(data)
