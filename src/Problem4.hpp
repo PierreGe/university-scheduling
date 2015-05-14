@@ -28,7 +28,6 @@ protected:
     bool C(int s, int i);
     int N(int x);
     virtual 
-#define FOR(k, lb, ub) for (int k = (lb) ; (k) <= (ub) ; (k)++)
     void setConstraints();
 public:
     void test();
