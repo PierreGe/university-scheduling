@@ -183,6 +183,8 @@ Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du par
 
 \subsection{Implémentation}
 
+% TODO
+
 \subsection{Exemple de résultat}
 Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
 \subsubsection{Construction d'un horaire possible}
@@ -259,14 +261,33 @@ OUTPUT : 0
 \end{lstlisting}
 
 \section{Q5}
-On rajoute une nouvelle variable \( D_{x}\) qui donne la durée de l'examen x
+Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  \( D_{x}\) qui donne la durée de l'examen x.
+\subsection{Nouvelle contrainte}
 Les nouvelles contraintes sont 
-\begin{itemize}
-	\item Chaque examen doit avoir un nombre de période de temps égal à sa durée
-  \item Ces périodes de temps doivent être continues.
-\end{itemize}
+\subsubsection{Chaque examen doit avoir un nombre de période de de temps égal à sa durée et ses périodes de temps doivent être continues}
 
+(p10)
+\begin{displaymath}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t1=1}^{T}\bigvee\limits_{\substack{t2=0 \\ t2+= D_{x}}}^{T}\bigvee\limits_{\substack{s=1 \\ t1+t2<T}}^{S} \neg M_{x, s, t1+t2}
+\end{displaymath}
 
+\subsection{FNC}
+
+\begin{displaymath}
+	\Phi_{D} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p8 \wedge p9 \wedge p10
+\end{displaymath}
+
+\subsection{Implémentation}
+
+\subsection{Exemple de résultats}
+
+\section{Q6}
+
+\section{Q7}
+
+\section{Q8}
+
+\section{Q9}
 
 \section{Q10}
 
