@@ -171,6 +171,12 @@ La forme normal conjonctive de la formule est:
 \end{displaymath}
 
 \section{Q4}
+\subsection{Tester l'implémentation}
+Pour tester l'implémentation, utilisez le script bash disponible de la manière suivante :
+\begin{lstlisting}
+$ sh TestMe.sh	
+\end{lstlisting}
+Ce script va faire le build, lire les fichiers, et exécuter mini-sate.
 
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
@@ -178,6 +184,7 @@ Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du par
 \subsection{Implémentation}
 
 \subsection{Exemple de résultat}
+Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
 \subsubsection{Construction d'un horaire possible}
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
@@ -218,6 +225,8 @@ Examen 1 dans la salle 2 au temps 1
 Examen 2 dans la salle 2 au temps 2
 Examen 3 dans la salle 3 au temps 2
 Examen 4 dans la salle 3 au temps 1
+
+OUTPUT : 2,1;2,2;3,2;3,1;
 \end{lstlisting}
 
 \subsubsection{Construction d'un horaire impossible}
@@ -245,6 +254,8 @@ b(p2) = { 2 }
 |         0 |      18       53 |       6       0        0     nan |  0.000 % |
 ==============================================================================
 Uh .. The problem could not be solve under those constraints
+
+OUTPUT : 0
 \end{lstlisting}
 
 \section{Q5}

@@ -21,7 +21,7 @@ public:
     ~Problem4();
     void solve();
     bool okay();
-    void display();
+    void output();
 protected:
     bool A(int e, int x);
     bool B(int p, int x);

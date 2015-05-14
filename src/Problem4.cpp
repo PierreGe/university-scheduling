@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <sstream>
 
 void Problem4::test() {
     assert(A(1, 1));
@@ -55,15 +56,24 @@ bool Problem4::okay() {
     return this->_solver.okay();
 }
 
-void Problem4::display() {
-    FOR(x, 1, this->_specs.X) {
-        FOR(s, 1, this->_specs.S) {
-            FOR(t, 1, this->_specs.T) {
-                if (this->_solver.model[this->_props[x][s][t]] == l_True) {
-                    std::cout << "Examen " << x << " dans la salle " << s << " au temps " << t << std::endl;
+void Problem4::output() {
+    if (this->okay()){
+        std::stringstream ss;
+        ss << std::endl << "OUTPUT : ";
+        FOR(x, 1, this->_specs.X) {
+            FOR(s, 1, this->_specs.S) {
+                FOR(t, 1, this->_specs.T) {
+                    if (this->_solver.model[this->_props[x][s][t]] == l_True) {
+                        std::cout << "Examen " << x << " dans la salle " << s << " au temps " << t << std::endl;
+                        ss << s << "," << t << ";";
+                    }
                 }
             }
         }
+        std::cout << ss.str() << std::endl;
+    }
+    else{
+        std::cout << "\nOUTPUT : 0"<< std::endl;
     }
 }
 
