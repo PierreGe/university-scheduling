@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <vector>
+#include <utility>
 #include <exception>
 
 
@@ -13,6 +14,7 @@ public:
     std::vector<std::vector<int>*>* b;
     std::vector<int>* c;
     std::vector<int>* d;
+    std::vector<std::pair<int,int>> I;
 
     SchedSpec(std::vector<std::vector<int>*>* data) {
         std::vector<std::vector<int>*>::iterator it = data->begin();
@@ -155,6 +157,15 @@ public:
                 printf("d(x%d) = %d\n", ++i, (*it));
             }
         }
+
+        I.push_back(std::pair<int,int>(1,8));
+        for (int k = 21; k < T; k+=24) {
+            if(k+11 < T)
+                I.push_back(std::pair<int,int>(k,k+11));
+            else
+                I.push_back(std::pair<int,int>(k,T));
+        }
+
     }
 
     ~SchedSpec() {
