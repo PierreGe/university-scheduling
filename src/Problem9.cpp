@@ -16,7 +16,7 @@ void Problem9::setConstraints(){
                             if (s1 != s2) {
                                 FOR(x1, 1, this->_specs.X) {
                                     FOR(x2, x1 + 1, this->_specs.X) {
-                                        if (A(e, x1) and A(e, x2) and t1 < t2 + D(x2)-1 and t1 + D(x1)-1 > t2) {
+                                        if (A(e, x1) and A(e, x2) and t1 <= t2 + D(x2) and t1 + D(x1) >= t2) {
                                             this->_solver.addBinary(~Lit(this->_props[x1][s1][t1]),
                                                                     ~Lit(this->_props[x2][s2][t2]));
                                         }
