@@ -36,24 +36,17 @@ void Problem5::setConstraints(){
             }
             }
         }
-    };
-
-    // Un étudiant a au plus un examen à chaque moment
+    };// Un étudiant a au plus un examen à chaque moment
     _constraints["etudiant_temps_max"] = [this]() {
         FOR(e, 1, this->_specs.E) {
-            FOR(t, 1, this->_specs.T) {
-                FOR(s1, 1, this->_specs.S) {
-                    FOR(s2, 1, this->_specs.S) {
+            FOR(t1, 1, this->_specs.T) {
+                FOR(t2, 1, this->_specs.T) {
+                    FOR(s, 1, this->_specs.S) {
                         FOR(x1, 1, this->_specs.X) {
                             FOR(x2, x1 + 1, this->_specs.X) {
-                                if (A(e, x1) and A(e, x2)) {
-                                    vec<Lit> lits;
-                                    for (int k = t; k < t+D(x1); ++k) {
-                                        lits.push(~Lit(this->_props[x1][s1][k]));
-                                        lits.push(~Lit(this->_props[x2][s2][k]));
-
-                                    }
-                                    this->_solver.addClause(lits);
+                                if (A(e, x1) and A(e, x2) and t1 <= t2 + D(x2)-1 and t1 + D(x1)-1 >= t2) {
+                                    this->_solver.addBinary(~Lit(this->_props[x1][s][t1]),
+                                                            ~Lit(this->_props[x2][s][t1]));
                                 }
                             }
                         }
@@ -65,19 +58,14 @@ void Problem5::setConstraints(){
     // Un professeur donne au plus un examen à chaque moment
     _constraints["prof_temps_max"] = [this]() {
         FOR(p, 1, this->_specs.P) {
-            FOR(t, 1, this->_specs.T) {
-                FOR(s1, 1, this->_specs.S) {
-                    FOR(s2, 1, this->_specs.S) {
+            FOR(t1, 1, this->_specs.T) {
+                FOR(t2, 1, this->_specs.T) {
+                    FOR(s, 1, this->_specs.S) {
                         FOR(x1, 1, this->_specs.X) {
                             FOR(x2, x1 + 1, this->_specs.X) {
-                                if (B(p, x1) and B(p, x2)) {
-                                    vec<Lit> lits;
-                                    for (int k = t; k < t+D(x1); ++k) {
-                                        lits.push(~Lit(this->_props[x1][s1][k]));
-                                        lits.push(~Lit(this->_props[x2][s2][k]));
-
-                                    }
-                                    this->_solver.addClause(lits);
+                                if (B(p, x1) and B(p, x2) and t1 <= t2 + D(x2)-1 and t1 + D(x1)-1 >= t2) {
+                                    this->_solver.addBinary(~Lit(this->_props[x1][s][t1]),
+                                                            ~Lit(this->_props[x2][s][t1]));
                                 }
                             }
                         }
@@ -86,5 +74,13 @@ void Problem5::setConstraints(){
             }
         }
     };
-
+    _constraints["examen_temps_max"] = [this]() {
+        FOR(x, 1, this->_specs.X) {
+            FOR(s, 1, this->_specs.S) {
+                FOR(t, this->_specs.T - D(x) + 1, this->_specs.T) {
+                    this->_solver.addUnit(~Lit(this->_props[x][s][t]));
+                }
+            }
+        }
+    };
 }
