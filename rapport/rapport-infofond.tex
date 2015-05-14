@@ -10,6 +10,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{color}
+\usepackage{listings}
+
 
 
 
@@ -169,19 +171,123 @@ La forme normal conjonctive de la formule est:
 \end{displaymath}
 
 \section{Q4}
+\subsection{Tester l'implémentation}
+Pour tester l'implémentation, utilisez le script bash disponible de la manière suivante :
+\begin{lstlisting}
+$ sh TestMe.sh	
+\end{lstlisting}
+Ce script va faire le build, lire les fichiers, et exécuter mini-sate.
 
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
 
+\subsection{Implémentation}
+
+% TODO
+
+\subsection{Exemple de résultat}
+Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
+\subsubsection{Construction d'un horaire possible}
+\begin{lstlisting}[
+    basicstyle=\tiny, %or \small or \footnotesize etc.
+]
+$ ./projq4.out "4 ;3 ;10 ;30 ;100 ;100 ;2 ;4 ;1; 1; 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1
+ ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 
+ ;2 ;2 ;2 ;2 ;2 ;2 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 
+ ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 
+ ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;2,4;
+---------------------------------------- Result ----------------------------------------
+T = 4
+|S| = 3
+c(s1) = 10
+c(s2) = 30
+c(s3) = 100
+|E| = 100
+|P| = 2
+|X| = 4
+a(e1) = { 1 }
+[...]
+a(e30) = { 1 }
+[...]
+a(e60) = { 2 }
+a(e61) = { 3 4 }
+[...]
+a(e99) = { 3 4 }
+a(e100) = { 3 4 }
+b(p1) = { 1 3 }
+b(p2) = { 2 4 }
+==================================[MINISAT]===================================
+| Conflicts |     ORIGINAL     |              LEARNT              | Progress |
+|           | Clauses Literals |   Limit Clauses Literals  Lit/Cl |          |
+==============================================================================
+|         0 |     260     3528 |      86       0        0     nan |  0.000 % |
+==============================================================================
+Success, the problem has been solve under those constraints !
+Examen 1 dans la salle 2 au temps 1
+Examen 2 dans la salle 2 au temps 2
+Examen 3 dans la salle 3 au temps 2
+Examen 4 dans la salle 3 au temps 1
+
+OUTPUT : 2,1;2,2;3,2;3,1;
+\end{lstlisting}
+
+\subsubsection{Construction d'un horaire impossible}
+\begin{lstlisting}[
+    basicstyle=\tiny, %or \small or \footnotesize etc.
+]
+$ ./projq4.out "1 ;3 ;1 ;10 ;50 ;2 ;2 ;2 ;1,2 ;1 ;1 ;2 ;"
+---------------------------------------- Result ----------------------------------------
+T = 1
+|S| = 3
+c(s1) = 1
+c(s2) = 10
+c(s3) = 50
+|E| = 2
+|P| = 2
+|X| = 2
+a(e1) = { 1 2 }
+a(e2) = { 1 }
+b(p1) = { 1 }
+b(p2) = { 2 }
+==================================[MINISAT]===================================
+| Conflicts |     ORIGINAL     |              LEARNT              | Progress |
+|           | Clauses Literals |   Limit Clauses Literals  Lit/Cl |          |
+==============================================================================
+|         0 |      18       53 |       6       0        0     nan |  0.000 % |
+==============================================================================
+Uh .. The problem could not be solve under those constraints
+
+OUTPUT : 0
+\end{lstlisting}
+
 \section{Q5}
-On rajoute une nouvelle variable \( D_{x}\) qui donne la durée de l'examen x
+Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  \( D_{x}\) qui donne la durée de l'examen x.
+\subsection{Nouvelle contrainte}
 Les nouvelles contraintes sont 
-\begin{itemize}
-	\item Chaque examen doit avoir un nombre de période de temps égal à sa durée
-  \item Ces périodes de temps doivent être continues.
-\end{itemize}
+\subsubsection{Chaque examen doit avoir un nombre de période de de temps égal à sa durée et ses périodes de temps doivent être continues}
 
+(p10)
+\begin{displaymath}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t1=1}^{T}\bigvee\limits_{\substack{t2=0 \\ t2+= D_{x}}}^{T}\bigvee\limits_{\substack{s=1 \\ t1+t2<T}}^{S} \neg M_{x, s, t1+t2}
+\end{displaymath}
 
+\subsection{FNC}
+
+\begin{displaymath}
+	\Phi_{D} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p8 \wedge p9 \wedge p10
+\end{displaymath}
+
+\subsection{Implémentation}
+
+\subsection{Exemple de résultats}
+
+\section{Q6}
+
+\section{Q7}
+
+\section{Q8}
+
+\section{Q9}
 
 \section{Q10}
 

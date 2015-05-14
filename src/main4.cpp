@@ -26,11 +26,11 @@ int main(int argc, char **argv)
         problem.solve();
         if (problem.okay()) {
             std::cout << "Success, the problem has been solve under those constraints !" << std::endl;
-            problem.display();
         }
         else {
             std::cout << "Uh .. The problem could not be solve under those constraints" << std::endl;
         }
+        problem.output();
     }
     catch(const char* error)
     {
