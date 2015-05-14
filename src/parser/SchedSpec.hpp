@@ -9,7 +9,7 @@
 
 class SchedSpec {
 public:
-    int T, S, E, P, X;
+    int T, S, E, P, X, k;
     std::vector<std::vector<int>*>* a;
     std::vector<std::vector<int>*>* b;
     std::vector<int>* c;
@@ -17,6 +17,7 @@ public:
     std::vector<std::pair<int,int>> I;
 
     SchedSpec(std::vector<std::vector<int>*>* data) {
+        k =5;
         std::vector<std::vector<int>*>::iterator it = data->begin();
         // before we read T and S we make sure there are at least 2 elements in
         // the list
@@ -159,11 +160,11 @@ public:
         }
 
         I.push_back(std::pair<int,int>(1,8));
-        for (int k = 21; k < T; k+=24) {
-            if(k+11 < T)
-                I.push_back(std::pair<int,int>(k,k+11));
+        for (int z = 21; z < T; z+=24) {
+            if(z+11 < T)
+                I.push_back(std::pair<int,int>(z,z+11));
             else
-                I.push_back(std::pair<int,int>(k,T));
+                I.push_back(std::pair<int,int>(z,T));
         }
 
     }
