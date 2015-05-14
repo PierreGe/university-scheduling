@@ -15,6 +15,7 @@ public:
     using Problem5::Problem5;
 protected:
     virtual void setConstraints();
+    bool J(int t);
 public:
     // virtual void test();
 };
