@@ -17,7 +17,7 @@ def dump_list(l):
 
 def generate_students(args):
     while True:
-        students = [set([random.randint(1, args.X) for j in range(args.E/args.X/2, args.E/args.X)]) for i in range(args.E)]
+        students = [set([random.randint(1, args.X) for j in range(random.randint(1, args.X))]) for i in range(args.E)]
         students_check = set()
         for student in students:
             for exam in student:
@@ -32,7 +32,7 @@ def generate_students(args):
 
 def generate_profs(args):
     while True:
-        profs = [set([random.randint(1, args.X) for j in range(args.P/args.X/2, random.randint(1, args.X/4))]) for i in range(args.P)]
+        profs = [set([random.randint(1, args.X) for j in range(random.randint(1, args.X))]) for i in range(args.P)]
         profs_check = set()
         for prof in profs:
             for exam in prof:
@@ -56,6 +56,7 @@ def generate_data(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("Creates data for SAT solver")
+    parser.add_argument("problem", type=str)
     parser.add_argument("filename", type=str)
     parser.add_argument("T", type=int)
     parser.add_argument("S", type=int)
@@ -67,6 +68,6 @@ if __name__ == '__main__':
 
 
     data = generate_data(args)
-    if os.system("./projq5.out \"" + data + "\"") == 0:
+    if os.system(args.problem +" \"" + data + "\"") == 0:
         with open(args.filename, "w") as f:
             f.write(data)
