@@ -36,4 +36,19 @@ void Problem5::setConstraints(){
             }
         }
     };
+
+    // Chaque examen dans au plus une salle
+       _constraints["examen_salle_max"] = [this]() {
+               FOR(x, 1, this->_specs.X) {
+                   FOR(t1, 1, this->_specs.T) {
+                       FOR(t2, 1, this->_specs.T) {
+                           FOR(s1, 1, this->_specs.S) {
+                               FOR(s2, s1 + 1, this->_specs.S) {
+                                   this->_solver.addBinary(~Lit(this->_props[x][s1][t1]), ~Lit(this->_props[x][s2][t2]));
+                               }
+                           }
+                       }
+                   }
+               }
+           };
 }
