@@ -16,8 +16,7 @@ public:
 protected:
     virtual void setConstraints();
     int NA(int);
-    std::vector<std::vector<int>> permut_etudiant_salles(int);
-    void permut_etudiant_temps(int, int, const std::vector<std::vector<int>>&, std::vector<int>);
+    void permut_salles(int, std::vector<int>);
 public:
     // virtual void test();
 };

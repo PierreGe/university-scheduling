@@ -15,34 +15,25 @@ int Problem7::NA(int e) {
 /*
     Renvoie toutes les combinaisons possibles d'examens et de salles pour l'etudiant e à chaque période de temps (dans l'ordre)
 */
-std::vector<std::vector<int>> Problem7::permut_etudiant_salles(int e) {
-    std::vector<std::vector<int>> props;
-    FOR(t, 1, this->_specs.T) {
-        std::vector<int> timeProps;
-        FOR(s, 1, this->_specs.S) {
-            FOR(x, 1, this->_specs.X) {
-                if (A(e, x)) {
-                    timeProps.push_back(this->_props[x][s][t]);
-                }
+void Problem7::permut_salles(int t, std::vector<int> salles = std::vector<int>()) {
+    if (t > this->_specs.T) {
+        int cpt = 0;
+        int old_salle = salles[0];
+        std::cout << salles[0];
+        for (int i = 1; i < salles.size(); ++i) {
+            if (salles[i] != old_salle) {
+                cpt++;
             }
+            old_salle = salles[i];
+            std::cout << salles[i] << " ";
         }
-        props.push_back(timeProps);
-    }
-    return props;
-}
-
-void Problem7::permut_etudiant_temps(int t1, int nx, const std::vector<std::vector<int>>& permuts, std::vector<int> permut_time = std::vector<int>()) {
-    if (nx == 0) {
-        for(auto& t : permut_time) {
-            std::cout << t << " ";
-        }
-        std::cout << std::endl;
+        std::cout << std::endl << cpt << std::endl;
     }
     else {
-        FOR(t2, t1 + 1, this->_specs.T) {
-            permut_time.push_back(t2);
-            permut_etudiant_temps(t2, nx-1, permuts, permut_time);
-            permut_time.pop_back();
+        FOR(s, 1, this->_specs.S) {
+            salles.push_back(s);
+            permut_salles(t+1, salles);
+            salles.pop_back();
         }
     }
 }
@@ -50,9 +41,6 @@ void Problem7::permut_etudiant_temps(int t1, int nx, const std::vector<std::vect
 void Problem7::setConstraints(){
     Problem6::setConstraints();
     this->_constraints["etudiant_max_salle"] = [this]() {
-        FOR(e, 1, this->_specs.E) {
-            std::vector<std::vector<int>> permut = this->permut_etudiant_salles(e);
-            permut_etudiant_temps(1, this->NA(e), permut);
-        }
+        this->permut_salles(1);
     };
 }

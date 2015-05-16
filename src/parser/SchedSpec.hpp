@@ -17,7 +17,7 @@ public:
     std::vector<std::pair<int,int>> I;
 
     SchedSpec(std::vector<std::vector<int>*>* data) {
-        k = 0;
+        k = 1;
         std::vector<std::vector<int>*>::iterator it = data->begin();
         // before we read T and S we make sure there are at least 2 elements in
         // the list
