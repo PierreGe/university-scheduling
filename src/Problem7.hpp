@@ -16,7 +16,8 @@ public:
 protected:
     virtual void setConstraints();
     int NA(int);
-    std::vector<std::vector<int>> max_salle_comb(int);
+    std::vector<std::vector<int>> permut_etudiant_temps(int);
+    void iter_time(int t1, int nx, std::vector<int> permut_time, const std::vector<std::vector<int>>& permuts);
 public:
     // virtual void test();
 };
