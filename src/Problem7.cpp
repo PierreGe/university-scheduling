@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <algorithm>
 
 
 int Problem7::NA(int e) {
@@ -51,6 +52,21 @@ void Problem7::permut_temps(int t, int max, std::vector<std::vector<int>>& temps
     }
 }
 
+std::vector<std::vector<int>> Problem7::permut_examens(int e) {
+    std::vector<std::vector<int>> examens_possibles;
+    std::vector<int> examens;
+    FOR(x, 1, this->_specs.X) {
+        if (A(e, x))
+            examens.push_back(x);
+    }
+    std::sort(examens.begin(), examens.end());
+    do {
+        examens_possibles.push_back(examens);
+    }
+    while (std::next_permutation(examens.begin(), examens.end()));
+    return examens_possibles;
+}
+
 void Problem7::setConstraints(){
     Problem6::setConstraints();
     this->_constraints["etudiant_max_salle"] = [this]() {
@@ -59,16 +75,16 @@ void Problem7::setConstraints(){
             this->permut_salles(1, NA(e), salles_impossibles);
             std::vector<std::vector<int>> temps_possibles;
             this->permut_temps(1, NA(e), temps_possibles);
+            std::vector<std::vector<int>> examens_possibles = this->permut_examens(e);
             for (auto& temps : temps_possibles) {
                 for (auto& salles : salles_impossibles) {
-                    vec<Lit> lits;
-                    for (int i = 0; i < salles.size(); ++i) {
-                        FOR(x, 1, this->_specs.X) {
-                            if (A(e, x)) {
-                                lits.push(~Lit(this->_props[x][salles.at(i)][temps.at(i)]));
-                            }
+                    for (auto& examens: examens_possibles) {
+                        vec<Lit> lits;
+                        for (int i = 0; i < examens_possibles.size(); ++i) {
+                            lits.push(~Lit(this->_props[examens.at(i)][salles.at(i)][temps.at(i)]));
                         }
-                    } 
+                        this->_solver.addClause(lits);
+                    }
                 }
             }
         }
