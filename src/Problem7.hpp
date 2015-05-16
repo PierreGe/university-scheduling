@@ -16,7 +16,7 @@ public:
 protected:
     virtual void setConstraints();
     int NA(int);
-    void permut_salles(int, std::vector<int>);
+    void permut_salles(int, int, std::vector<std::vector<int>>&, std::vector<int>);
 public:
     // virtual void test();
 };
