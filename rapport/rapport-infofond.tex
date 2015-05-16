@@ -11,6 +11,8 @@
 \usepackage{amssymb}
 \usepackage{color}
 \usepackage{listings}
+\usepackage{graphicx}
+\usepackage{float}
 
 
 
@@ -329,6 +331,18 @@ certain examen dans certain salle (salle info)
 
 
 \section{Q11}
-Un problème est NP-complet ou NP-dur si il peut se ramener sous la forme d'un autre problème NP-complet. Si un problème peut se mettre en forme normal conjonctive et satisfaisable, il est SAT. Notre problème possède au moins 3 clauses, en effet TODO . Il est donc 3-SAT et donc il est aussi NP-complet donc on peut déduire que notre problème est NP-complet ou NP-dur.
+Un problème est NP-complet est NP-dur par définition. En effet, comme montré sur l'image suivante NP-complet est un sous-ensemble de NP-dur.
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{images/q11-p-np-nphardcomplete.png}
+  \caption{\label{} P, NP, NP-complet et NP-dur}
+\end{figure}
+D'après le \textit{Théorème de Cook}, SAT est un problème NP complet. Donc SAT est aussi un problème NP-Dur.
+
+Lors de ce projet nous avons reduit le problème d'emploi de temps en un problème SAT.
+
+On peut donc déduire que le problème d'emploi du temps est un problème NP-dur.
+
+%Un problème est NP-complet est NP-dur si il peut se ramener sous la forme d'un autre problème NP-complet. Si un problème peut se mettre en forme normal conjonctive et satisfaisable, il est SAT. Notre problème possède au moins 3 clauses, en effet TODO . Il est donc 3-SAT et donc il est aussi NP-complet donc on peut déduire que notre problème est NP-complet ou NP-dur.
 \end{document}
 
