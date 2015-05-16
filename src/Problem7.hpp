@@ -16,7 +16,7 @@ public:
 protected:
     virtual void setConstraints();
     int NA(int);
-    void max_salle(int, int, std::vector<int>, int, int);
+    std::vector<std::vector<int>> max_salle_comb(int);
 public:
     // virtual void test();
 };
