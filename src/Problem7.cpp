@@ -40,10 +40,7 @@ void Problem7::permut_salles(int t, int max, std::vector<std::vector<int>>& sall
 
 void Problem7::permut_temps(int t, int max, std::vector<std::vector<int>>& temps_possibles, std::vector<int> temps = std::vector<int>()) {
     if (temps.size() == max) {
-        for (auto& t : temps) {
-            std::cout << t << " ";
-        }
-        std::cout << std::endl;
+        temps_possibles.push_back(temps);
     }
     else {
         FOR(t2, t, this->_specs.T) {
@@ -62,12 +59,18 @@ void Problem7::setConstraints(){
             this->permut_salles(1, NA(e), salles_impossibles);
             std::vector<std::vector<int>> temps_possibles;
             this->permut_temps(1, NA(e), temps_possibles);
-            // for (auto& permut : salles_impossibles) {
-            //     for (auto& salle : permut) {
-            //         std::cout << salle << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
+            for (auto& temps : temps_possibles) {
+                for (auto& salles : salles_impossibles) {
+                    vec<Lit> lits;
+                    for (int i = 0; i < salles.size(); ++i) {
+                        FOR(x, 1, this->_specs.X) {
+                            if (A(e, x)) {
+                                lits.push(~Lit(this->_props[x][salles.at(i)][temps.at(i)]));
+                            }
+                        }
+                    } 
+                }
+            }
         }
     };
 }
