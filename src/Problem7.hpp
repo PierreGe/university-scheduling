@@ -15,6 +15,8 @@ public:
     using Problem6::Problem6;
 protected:
     virtual void setConstraints();
+    int NA(int);
+    void max_salle(int, vec<Lit>, int, int);
 public:
     // virtual void test();
 };
