@@ -6,7 +6,7 @@
 
 void Problem9::setConstraints(){
     Problem7::setConstraints();
-    // Un étudiant a au plus un examen à chaque moment
+    // Une unité de temps entre chaque examen d'un étudiant si salle différente
     _constraints["etudiant_temps_max"] = [this]() {
         FOR(e, 1, this->_specs.E) {
             FOR(t1, 1, this->_specs.T) {
