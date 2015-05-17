@@ -13,6 +13,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{todonotes}
 
 
 
@@ -192,10 +193,6 @@ Ce script va faire le build, lire les fichiers, et exécuter mini-sate.
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
 
-\subsection{Implémentation}
-
-% TODO
-
 \subsection{Exemple de résultat}
 Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
 \subsubsection{Construction d'un horaire possible}
@@ -273,6 +270,8 @@ Uh .. The problem could not be solve under those constraints
 OUTPUT : 0
 \end{lstlisting}
 
+\subsection{Nouvelle variable}
+
 \section{Q5}
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
@@ -281,26 +280,31 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 
 \subsection{Modification de contrainte}
 
-\subsubsection{(p3)}
-Un étudiant ne peut pas avoir deux examens au même moment
+\subsubsection{Un étudiant ne peut pas avoir deux examens au même moment}
+(p3)
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{S}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
-\subsubsection{(p4)}
-Un professeur ne peut pas avoir deux examens au même moment
+\subsubsection{Un professeur ne peut pas avoir deux examens au même moment}
+(p4)
 \begin{displaymath}
 \bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{S}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
+\subsubsection{Chaque examen doit se dérouler une seule fois}
+(p7)
+\begin{displaymath}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T} \neg M_{x, s, t}
+\end{displaymath}
+
 
 \subsection{Nouvelle contrainte}
-Les nouvelles contraintes sont :
 \subsubsection{Chaque examen doit avoir un nombre de période de de temps égal à sa durée et ses périodes de temps doivent être continues}
 
 (p10)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{x2=1 \\ x1 != x2}}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t1=1}^{T}\bigvee\limits_{\substack{t2=0 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T} \neg M_{x, s, t1} \vee \neg M_{x2, s2, t2}
+\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{\substack{x_{2}=1 \\ x_{1} != x_{2}}}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t_{1}=1}^{T}\bigvee\limits_{\substack{t_{2}=0 \\ t_{1} < t_{2} + D(x_{2})-1 \wedge t_{1} + D(x_{1})-1 > t_{2}}}^{T} \neg M_{x_{1}, s, t_{1}} \vee \neg M_{x_{2}, s, t_{2}}
 \end{displaymath}
 
 \subsection{FNC}
@@ -309,24 +313,70 @@ Les nouvelles contraintes sont :
 	\Phi_{D} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p8 \wedge p9 \wedge p10
 \end{displaymath}
 
-\subsection{Implémentation}
-
 \subsection{Exemple de résultats}
+
+\todo{ex}
 
 \section{Q6}
 
+\subsection{Hypothèse}
+Pour cette question, nous avons supposé que les examens se déroulaient tous les jours de 8h à 20h. L'ensemble de paires tels que ont ne pas pas avoir d'examen ont été codés dans la classe SchedSpec sous la variable I. Notre implémentation permet de les modifiers sans avoir à modifier le reste du code.
+
+\todo{Verifier que c'est bien de 8h a 20h}
+
+\subsection{Nouvelle variable}
+
+Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
+\begin{itemize}
+	\item \( J_{t}\) tel que t fait partit du jour, c'est à dire qu'il est possible d'avoir un examen en t.
+\end{itemize}
+
+\subsection{Modification de contrainte}
+Aucune contrainte déjà existante n'a du être modifié pour ce problème.
+
+\subsection{Nouvelle contrainte}
+\subsubsection{Aucun examen ne peut se dérouler durant les intervals défini par I.} \todo{Meilleur description de la contrainte}
+(p11)
+\begin{displaymath}
+\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{t=0 \\ \neg J(t) }}^{T} \neg M_{x, s, t}
+\end{displaymath}
+
+\subsection{FNC}
+\begin{displaymath}
+	\Phi_{N} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p8 \wedge p9 \wedge p10 \wedge p11
+\end{displaymath}
+\subsection{Exemple de résultats}
+\todo{ex}
+
 \section{Q7}
+\subsection{Modification de contrainte}
+\subsection{Nouvelle contrainte}
+\subsection{FNC}
+\subsection{Implémentation}
+\subsection{Exemple de résultats}
 
 \section{Q8}
 
 \section{Q9}
 
+\subsection{Modification de contrainte}
+\subsection{Nouvelle contrainte}
+\subsection{FNC}
+\subsection{Implémentation}
+\subsection{Exemple de résultats}
+
 \section{Q10}
 
 LES ETUDIANTS VEULENT BOUFFER LE TEMPS DE MIDI !!!!!!!!!
+
+Les contraintes de la q7 pour les profs au lieu des étudiants (easy)
+
 durée max d'un examen
+
 le week end
+
 overbooking sur les salles
+
 certain examen dans certain salle (salle info)
 
 
