@@ -309,7 +309,7 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 A la question numéro 4, dans les contraintes, nous avons considéré que les examens durent une seule période de temps. Nous devons donc en modifier certaines pour prendre en compte le fait que un examen dure plusieurs périodes de temps. 
 Le principe des deux contraintes qui suivent ainsi que de la nouvelle contrainte consiste à admettre au maximum un examen parmi deux si ils leurs horaires se chevauchent. Pour deux examens se déroulant respectivement aux temps $t1$ et $t2$ et de durées respectivement $d1$ et $d2$, la condition pour qu'ils se chevauchent est : 
 \begin{align}
-t1 <= t2 + d2 \wedge t2 <= t1 + d1
+t1 \leq t2 + d2 \wedge t2 \leq t1 + d1
 \iff \neg (t1 > t2 + d2 \vee t2 < t1 + d1)
 \end{align}
 
@@ -319,14 +319,14 @@ t1 <= t2 + d2 \wedge t2 <= t1 + d1
 Cette contrainte autorise pour chaque étudiant au maximum un examen parmi deux avec des temps différents qui se chevauchent.\\
 (p3)
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2)-1 \wedge t1 + D(x1)-1 \geq t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
 \end{displaymath}
 
 \subsubsection{Un professeur ne peut pas avoir deux examens au même moment}
 Cette contrainte autorise pour chaque professeur au maximum un examen parmi deux avec des temps différents qui se chevauchent.\\
 (p4)
 \begin{displaymath}
-\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
+\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2)-1 \wedge t1 + D(x1)-1 \geq t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
 \end{displaymath}
 
 \subsubsection{Chaque examen doit avoir le temps de se dérouler}
@@ -527,12 +527,12 @@ On reprend la contrainte défini dans la q5 et on la divise en deux cas.
 Le premier est lorsque deux salles sont identique. Dans ce cas on modifie la durée tel que il y ait une période en plus.
 (p3a)
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) \wedge t1 + D(x1) \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 (p3b)
 Dans le deuxième cas, si les salles sont identique, on fait comme a la question 5.
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2)-1 \wedge t1 + D(x1)-1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 $ (p3) = (p3a) \wedge (p3b) $
@@ -614,17 +614,17 @@ Pou réaliser cela, nous devons modifier la contrainte p3 (pas d'examen qui se c
 
 (p3a) Pas de changement de salle
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge \\ t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2)-1 \wedge \\ t1 + D(x1)-1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p3b) Changement de salle mais pas de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge \\ t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) \wedge \\ t1 + D(x1) \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p3c) Changement de salle et de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 
