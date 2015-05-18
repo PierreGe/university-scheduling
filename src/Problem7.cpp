@@ -14,7 +14,7 @@ int Problem7::NA(int e) {
 }
 
 /*
-    Renvoie toutes les combinaisons possibles de salles à chaque période dans le temps (dans l'ordre)
+    Renvoie toutes les permutations de salles de taille `max` qui dépasse le nombre `k` autorisé de changements de salles
 */
 void Problem7::permut_salles(int s1, int max, std::vector<std::vector<int>>& salles_impossibles, std::vector<int> salles = std::vector<int>()) {
     if (s1 > max) {
@@ -41,6 +41,9 @@ void Problem7::permut_salles(int s1, int max, std::vector<std::vector<int>>& sal
     }
 }
 
+/*
+    Renvoie toutes les permutations de temps de taille `max` dans l'ordre chronologique
+*/
 void Problem7::permut_temps(int t, int max, std::vector<std::vector<int>>& temps_possibles, std::vector<int> temps = std::vector<int>()) {
     if (temps.size() == max) {
         temps_possibles.push_back(temps);
@@ -54,6 +57,9 @@ void Problem7::permut_temps(int t, int max, std::vector<std::vector<int>>& temps
     }
 }
 
+/* 
+    Renvoie toutes les permutations d'examens pour l'étudiant `e`
+*/
 std::vector<std::vector<int>> Problem7::permut_examens(int e) {
     std::vector<std::vector<int>> examens_possibles;
     std::vector<int> examens;
