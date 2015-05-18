@@ -435,12 +435,12 @@ $ (p3) = (p3a) \wedge (p3b) $
 
 \section{Q10}
 \subsection{Certains examens dans certaines salles (ex. salle informatique)}
-Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
+Pour modéliser la contrainte, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
 	\item \( XS_{x,s}\) tel que l'examen x peut se dérouler dans la salle s.
 \end{itemize}
 \begin{displaymath}
-	TODO
+	\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ \neg XS(x,s)}}^{S}\bigwedge\limits_{t=1}^{T} \neg M_{x, s, t} 
 \end{displaymath}
 
 
