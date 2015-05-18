@@ -168,7 +168,7 @@ public:
         }
         // reading k
         if ((*it)->size() > 1)
-            throw("X should be a single number.");
+            throw("k should be a single number.");
         this->k = (*it)->front();
         delete (*it);
         it++;
