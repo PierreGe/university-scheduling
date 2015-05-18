@@ -454,17 +454,17 @@ Pou réaliser cela, nous devons modifier la contrainte p3: \todo{Nom de la contr
 
 (p3a) Pas de changement de salle
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge \\ t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p3b) Changement de salle et de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p3c) Changement de salle mais pas de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge \\ t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 
@@ -478,13 +478,13 @@ Pour rappel, voici les différentes complexités P, NP, NP-complet et NP-dur.
   \includegraphics[scale=0.4]{images/q11-p-np-nphardcomplete.png}
   \caption{\label{} P, NP, NP-complet et NP-dur}
 \end{figure}
-Pour prouver qu'un problème est NP-dur, il faut montrer qu'un problème NP-dur connu peut se ramener à notre problème.
+Pour prouver qu'un problème est NP-dur, il faut montrer qu'un problème NP-dur connu peut se ramener à notre problème en temps polynômial.
 
-Nous allons donc montrer qu'il existe une bijection entre notre problème d'emploi du temps et le problème de \textbf{Job Shop Scheduling with Sequence-Dependent Setup}. Le problème de Job Shop Scheduling with Sequence-Dependent Setup est NP-dur \footnote{Artigues, Christian, Sana Belmokhtar, and Dominique Feillet. \"A new exact solution algorithm for the job shop problem with sequence-dependent setup times.\" \textit{Integration of ai and or techniques in constraint programming for combinatorial optimization problems}. Springer Berlin Heidelberg, 2004. 37-49.}.
+Nous allons donc montrer que le problème \textbf{Job Shop Scheduling with Sequence-Dependent Setup} peut se réduire à notre problème d'emploi du temps en temps polynômial. Le problème de Job Shop Scheduling with Sequence-Dependent Setup est NP-dur \footnote{Artigues, Christian, Sana Belmokhtar, and Dominique Feillet. "A new exact solution algorithm for the job shop problem with sequence-dependent setup times." \textit{Integration of ai and or techniques in constraint programming for combinatorial optimization problems}. Springer Berlin Heidelberg, 2004. 37-49.}.
 
-On pose les examens comme étant des jobs, les salles comme étant des machines allouables aux jobs, la durée d'un examen comme étant la durée d'un job et on garde les périodes de temps. Dans une salle (machine), il ne peut pas y avoir deux examens (jobs) en même temps. Chaque examen (job) doit se dérouler exactement une fois et avec exactement une salle (machine).
-La capacité des salles dans notre problème peut être modélisée avec la fonction de coût dans le JSS-SDS en donnant un coût infini à un certain examen (job) dans une certaine salle (machine) si le nombre d'étudiants à cette examen excède la capacité de la salle et un coût fini dans le cas contraire.
-Les examens que passent un étudiant et ceux que donnent un professeur sont simplement des contraintes externes empêchant certains examens (jobs) de se dérouler en même temps. De même, le fait qu'un examen doit avoir au minimum un étudiant et un professeur est une contrainte externe.
-Le but du \textbf{Job Shop Scheduling with Sequence-Dependent Setup} est de minimiser le temps total d'exécution des jobs, ce qui est également le cas avec notre problème puisqu'il faut effectuer tous les examens dans une certaine période de temps T et donc minimiser le temps total.
+On pose les jobs comme étant des examens, les machines comme étant des salles allouables aux examens, la durée d'un job comme étant la durée d'un examen et on garde les périodes de temps. Dans une machine (salle), il ne peut pas y avoir deux jobs (examens) en même temps. Chaque job (examen) doit se dérouler exactement une fois et avec exactement une machine (salle).
+La fonction de coût des machines peut être modélisée avec la capacité des salles dans notre problème.
+Les contraintes externes empêchant certains jobs de s'exécuter en même temps (Sequence-Dependent Setup) sont similaires au fait que les examens que passent un étudiant et ceux que donnent un professeur ne peuvent pas se dérouler en même temps peuvent être modélisée comme une matrix $ N x N $ de valeurs booléennes dans les deux cas (N étant le nombre d'examens ou de jobs), indiquant si deux jobs (examens) peuvent se dérouler en même temps ou non.
+Le but de notre problème puisqu'il faut effectuer tous les examens dans une certaine période de temps T et donc minimiser le temps total, ce qui est le cas également pour le \textbf{Job Shop Scheduling with Sequence-Dependent Setup} où il faut minimiser le temps total des jobs.
 \end{document}
 
