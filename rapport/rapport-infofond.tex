@@ -58,8 +58,8 @@ Les contraintes sont les suivantes :
   \item Un professeur ne peut pas avoir deux examens au même moment,
   \item Un examen doit avoir au moins un professeur,
   \item Un examen doit avoir au moins un étudiant
-  \item Chaque examen doit se dérouler une seule fois,
-  \item Chaque examen doit se dérouler dans une seule salle,
+  \item Chaque examen doit se dérouler exactement une seule fois,
+  \item Chaque examen doit se dérouler exactement dans une seule salle,
   \item Dans une salle, il ne peut se déroule qu'un seul examen a la fois.
 \end{itemize}
 
@@ -315,7 +315,57 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 
 \subsection{Exemple de résultats}
 
-\todo{ex}
+\begin{lstlisting}[
+    basicstyle=\tiny, %or \small or \footnotesize etc.
+]
+$ ./projq5.out "12 ;3 ;10 ;30 ;100 ;100 ;2 ;4 ;1; 1; 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;
+1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;
+2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;
+3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;
+3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;
+2,4; 2; 4; 2; 3;"
+
+---------------------------------------- Result ----------------------------------------
+T = 12
+|S| = 3
+c(s1) = 10
+c(s2) = 30
+c(s3) = 100
+|E| = 100
+|P| = 2
+|X| = 4
+a(e1) = { 1 }
+[...]
+a(e30) = { 1 }
+a(e31) = { 2 }
+[...]
+a(e60) = { 2 }
+a(e61) = { 3 4 }
+[...}
+a(e99) = { 3 4 }
+a(e100) = { 3 4 }
+b(p1) = { 1 3 }
+b(p2) = { 2 4 }
+d(x1) = 2
+d(x2) = 4
+d(x3) = 2
+d(x4) = 3
+==================================[MINISAT]===================================
+| Conflicts |     ORIGINAL     |              LEARNT              | Progress |
+|           | Clauses Literals |   Limit Clauses Literals  Lit/Cl |          |
+==============================================================================
+|         0 |    1868    36217 |     622       0        0     nan |  0.000 % |
+==============================================================================
+Success, the problem has been solve under those constraints !
+Examen 1 dans la salle 2 au temps 1
+Examen 2 dans la salle 2 au temps 4
+Examen 3 dans la salle 3 au temps 4
+Examen 4 dans la salle 3 au temps 1
+
+OUTPUT : 2,1;2,4;3,4;3,1;
+
+\end{lstlisting}
+
 
 \section{Q6}
 
