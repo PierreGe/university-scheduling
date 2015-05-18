@@ -478,12 +478,13 @@ Pour rappel, voici les différentes complexités P, NP, NP-complet et NP-dur.
   \includegraphics[scale=0.4]{images/q11-p-np-nphardcomplete.png}
   \caption{\label{} P, NP, NP-complet et NP-dur}
 \end{figure}
-Pour prouver que un problème est NP-dur, il faut montrer que un problème NP-dur connu peut se ramener a notre problème.
+Pour prouver qu'un problème est NP-dur, il faut montrer qu'un problème NP-dur connu peut se ramener à notre problème.
 
-Nous allons donc montrer que il existe une bijection entre notre problème d'emploi du temps et le problème de \textbf{Job Shop Scheduling with Sequence-Dependent Setup}.Le problème de Job Shop Scheduling with Sequence-Dependent Setup est NP-dur \footnote{Artigues, Christian, Sana Belmokhtar, and Dominique Feillet. "A new exact solution algorithm for the job shop problem with sequence-dependent setup times." \textit{Integration of ai and or techniques in constraint programming for combinatorial optimization problems}. Springer Berlin Heidelberg, 2004. 37-49.}.
+Nous allons donc montrer qu'il existe une bijection entre notre problème d'emploi du temps et le problème de \textbf{Job Shop Scheduling with Sequence-Dependent Setup}. Le problème de Job Shop Scheduling with Sequence-Dependent Setup est NP-dur \footnote{Artigues, Christian, Sana Belmokhtar, and Dominique Feillet. \"A new exact solution algorithm for the job shop problem with sequence-dependent setup times.\" \textit{Integration of ai and or techniques in constraint programming for combinatorial optimization problems}. Springer Berlin Heidelberg, 2004. 37-49.}.
 
 On pose les examens comme étant des jobs, les salles comme étant des machines allouables aux jobs, la durée d'un examen comme étant la durée d'un job et on garde les périodes de temps. Dans une salle (machine), il ne peut pas y avoir deux examens (jobs) en même temps. Chaque examen (job) doit se dérouler exactement une fois et avec exactement une salle (machine).
-Les examens que passent un étudiant et ceux que donnent un professeur sont simplement des contraintes empêchant certains examens (jobs) de se dérouler en même temps. 
+La capacité des salles dans notre problème peut être modélisée avec la fonction de coût dans le JSS-SDS en donnant un coût infini à un certain examen (job) dans une certaine salle (machine) si le nombre d'étudiants à cette examen excède la capacité de la salle et un coût fini dans le cas contraire.
+Les examens que passent un étudiant et ceux que donnent un professeur sont simplement des contraintes externes empêchant certains examens (jobs) de se dérouler en même temps. De même, le fait qu'un examen doit avoir au minimum un étudiant et un professeur est une contrainte externe.
 Le but du \textbf{Job Shop Scheduling with Sequence-Dependent Setup} est de minimiser le temps total d'exécution des jobs, ce qui est également le cas avec notre problème puisqu'il faut effectuer tous les examens dans une certaine période de temps T et donc minimiser le temps total.
 \end{document}
 
