@@ -19,7 +19,6 @@ int Problem5::D(int x) {
 
 void Problem5::setConstraints(){
     Problem4::setConstraints();
-    this->_constraints.erase("examen_temps_max");
     this->_constraints["examen_duree"] = [this]() {
         FOR(x1, 1, this->_specs.X) {
             FOR(x2, 1, this->_specs.X) {
