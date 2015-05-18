@@ -434,20 +434,41 @@ $ (p3) = (p3a) \wedge (p3b) $
 \subsection{Exemple de résultats}
 
 \section{Q10}
+\subsection{Certains examens dans certaines salles (ex. salle informatique)}
+Pour modéliser la contrainte, nous avons besoins de définir une nouvelle variable :  
+\begin{itemize}
+	\item \( XS_{x,s}\) tel que l'examen x peut se dérouler dans la salle s.
+\end{itemize}
+\begin{displaymath}
+	\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ \neg XS(x,s)}}^{S}\bigwedge\limits_{t=1}^{T} \neg M_{x, s, t} 
+\end{displaymath}
 
-LES ETUDIANTS VEULENT BOUFFER LE TEMPS DE MIDI !!!!!!!!!
 
-Les contraintes de la q7 pour les profs au lieu des étudiants (easy)
+\subsection{Si deux examens se suivent et sont sur des campus différents, il y a 2 temps entre ces deux examens}
+Faisons les hypothèses suivantes : 
+Pour modéliser la contrainte, nous avons besoins de définir une nouvelle variable :  
+\begin{itemize}
+	\item \( SC_{s1,s2}\) tel que s1 est sur un campus différent de s2.
+\end{itemize}
+Pou réaliser cela, nous devons modifier la contrainte p3: \todo{Nom de la contrainte}
 
-Les contraintes de la q9 pour les profs au lieu des étudiants (easy)
+(p3a) Pas de changement de salle
+\begin{displaymath}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\end{displaymath}
 
-durée max d'un examen
+(p3b) Changement de salle et de campus
+\begin{displaymath}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\end{displaymath}
 
-le week end
+(p3c) Changement de salle mais pas de campus
+\begin{displaymath}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\end{displaymath}
 
-overbooking sur les salles
 
-certain examen dans certain salle (salle info)
+$ (p3) = (p3a) \wedge (p3b) \wedge (p3c)$
 
 
 \section{Q11}
