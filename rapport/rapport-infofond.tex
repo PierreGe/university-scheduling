@@ -288,6 +288,9 @@ OUTPUT : 0
 
 \section{Q5}
 
+\subsection{Hypothèses}
+Pour cette question et les prochaines, nous considérons qu'une période de temps dure 1h.
+
 \subsection{Nouvelle variable}
 
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
@@ -400,23 +403,22 @@ On remarque que le résultat est cohérent. En effet, les durée sont prise en c
 \section{Q6}
 
 \subsection{Hypothèse}
-Pour cette question, nous avons supposé que les examens se déroulaient tous les jours de 8h à 20h. L'ensemble de paires tels que ont ne pas pas avoir d'examen ont été codés dans la classe SchedSpec sous la variable I. Notre implémentation permet de les modifiers sans avoir à modifier le reste du code.
-
-\todo{Verifier que c'est bien de 8h a 20h}
+Pour cette question, nous avons supposé que les examens se déroulaient tous les jours de 8h à 20h. L'ensemble de paires de périodes où les examens ne sont pas possibles ont été codés dans la classe SchedSpec sous la variable I. Notre implémentation permet de les modifiers sans avoir à modifier le reste du code.
+En supposant que les périodes de temps commencent à minuit le premier jour des examens, nous avons interdit les périodes entre les numéros 1 et 8 compris, 21 et 32 compris et ainsi de suite en ajoutant 24 (la durée d'un jour en heure) jusqu'à la fin des périodes de temps.
 
 \subsection{Nouvelle variable}
 
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
-	\item \( J_{t}\) tel que t fait partit du jour, c'est à dire qu'il est possible d'avoir un examen en t.
+	\item \( J_{t}\) tel que $t$  ne trouve pas dans les périodes de nuit, donc qu'il est possible d'avoir un examen en période $t$.
 \end{itemize}
 
 \subsection{Modification de contrainte}
-Aucune contrainte déjà existante n'a du être modifié pour ce problème.
+Aucune contrainte déjà existante n'a du être modifiée pour ce problème.
 
 \subsection{Nouvelle contrainte}
 
-\subsubsection{Aucun examen ne peut se dérouler durant les intervals défini par I.} \todo{Meilleur description de la contrainte}
+\subsubsection{Aucun examen ne peut se dérouler durant certains intervalles de temps}
 (p11)
 \begin{displaymath}
 \bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{t=0 \\ \neg J(t) }}^{T} \neg M_{x, s, t}
