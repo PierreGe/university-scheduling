@@ -495,7 +495,21 @@ Dans cet exemple on voit bien les périodes de temps sans examens correspondant 
 \section{Q8}
 
 Nous n'avons pas réussi a utiliser le module Max-Sat de MiniSat.
+En effet, aucune documentation n'était disponible.
 
+Cependant, avec notre implémentation actuel nous pourrions minimiser k. Cela suivrait le pseudo code suivant :
+
+\begin{lstlisting}[
+    basicstyle=\tiny, %or \small or \footnotesize etc.
+]
+	for k in range(X):
+		problem.solve(k)
+		if problem.solved:
+			print "Ce probleme peut etre modeliser avec une valeur de k = " + k
+			break
+	
+
+\end{lstlisting}
 
 \section{Q9}
 
