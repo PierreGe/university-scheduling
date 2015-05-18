@@ -503,17 +503,35 @@ Dans cet exemple on voit bien les périodes de temps sans examens correspondant 
 \section{Q8}
 
 Nous n'avons pas réussi a utiliser le module Max-Sat de MiniSat.
+En effet, aucune documentation n'était disponible.
 
+Cependant, avec notre implémentation actuel nous pourrions minimiser k. Cela suivrait le pseudo code suivant :
+
+\begin{lstlisting}[
+    basicstyle=\tiny, %or \small or \footnotesize etc.
+]
+	for k in range(X):
+		problem.solve(k)
+		if problem.solved:
+			print "Ce probleme peut etre modeliser avec une valeur de k = " + k
+			break
+	
+
+\end{lstlisting}
 
 \section{Q9}
 
 \subsection{Modification de contrainte}
-\subsubsection{Un étudiant ne peut pas avoir deux examens au même moment}
+\subsubsection{Les examens d'un étudiant ne se chevauchent pas}
+On reprend la contrainte défini dans la q5 et on la divise en deux cas. 
+
+Le premier est lorsque deux salles sont identique. Dans ce cas on modifie la durée tel que il y ait une période en plus.
 (p3a)
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 (p3b)
+Dans le deuxième cas, si les salles sont identique, on fait comme a la question 5.
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
@@ -600,14 +618,14 @@ Pou réaliser cela, nous devons modifier la contrainte p3 (pas d'examen qui se c
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge \\ t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
-(p3b) Changement de salle et de campus
-\begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
-\end{displaymath}
-
-(p3c) Changement de salle mais pas de campus
+(p3b) Changement de salle mais pas de campus
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge \\ t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\end{displaymath}
+
+(p3c) Changement de salle et de campus
+\begin{displaymath}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 
