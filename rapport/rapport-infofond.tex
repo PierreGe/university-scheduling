@@ -275,9 +275,10 @@ Uh .. The problem could not be solve under those constraints
 OUTPUT : 0
 \end{lstlisting}
 
+\section{Q5}
+
 \subsection{Nouvelle variable}
 
-\section{Q5}
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
 	\item \( D_{x}\) qui donne la durée de l'examen x.
@@ -316,6 +317,7 @@ Pour modéliser la durée d'un examen il a fallut penser le problème autrement.
 \end{displaymath}
 
 \subsection{FNC}
+Pour obtenir la nouvelle FNC final, on prend en compte les modifications de contrainte et on rajoute la nouvelles.
 
 \begin{displaymath}
 	\Phi_{D} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p8 \wedge p9 \wedge p10
@@ -373,7 +375,7 @@ Examen 4 dans la salle 3 au temps 1
 OUTPUT : 2,1;2,4;3,4;3,1;
 
 \end{lstlisting}
-On remarque que le résultat est bon. En effet, les durée sont prise en compte et les différents examens des professeurs et des élèves aussi. Exemple comme le professeur 2 à l'examen 2 et 4, le 2 ne commence que en temps 4 alors que la salle 2 est libre dès le temps 3.
+On remarque que le résultat est cohérent. En effet, les durée sont prise en compte et les différents examens des professeurs et des élèves aussi. Exemple comme le professeur 2 à l'examen 2 et 4, le 2 ne commence que en temps 4 alors que la salle 2 est libre dès le temps 3.
 
 \section{Q6}
 
