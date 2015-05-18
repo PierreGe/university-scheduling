@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{todonotes}
+\setcounter{section}{-1}
 
 
 
@@ -470,9 +471,8 @@ Examen 19 dans la salle 1 au temps 12
 Examen 20 dans la salle 1 au temps 9
  
 OUTPUT : 1,81;1,14;1,42;1,67;1,63;1,62;1,61;1,57;1,17;1,44;1,43;1,39;1,37;1,19;1,33;1,20;1,18;1,15;1,12;1,9;
-
-
 \end{lstlisting}
+Dans cet exemple on voit bien les périodes de temps sans examens correspondant aux nuits.
 \section{Q7}
 \subsection{Nouvelle contrainte}
 \subsubsection{La somme, pour tout étudiant e, du nombre de changements de salle de e, est bornée par k}
@@ -490,6 +490,9 @@ OUTPUT : 1,81;1,14;1,42;1,67;1,63;1,62;1,61;1,57;1,17;1,44;1,43;1,39;1,37;1,19;1
 \subsection{Exemple de résultats}
 
 \section{Q8}
+
+Nous n'avons pas réussi a utiliser le module Max-Sat de MiniSat.
+
 
 \section{Q9}
 
@@ -524,7 +527,6 @@ Pour modéliser la contrainte, nous avons besoins de définir une nouvelle varia
 
 
 \subsection{Si deux examens se suivent et sont sur des campus différents, il y a 2 temps entre ces deux examens}
-Faisons les hypothèses suivantes : 
 Pour modéliser la contrainte, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
 	\item \( SC_{s1,s2}\) tel que s1 est sur un campus différent de s2.
