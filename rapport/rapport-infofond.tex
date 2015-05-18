@@ -143,63 +143,71 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelles v
 
 \subsection{Ensemble de FNC}
 \subsubsection{(p1)}
-Contrainte d'existence : chaque examen se déroule dans au moins une salle et durant au moins une période de temps
+Contrainte d'existence : chaque examen se déroule dans au moins une salle et durant au moins une période de temps.
+Il s'agit de dire qu'il existe au moins une proposition valable pour chaque examen, quel que soit la période de temps ou salle.
 \begin{displaymath}
 	\bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T} M_{s,x,t}
 \end{displaymath}
 
 
 \subsubsection{(p2)}
-Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité
+Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité.
+Il s'agit de dire qu'une proposition n'est pas valable pour chaque examen et chaque période de temps si la salle n'a pas la capacité d'accepter le nombre d'étudiants ayant cet examen.
 \begin{displaymath}
 	\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ \neg C_{s,N_{x}}}}^{S}  \neg M_{x,s,t}
 \end{displaymath}
 
 \subsubsection{(p3)}
-Un étudiant ne peut pas avoir deux examens au même moment
+Un étudiant ne peut pas avoir deux examens au même moment.
+Il s'agit de dire qu'il existe au maximum une proposition valable pour tous les examens de chaque étudiant se déroulant au même moment, quelle que soit la salle.
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{s_{2}=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x_{1}}}}^{X}\bigwedge\limits_{\substack{x_{2}=x_{1}+1 \\ A_{e,x_{2}}}}^{X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
 \subsubsection{(p4)}
-Un professeur ne peut pas avoir deux examens au même moment
+Un professeur ne peut pas avoir deux examens au même moment.
+Il s'agit de dire qu'il existe au maximum une proposition valable pour tous les examens de chaque professeur se déroulant au même moment, quelle que soit la salle.
 \begin{displaymath}
 \bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{s_{2}=1}^{S}\bigwedge\limits_{\substack{x_{1}=1 \\ B_{p,x_{1}}}}^{X}\bigwedge\limits_{\substack{x_{2}=x_{1}+1 \\ B_{p,x_{2}}}}^{X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
 \subsubsection{(p5)}
-Un examen doit avoir au moins un professeur
+Un examen doit avoir au moins un professeur.
+Il s'agit de dire qu'il existe au minimum une proposition valable pour chaque examen quelque soit la salle ou la période de temps telle qu'un professeur donne cet examen.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T}\bigvee\limits_{\substack{p=1 \\ B_{p,x}}}^{P} M_{x, s, t}
 \end{displaymath}
 
 \subsubsection{(p6)}
-Un examen doit avoir au moins un étudiant
+Un examen doit avoir au moins un étudiant.
+Il s'agit de dire qu'il existe au minimum une proposition valable pour chaque examen quelque soit la salle ou la période de temps telle qu'un étudiant passe cet examen.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T}\bigvee\limits_{\substack{e=1 \\ A_{e,x}}}^{E} M_{x, s, t}
 \end{displaymath}
 
 \subsubsection{(p7)}
-Chaque examen doit se dérouler une seule fois
+Chaque examen doit se dérouler une seule fois.
+Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque examen pour chaque temps quelle que soit la salle.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t_{1}=1}^{T}\bigwedge\limits_{t_{2}=t_{1}+1}^{T} \neg M_{x, s, t_{1}} \vee \neg M_{x, s, t_{2}}
 \end{displaymath}
 
 \subsubsection{(p8)}
-Chaque examen doit se dérouler dans une seule salle
+Chaque examen doit se dérouler dans une seule salle.
+Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque examen pour chaque salle quelle que soit la période de temps.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{s_{2}=t1+1}^{S} \neg M_{x, s_{1}, t} \vee \neg M_{x, s_{2}, t}
 \end{displaymath}
 
 \subsubsection{(p9)}
 Dans une salle, il ne peut se déroule qu'un seul examen a la fois.
+Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque salle pour chaque examen quelle que soit la période de temps.
 \begin{displaymath}
 \bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{x_{2}=t1+1}^{X} \neg M_{x_{1}, s, t} \vee \neg M_{x_{2}, s, t}
 \end{displaymath}
 
 \subsection{Note}
 La redondance n'est pas un problème car MiniSat supprime les doublons de clauses.
-
 
 \subsection{FNC final}
 La forme normal conjonctive de la formule est:
