@@ -28,8 +28,8 @@
 \begin{titlepage}
 \begin{center}
 \textbf{\textsc{UNIVERSIT\'E LIBRE DE BRUXELLES}}\\
-%\textbf{\textsc{Faculté des Sciences}}\\
-%\textbf{\textsc{Département d'Informatique}}
+\textbf{\textsc{Faculté des Sciences}}\\
+\textbf{\textsc{Département d'Informatique}}
 \vfill{}\vfill{}
 \begin{center}{\Huge Projet : Logique Propositionnelle et Utilisation de l’Outil MiniSat}\end{center}{\Huge \par}
 \begin{center}{\large Pierre Gérard, Antoine Carpentier}\end{center}{\Huge \par}
@@ -508,6 +508,57 @@ $ (p3) = (p3a) \wedge (p3b) $
 \end{displaymath}
 \subsection{Implémentation}
 \subsection{Exemple de résultats}
+
+\begin{lstlisting}[
+    basicstyle=\tiny, %or \small or \footnotesize etc.
+]
+$ ./projq9.out "20 ;3 ;10 ;30 ;100 ;10 ;5 ;5 ; 1,3;3;4;5;1,2;1,2;1,2;1,2;1,2;1,2;1;2;3;4;5;4;3;2;3;4;2;"
+---------------------------------------- Result ----------------------------------------
+T = 20
+|S| = 3
+c(s1) = 10
+c(s2) = 30
+c(s3) = 100
+|E| = 10
+|P| = 5
+|X| = 5
+a(e1) = { 1 3 }
+a(e2) = { 3 }
+a(e3) = { 4 }
+a(e4) = { 5 }
+a(e5) = { 1 2 }
+a(e6) = { 1 2 }
+a(e7) = { 1 2 }
+a(e8) = { 1 2 }
+a(e9) = { 1 2 }
+a(e10) = { 1 2 }
+b(p1) = { 1 }
+b(p2) = { 2 }
+b(p3) = { 3 }
+b(p4) = { 4 }
+b(p5) = { 5 }
+d(x1) = 4
+d(x2) = 3
+d(x3) = 2
+d(x4) = 3
+d(x5) = 4
+==================================[MINISAT]===================================
+| Conflicts |     ORIGINAL     |              LEARNT              | Progress |
+|           | Clauses Literals |   Limit Clauses Literals  Lit/Cl |          |
+==============================================================================
+|         0 |    4884    18906 |    1628       0        0     nan |  0.000 % |
+==============================================================================
+Success, the problem has been solve under those constraints !
+Examen 1 dans la salle 2 au temps 9
+Examen 2 dans la salle 1 au temps 15
+Examen 3 dans la salle 1 au temps 14
+Examen 4 dans la salle 1 au temps 12
+Examen 5 dans la salle 1 au temps 9
+
+OUTPUT : 2,9;1,15;1,14;1,12;1,9;
+
+\end{lstlisting}
+Dans cette exemple on voit que l'étudiant 1 à l'examen 1 et 3 dans deux salles différentes. Il y a bien durée(examen 1) + une unité de temps entre les deux.
 
 \section{Q10}
 \subsection{Certains examens dans certaines salles (ex. salle informatique)}
