@@ -295,34 +295,41 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 	\item \( D_{x}\) qui donne la durée de l'examen x.
 \end{itemize}
 
+A la question numéro 4, dans les contraintes, nous avons considéré que les examens durent une seule période de temps. Nous devons donc en modifier certaines pour prendre en compte le fait que un examen dure plusieurs périodes de temps. 
+Le principe des deux contraintes qui suivent ainsi que de la nouvelle contrainte consiste à admettre au maximum un examen parmi deux si ils leurs horaires se chevauchent. Pour deux examens se déroulant respectivement aux temps $t1$ et $t2$ et de durées respectivement $d1$ et $d2$, la condition pour qu'ils se chevauchent est : 
+\begin{align}
+t1 <= t2 + d2 \wedge t2 <= t1 + d1
+\iff \neg (t1 > t2 + d2 \vee t2 < t1 + d1)
+\end{align}
+
 \subsection{Modification de contrainte}
 
-A la question numéro 4, dans les contraintes, nous avons considéré que les examens durent une seule période de temps. Nous devons donc en modifier certaines pour prendre en compte le fait que un examen dure plusieurs périodes de temps. 
-
 \subsubsection{Un étudiant ne peut pas avoir deux examens au même moment}
+Cette contrainte autorise pour chaque étudiant au maximum un examen parmi deux avec des temps différents qui se chevauchent.\\
 (p3)
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
 \end{displaymath}
 
 \subsubsection{Un professeur ne peut pas avoir deux examens au même moment}
+Cette contrainte autorise pour chaque professeur au maximum un examen parmi deux avec des temps différents qui se chevauchent.\\
 (p4)
 \begin{displaymath}
-\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{S}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
 \end{displaymath}
 
-\subsubsection{Chaque examen doit se dérouler une seule fois}
+\subsubsection{Chaque examen doit avoir le temps de se dérouler}
+On modifie la contrainte (p7) devenue inutile car la contrainte ci-dessous assure que chaque examen se déroulera dans un nombre de périodes de temps exactement égal à sa durée. Par contre il n'y aucune garantie qu'un examen aura assez de temps pour se dérouler si il commence proche de la dernière période de temps. On empêche donc l'examen $x$ de se dérouler dans une période de temps après $ T - D_{x} + 1 $.\\
 (p7)
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T} \neg M_{x, s, t}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=T - D_{x} + 1}^{T} \neg M_{x, s, t}
 \end{displaymath}
 
 
 \subsection{Nouvelle contrainte}
 
-Pour modéliser la durée d'un examen il a fallut penser le problème autrement. En effet nous avons considérée une durée comme un ensemble de période contigues. Cela nous amène a la nouvelle contrainte suivante.
-
 \subsubsection{Chaque examen doit avoir un nombre de période de de temps égal à sa durée et ses périodes de temps doivent être continues}
+Pour modéliser la durée d'un examen il a fallut penser le problème autrement. En effet nous avons considéré un examen commençant à une certaine période et durant un certain temps. Nous devons ensuite vérifier que chaque examen existe dans chaque salle sans chevaucher un autre examen (expliqué ci-dessus), ce qui vérifie alors la contrainte de durée.\\
 
 (p10)
 \begin{displaymath}
@@ -333,7 +340,7 @@ Pour modéliser la durée d'un examen il a fallut penser le problème autrement.
 Pour obtenir la nouvelle FNC final, on prend en compte les modifications de contrainte et on rajoute la nouvelles.
 
 \begin{displaymath}
-	\Phi_{D} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p8 \wedge p9 \wedge p10
+	\Phi_{D} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p7 \wedge p8 \wedge p9 \wedge p10
 \end{displaymath}
 
 \subsection{Exemple de résultats}
