@@ -472,18 +472,14 @@ $ (p3) = (p3a) \wedge (p3b) \wedge (p3c)$
 
 
 \section{Q11}
-Un problème NP-complet est NP-dur par définition. En effet, comme montré sur l'image suivante NP-complet est un sous-ensemble de NP-dur et de NP.
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{images/q11-p-np-nphardcomplete.png}
   \caption{\label{} P, NP, NP-complet et NP-dur}
 \end{figure}
-D'après le \textit{Théorème de Cook}, SAT est un problème NP complet. Donc SAT est aussi un problème NP-Dur.
-
-Lors de ce projet nous avons réduit le problème d'emploi de temps en un problème SAT.
-
-On peut donc déduire que le problème d'emploi du temps est un problème NP-dur.
-
-%Un problème est NP-complet est NP-dur si il peut se ramener sous la forme d'un autre problème NP-complet. Si un problème peut se mettre en forme normal conjonctive et satisfaisable, il est SAT. Notre problème possède au moins 3 clauses, en effet TODO . Il est donc 3-SAT et donc il est aussi NP-complet donc on peut déduire que notre problème est NP-complet ou NP-dur.
+Le problème de \textbf{Job Shop Scheduling with Sequence-Dependent Setup} est NP-dur \todo{footnote}. Notre problème de gestion d'horaires est en fait un problème de \textbf{Job Shop Scheduling with Sequence-Dependent Setup}.
+On pose les examens comme étant des jobs, les salles comme étant des ressources allouables aux jobs, la durée d'un examen comme étant la durée d'un job et on garde les périodes de temps. Dans une salle (ressource), il ne peut pas y avoir deux examens (jobs) en même temps. Chaque examen (job) doit se dérouler exactement une fois et avec exactement une salle (ressource).
+Les examens que passent un étudiant et ceux que donnent un professeur sont simplement des contraintes empêchant certains examens (jobs) de se dérouler en même temps. 
+Le but du \textbf{Job Shop Scheduling with Sequence-Dependent Setup} est de minimiser le temps total d'exécution des jobs, ce qui est également le cas avec notre problème puisqu'il faut effectuer tous les examens dans une certaine période de temps T et donc minimiser le temps total.
 \end{document}
 
