@@ -48,6 +48,15 @@
 
 \pagebreak
 
+\section{Introduction}
+
+\subsection{Tester l'implémentation}
+Pour testez facilement l'ensemble de nos implémentation, utilisez le script bash disponible de la manière suivante :
+\begin{lstlisting}
+$ sh TestMe.sh	
+\end{lstlisting}
+Ce bash script va faire le build, et exécuter minisat avec des inputs choisis en fonction de la question.
+
 
 \section{Q1}
 Les contraintes sont les suivantes :
@@ -183,13 +192,6 @@ La forme normal conjonctive de la formule est:
 \end{displaymath}
 
 \section{Q4}
-\subsection{Tester l'implémentation}
-Pour tester l'implémentation, utilisez le script bash disponible de la manière suivante :
-\begin{lstlisting}
-$ sh TestMe.sh	
-\end{lstlisting}
-Ce script va faire le build, lire les fichiers, et exécuter minisat.
-
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
 
