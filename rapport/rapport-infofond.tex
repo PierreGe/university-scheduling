@@ -112,17 +112,17 @@ Les contraintes sont les suivantes :
 
 \subsection {Chaque examen doit se dérouler une seule fois}
 \begin{displaymath}
-\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : t_{1} \neq t_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \forall x \in X : \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2}) \Rightarrow t_{1} = t_{2}
 \end{displaymath}
 
 \subsection {Chaque examen doit se dérouler dans une seule salle}
 \begin{displaymath}
-\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : s_{1} \neq s_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
-\end{displaymath}	
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \forall x \in X : \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2}) \Rightarrow s_{1} = s_{2}
+\end{displaymath}
 
 \subsection {Dans une salle, il ne peut se dérouler qu'un seul examen a la fois}
 \begin{displaymath}
-\forall t_{1}, t_{2} \in \{1,...,T\},\forall x_{1},x_{2} \in X, \nexists s \in S : t_{1} = t_{2} \wedge x_{1} \neq x_{2} \wedge \mu(x_{1}) = (s,t_{1}) \wedge \mu(x_{2}) = (s,t_{2})
+\forall t \in \{1,...,T\},\forall x_{1},x_{2} \in X, \forall s \in S : \mu(x_{1}) = (s,t) \wedge \mu(x_{2}) = (s,t) \Rightarrow x_{1} = x_{2}
 \end{displaymath}	
 
 \section{Q3}
