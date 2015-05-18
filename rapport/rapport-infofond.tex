@@ -83,39 +83,46 @@ Les contraintes sont les suivantes :
 
 \subsection {Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité}
 \begin{displaymath}
-\forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : a(e) \mapsto \{x\} \wedge \mu(x) = (s,t) \wedge \sum a(e) \mapsto \{x\} \leq c(s)
+\forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : \mu(x) = (s,t) \Rightarrow (\sum a(e) \mapsto \{x\}) \leq c(s)
 \end{displaymath}	
 
 \subsection {Un étudiant ne peut pas avoir deux examens au même moment}
 \begin{displaymath}
-\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall e \in E ,\forall t_{1}, t_{2} \in \{1,...,T\} :  a(e) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge\end{displaymath}
+\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall e \in E ,\forall t_{1}, t_{2} \in \{1,...,T\} :  x_{1} \neq x_{2} \wedge a(e) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge\end{displaymath}
 \begin{displaymath}
- \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2} \wedge x_{1} != x_{2}
+ \mu(x_{2}) = (s_{2},t_{2}) \Rightarrow t_{1} \neq t_{2} 
 \end{displaymath}
+
 \subsection {Un professeur ne peut pas avoir deux examens au même moment}
 \begin{displaymath}
-\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall p \in P ,\forall t_{1}, t_{2} \in \{1,...,T\} :  b(p) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge\end{displaymath}
-\begin{displaymath} \mu(x_{2}) = (s_{2},t_{2}) \wedge t_{1} != t_{2} \wedge x_{1} != x_{2}
+\forall x_{1},x_{2} \in X, \forall s_{1},s_{2} \in S , \forall p \in P ,\forall t_{1}, t_{2} \in \{1,...,T\} :  x_{1} \neq x_{2} \wedge b(p) \mapsto \{x_{1},x_{2}\}  \wedge \mu(x_{1}) = (s_{1},t_{1}) \wedge\end{displaymath}
+\begin{displaymath}
+ \mu(x_{2}) = (s_{2},t_{2}) \Rightarrow t_{1} \neq t_{2} 
 \end{displaymath}
+
 \subsection {Un examen doit avoir au moins un professeur}
 \begin{displaymath}
 \forall x \in X, \exists p \in P : b(p) \mapsto \{x\} 
 \end{displaymath}
+
 \subsection {Un examen doit avoir au moins un étudiant}
 \begin{displaymath}
 \forall x \in X, \exists e \in E : a(e) \mapsto \{x\}
 \end{displaymath}
+
 \subsection {Chaque examen doit se dérouler une seule fois}
 \begin{displaymath}
-\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : t_{1} != t_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : t_{1} \neq t_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
 \end{displaymath}
+
 \subsection {Chaque examen doit se dérouler dans une seule salle}
 \begin{displaymath}
-\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : s_{1} != s_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall s_{1},s_{2} \in S, \nexists x \in X : s_{1} \neq s_{2} \wedge \mu(x) = (s_{1},t_{1}) \wedge \mu(x) = (s_{2},t_{2})
 \end{displaymath}	
+
 \subsection {Dans une salle, il ne peut se dérouler qu'un seul examen a la fois}
 \begin{displaymath}
-\forall t_{1}, t_{2} \in \{1,...,T\},\forall x_{1},x_{2} \in X, \nexists s \in S : t_{1} = t_{2} \wedge x_{1} != x_{2} \wedge \mu(x_{1}) = (s,t_{1}) \wedge \mu(x_{2}) = (s,t_{2})
+\forall t_{1}, t_{2} \in \{1,...,T\},\forall x_{1},x_{2} \in X, \nexists s \in S : t_{1} = t_{2} \wedge x_{1} \neq x_{2} \wedge \mu(x_{1}) = (s,t_{1}) \wedge \mu(x_{2}) = (s,t_{2})
 \end{displaymath}	
 
 \section{Q3}
@@ -315,7 +322,7 @@ Pour modéliser la durée d'un examen il a fallut penser le problème autrement.
 
 (p10)
 \begin{displaymath}
-\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{\substack{x_{2}=1 \\ x_{1} != x_{2}}}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t_{1}=1}^{T}\bigvee\limits_{\substack{t_{2}=0 \\ t_{1} < t_{2} + D(x_{2})-1 \wedge t_{1} + D(x_{1})-1 > t_{2}}}^{T} \neg M_{x_{1}, s, t_{1}} \vee \neg M_{x_{2}, s, t_{2}}
+\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{\substack{x_{2}=1 \\ x_{1} \neq x_{2}}}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t_{1}=1}^{T}\bigvee\limits_{\substack{t_{2}=0 \\ t_{1} < t_{2} + D(x_{2})-1 \wedge t_{1} + D(x_{1})-1 > t_{2}}}^{T} \neg M_{x_{1}, s, t_{1}} \vee \neg M_{x_{2}, s, t_{2}}
 \end{displaymath}
 
 \subsection{FNC}
@@ -481,7 +488,7 @@ OUTPUT : 1,81;1,14;1,42;1,67;1,63;1,62;1,61;1,57;1,17;1,44;1,43;1,39;1,37;1,19;1
 \subsubsection{Un étudiant ne peut pas avoir deux examens au même moment}
 (p3a)
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 (p3b)
 \begin{displaymath}
@@ -522,12 +529,12 @@ Pou réaliser cela, nous devons modifier la contrainte p3: \todo{Nom de la contr
 
 (p3b) Changement de salle et de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 (p3c) Changement de salle mais pas de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge \\ t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} != s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2) \wedge \\ t1 + D(x1) >= t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
 
 
