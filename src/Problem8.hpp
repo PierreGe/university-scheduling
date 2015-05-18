@@ -1,5 +1,5 @@
-#ifndef __PROBLEM9_HPP
-#define __PROBLEM9_HPP
+#ifndef __PROBLEM8_HPP
+#define __PROBLEM8_HPP
 
 #include <unordered_map>
 #include <functional>
@@ -8,11 +8,11 @@
 #include "parser/SchedSpec.hpp"
 #include "minisat/Solver.hpp"
 
-#include "Problem8.hpp"
+#include "Problem7.hpp"
 
-class Problem9 : public Problem7 {
+class Problem8 : public Problem6 {
 public:
-    using Problem7::Problem7;
+    using Problem6::Problem6;
 protected:
     virtual void setConstraints();
 public:

@@ -30,6 +30,15 @@ add_executable(projq7.out
     Problem7.cpp
 )
 
+add_executable(projq8.out
+    minisat/Solver.cpp
+    main8.cpp
+    Problem4.cpp
+    Problem5.cpp
+    Problem6.cpp
+    Problem8.cpp
+)
+
 add_executable(projq9.out
     minisat/Solver.cpp
     main9.cpp

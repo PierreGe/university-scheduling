@@ -2,5 +2,5 @@
 
 int main(int argc, char **argv)
 {
-    return main_helper<Problem4>(argc, argv);
+    return main_helper<Problem8>(argc, argv);
 }
