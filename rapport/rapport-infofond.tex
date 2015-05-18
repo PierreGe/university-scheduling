@@ -297,23 +297,29 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 \subsection{Modification de contrainte}
 
 A la question numéro 4, dans les contraintes, nous avons considéré que les examens durent une seule période de temps. Nous devons donc en modifier certaines pour prendre en compte le fait que un examen dure plusieurs périodes de temps. 
+Le principe des deux contraintes qui suivent ainsi que de la nouvelle contrainte consiste à admettre au maximum un examen parmi deux si ils leurs horaires se chevauchent et qu'ils ont un étudiant/professeur en commun. Pour deux examens se déroulant respectivement aux temps $t1$ et $t2$ et de durées respectivement $d1$ et $d2$, la condition pour qu'ils se chevauchent est : 
+\begin{align}
+t1 <= t2 + d2 \wedge t2 <= t1 + d1
+\iff \neg (t1 > t2 + d2 \vee t2 < t1 + d1)
+\end{align}
 
 \subsubsection{Un étudiant ne peut pas avoir deux examens au même moment}
 (p3)
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
 \end{displaymath}
 
 \subsubsection{Un professeur ne peut pas avoir deux examens au même moment}
 (p4)
 \begin{displaymath}
-\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{S}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 <= t2 + D(x2)-1 \wedge t1 + D(x1)-1 >= t2}}^{T}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ B_{p,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ B_{p,x2}}}^{X} \neg M_{x1, s1, t_{1}} \vee \neg M_{x2, s2, t_{2}}
 \end{displaymath}
 
 \subsubsection{Chaque examen doit se dérouler une seule fois}
 (p7)
+On modifie cette contrainte devenue inutile car la contrainte ci-dessous assure que chaque examen se déroulera dans un nombre de périodes de temps exactement égal à sa durée. Par contre il n'y aucune garantie qu'un examen aura assez de temps pour se dérouler si il commence proche de la dernière période de temps.
 \begin{displaymath}
-\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T} \neg M_{x, s, t}
+\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=T - D_{x} + 1}^{T} \neg M_{x, s, t}
 \end{displaymath}
 
 
