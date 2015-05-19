@@ -61,6 +61,18 @@ Ce bash script va faire le build, et exécuter minisat avec des inputs choisis e
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
 
+Pour la question 7 et 9, nous avons ajouté le paramètre k a la fin de l'input et donc au parser.
+
+\subsection{Exécutable}
+
+Nous avons créer un cmake qui crée un exécutable par question.
+Cela s'utilise de la manière suivante :
+\begin{lstlisting}
+$ cmake . 
+$ make 
+\end{lstlisting}
+Les éxecutables se nomment ./projq4.out à ./projq9.out .
+
 \section{Q1}
 Les contraintes sont les suivantes :
 \begin{itemize}
