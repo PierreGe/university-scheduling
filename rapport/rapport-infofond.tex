@@ -352,8 +352,8 @@ On modifie la contrainte (p7) devenue inutile car la contrainte ci-dessous assur
 
 \subsection{Nouvelle contrainte}
 
-\subsubsection{Chaque examen doit avoir un nombre de période de de temps égal à sa durée et ses périodes de temps doivent être continues}
-Pour modéliser la durée d'un examen il a fallut penser le problème autrement. En effet nous avons considéré un examen commençant à une certaine période et durant un certain temps. Nous devons ensuite vérifier que chaque examen existe dans chaque salle sans chevaucher un autre examen (expliqué ci-dessus), ce qui vérifie alors la contrainte de durée.\\
+\subsubsection{Chaque examen doit avoir un nombre de période de temps égal à sa durée et ces périodes de temps doivent être continues}
+Pour modéliser la durée d'un examen il a fallu penser le problème autrement. En effet nous avons considéré un examen commençant à une certaine période et durant un certain temps. Nous devons ensuite vérifier que chaque examen existe dans chaque salle sans chevaucher un autre examen (expliqué ci-dessus), ce qui vérifie alors la contrainte de durée.\\
 
 (p10)
 \begin{displaymath}
@@ -419,19 +419,19 @@ Examen 4 dans la salle 3 au temps 1
 OUTPUT : 2,1;2,4;3,4;3,1;
 
 \end{lstlisting}
-On remarque que le résultat est cohérent. En effet, les durée sont prise en compte et les différents examens des professeurs et des élèves aussi. Exemple comme le professeur 2 à l'examen 2 et 4, le 2 ne commence que en temps 4 alors que la salle 2 est libre dès le temps 3.
+On remarque que le résultat est cohérent. En effet, les durées sont prises en compte et les différents examens des professeurs et des élèves aussi. Par exemple, comme le professeur 2 a l'examen 2 et 4, le 2 ne commence que en temps 4 alors que la salle 2 est libre dès le temps 3.
 
 \section{Q6}
 
 \subsection{Hypothèse}
-Pour cette question, nous avons supposé que les examens se déroulaient tous les jours de 8h à 20h. L'ensemble de paires de périodes où les examens ne sont pas possibles ont été codés dans la classe SchedSpec sous la variable I. Notre implémentation permet de les modifiers sans avoir à modifier le reste du code.
+Pour cette question, nous avons supposé que les examens se déroulaient tous les jours de 8h à 20h. L'ensemble de paires de périodes où les examens ne sont pas possibles ont été codés dans la classe SchedSpec sous la variable I. Notre implémentation permet de les modifier sans avoir à modifier le reste du code.
 En supposant que les périodes de temps commencent à minuit le premier jour des examens, nous avons interdit les périodes entre les numéros 1 et 8 compris, 21 et 32 compris et ainsi de suite en ajoutant 24 (la durée d'un jour en heure) jusqu'à la fin des périodes de temps.
 
 \subsection{Nouvelle variable}
 
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
-	\item \( J_{t}\) tel que $t$  ne trouve pas dans les périodes de nuit, donc qu'il est possible d'avoir un examen en période $t$.
+	\item \( J_{t}\) tel que $t$  ne se trouve pas dans les périodes interdites, donc qu'il est possible d'avoir un examen en période $t$.
 \end{itemize}
 
 \subsection{Modification de contrainte}
@@ -500,13 +500,12 @@ Dans cet exemple on voit bien les périodes de temps sans examens correspondant 
 \subsection{Nouvelle contrainte}
 \subsubsection{La somme, pour tout étudiant e, du nombre de changements de salle de e, est bornée par k}
 Pour cette contrainte il nous faut trouver toutes possibilités d'examens et de salles dans l'ordre chronologique pour chaque étudiant. Ainsi, pour chaque possiblité, on peut déterminer si le nombre de changement de salles est plus grand k. Dans ce cas, on invalide la proposition.
-(p12)
 Pour construire la formule en FNC, nous avons besoins de définir de nouvelles variables :  
 \begin{itemize}
 	\item \( NA_{e}\) tel que $NA$ donne le nombre d'examen d'un étudiant,
-	\item \( PT_{t_{max}}\) tel que $PT$ donne toute les permutation de temps dans l'ordre chronologie de taille $t_{max}$ tel que cette taille correspond au nombre d'examen d'un étudiant,
-	\item \( PS_{s_{max}}\) tel que $PS$ donne toute les permutation de salle de taille $s_{max}$ tel que cette taille correspond au nombre d'examen d'un étudiant,
-	\item \( PX_{e}\) tel que $PX$ donne toute les permutations d'examen d'un étudiant $e$.
+	\item \( PT_{t_{max}}\) tel que $PT$ donne toute les permutation de temps dans l'ordre chronologique de taille $t_{max}$,
+	\item \( PS_{s_{max}}\) tel que $PS$ donne toute les permutation de salle de taille $s_{max}$,
+	\item \( PX_{e}\) tel que $PX$ donne toute les permutations d'examen de l'étudiant $e$.
 \end{itemize}
 
 (p12)
@@ -518,7 +517,7 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelles v
 	\bigvee\limits_{\substack{i=1 \\ x_{i} \in px, s_{i} \in ps, t_{i} \in pt }}^{NA(e)} 
 	\neg M_{x_{i}, s_{i}, t_{i}}
 \end{displaymath}
-où $ x_{i}, s_{i}, t_{i} $ sont la $i^{eme}$ permutation de respectivement $ px, ps et pt $
+où $ x_{i}, s_{i}, t_{i} $ sont la $i^{eme}$ permutation de respectivement $ px$, $ps$ et $pt$
 
 \subsection{FNC}
 \begin{displaymath}
@@ -544,15 +543,15 @@ Cependant, avec notre implémentation actuel nous pourrions minimiser k. Cela su
 			print "Ce probleme peut etre modeliser avec une valeur de k = " + k
 			break
 \end{lstlisting}
-Evidemment, ce n'est pas une manière optimal de minimiser une variable.
+Evidemment, ce n'est pas la manière optimale de minimiser une variable.
 
 \section{Q9}
 
 \subsection{Modification de contrainte}
 \subsubsection{Les examens d'un étudiant ne se chevauchent pas}
-On reprend la contrainte défini dans la q5 et on la divise en deux cas. 
+On reprend la contrainte (p3) définie dans la Q5 et on la divise en deux cas. 
 
-Le premier est lorsque deux salles sont identique. Dans ce cas on modifie la durée tel que il y ait une période en plus.
+Le premier est lorsque les deux examens se déroulent dans une salle différente. Dans ce cas on modifie la condition de chevauchement de telle manière que il y ait une période en plus. En effet en utilisant $ t2 + D(x2) $ au lieu de $ t2 + D(x2) - 1 $, les deux examens se chevauchent si il y a moins d'une période de temps les séparant.
 (p3a)
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) \wedge t1 + D(x1) \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
