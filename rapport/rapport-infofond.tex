@@ -220,7 +220,13 @@ Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque sa
 \end{displaymath}
 
 \subsection{Note}
-La redondance n'est pas un problème car MiniSat supprime les doublons de clauses.
+L'input se prend en stdin en argument 1 du programme. Exemple :
+
+\begin{lstlisting}
+$ ./projq4.out "1;3;1;10;50;2;2;2;1,2;1;1;2;"
+\end{lstlisting}
+
+Nous avons créer plusieurs inputs différents illustrant chacun une propriété intéressante.
 
 \subsection{FNC final}
 La forme normal conjonctive de la formule est:
@@ -230,9 +236,9 @@ La forme normal conjonctive de la formule est:
 
 \section{Q4}
 
-\subsection{Exemple de résultat}
+\subsection{Intro}
 Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
-\subsubsection{Construction d'un horaire possible}
+\subsection{Construction d'un horaire possible}
 Input fournis avec l'énoncé.
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
@@ -254,6 +260,7 @@ c(s3) = 100
 a(e1) = { 1 }
 [...]
 a(e30) = { 1 }
+a(e31) = { 2 }
 [...]
 a(e60) = { 2 }
 a(e61) = { 3 4 }
@@ -276,8 +283,12 @@ Examen 4 dans la salle 3 au temps 1
 
 OUTPUT : 2,1;2,2;3,2;3,1;
 \end{lstlisting}
+Aucun examen se déroule dans la salle 1 car sa capacité de 10 n'est pas suffisante pour ces trois examen ayant au moins 20 étudiant.
+L'étudiant 100 a l'examen 3 et 4 et ils se déroulent bien à des moments différents.
+Cela est également vrai pour le professeur 1 qui a l'examen 1 et 3.
+Enfin, on remarque bien que dans chaque salle il n'y a que un examen pour chaque temps.
 
-\subsubsection{Construction d'un horaire impossible}
+\subsection{Construction d'un horaire impossible}
 Input créé de tel manière qu'il n'y ait pas moyen de construire un horaire car il n'y pas assez de périodes de temps.
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
@@ -306,6 +317,7 @@ Uh .. The problem could not be solve under those constraints
 
 OUTPUT : 0
 \end{lstlisting}
+Cet exemple ne fonctionne pas car l'étudiant 1 à deux examens à passer et il n'y a que un seul temps pour les placer.
 
 \section{Q5}
 
