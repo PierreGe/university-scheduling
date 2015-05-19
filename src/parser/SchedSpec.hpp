@@ -173,6 +173,9 @@ public:
             delete (*it);
             it++;
         }
+        else {
+            this->k = 2;
+        }
     }
 
     ~SchedSpec() {
