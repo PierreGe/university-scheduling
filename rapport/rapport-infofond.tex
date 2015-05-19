@@ -488,7 +488,7 @@ Dans cet exemple on voit bien les périodes de temps sans examens correspondant 
 \subsubsection{La somme, pour tout étudiant e, du nombre de changements de salle de e, est bornée par k}
 Pour cette contrainte il nous faut trouver toutes possibilités d'examens et de salles dans l'ordre chronologique pour chaque étudiant. Ainsi, pour chaque possiblité, on peut déterminer si le nombre de changement de salles est plus grand k. Dans ce cas, on invalide la proposition.
 (p12)
-Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
+Pour construire la formule en FNC, nous avons besoins de définir de nouvelles variables :  
 \begin{itemize}
 	\item \( NA_{e}\) tel que $NA$ donne le nombre d'examen d'un étudiant,
 	\item \( PT_{t_{max}}\) tel que $PT$ donne toute les permutation de temps dans l'ordre chronologie de taille $t_{max}$ tel que cette taille correspond au nombre d'examen d'un étudiant,
@@ -496,12 +496,13 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 	\item \( PX_{e}\) tel que $PX$ donne toute les permutations d'examen d'un étudiant $e$.
 \end{itemize}
 
+(p12)
 \begin{displaymath}
 	\bigwedge\limits_{e=1}^{E}
 	\bigwedge\limits_{pt \in PT(NA(e))}^{}
 	\bigwedge\limits_{ps \in PS(NA(e))}^{}
 	\bigwedge\limits_{px \in PX(e)}^{}
-	\bigvee\limits_{\substack{i=1 \\ x_{i} \in PX, s_{i} \in PS, t_{i} \in PT }}^{NA(e)} 
+	\bigvee\limits_{\substack{i=1 \\ x_{i} \in px, s_{i} \in ps, t_{i} \in pt }}^{NA(e)} 
 	\neg M_{x_{i}, s_{i}, t_{i}}
 \end{displaymath}
 
