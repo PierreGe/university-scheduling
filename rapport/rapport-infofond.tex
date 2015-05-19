@@ -443,7 +443,7 @@ En supposant que les périodes de temps commencent à minuit le premier jour des
 
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
-	\item \( J_{t}\) tel que $t$  ne se trouve pas dans les périodes interdites, donc qu'il est possible d'avoir un examen en période $t$.
+	\item \( J_{t}\) tel que $t$ ne se trouve pas dans les périodes interdites, donc qu'il est possible d'avoir un examen en période $t$.
 \end{itemize}
 
 \subsection{Modification de contrainte}
@@ -452,9 +452,13 @@ Aucune contrainte déjà existante n'a du être modifiée pour ce problème.
 \subsection{Nouvelle contrainte}
 
 \subsubsection{Aucun examen ne peut se dérouler durant certains intervalles de temps}
+Cette contrainte permet d'interdire tous les créneaux horaires qui ont lieux dans les périodes interdites, c'est à dire la nuit.
+
 (p11)
 \begin{displaymath}
-\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{t=0 \\ \neg J(t) }}^{T} \end{displaymath}
+\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{t=0 \\ \neg J(t) }}^{T} 
+\neg M_{x, s, t}
+\end{displaymath}
 
 \subsection{FNC}
 \begin{displaymath}
@@ -536,7 +540,6 @@ où $ x_{i}, s_{i}, t_{i} $ sont la $i^{eme}$ permutation de respectivement $ px
 	\Phi_{N} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p7 \wedge p8 \wedge p9 \wedge p10 \wedge p11 \wedge p12
 \end{displaymath}
 	
-\subsection{Implémentation}
 \subsection{Exemple de résultats}
 
 \section{Q8}
@@ -631,7 +634,7 @@ Examen 5 dans la salle 1 au temps 9
 OUTPUT : 2,9;1,15;1,14;1,12;1,9;
 
 \end{lstlisting}
-Dans cet exemple on voit que l'étudiant 1 à l'examen 1 et 3 dans deux salles différentes. Il y a bien durée(examen 1) + une unité de temps entre les deux.
+Dans cet exemple on voit que l'étudiant 1 a l'examen 1 et 3 dans deux salles différentes. Il y a bien la durée d'examen 1 + une unité de temps entre le début l'examen 1 et le début de l'examen 3, c'est à dire 4 + 1 temps.
 
 \section{Q10}
 \subsection{Certains examens dans certaines salles (ex. salle informatique)}
