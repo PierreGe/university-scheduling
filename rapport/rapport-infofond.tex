@@ -220,7 +220,13 @@ Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque sa
 \end{displaymath}
 
 \subsection{Note}
-La redondance n'est pas un problème car MiniSat supprime les doublons de clauses.
+L'input se prend en stdin en argument 1 du programme. Exemple :
+
+\begin{lstlisting}
+$ ./projq4.out "1;3;1;10;50;2;2;2;1,2;1;1;2;"
+\end{lstlisting}
+
+Nous avons créer plusieurs inputs différents illustrant chacun une propriété intéressante.
 
 \subsection{FNC final}
 La forme normal conjonctive de la formule est:
@@ -230,9 +236,9 @@ La forme normal conjonctive de la formule est:
 
 \section{Q4}
 
-\subsection{Exemple de résultat}
+\subsection{Intro}
 Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
-\subsubsection{Construction d'un horaire possible}
+\subsection{Construction d'un horaire possible}
 Input fournis avec l'énoncé.
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
@@ -277,7 +283,7 @@ Examen 4 dans la salle 3 au temps 1
 OUTPUT : 2,1;2,2;3,2;3,1;
 \end{lstlisting}
 
-\subsubsection{Construction d'un horaire impossible}
+\subsection{Construction d'un horaire impossible}
 Input créé de tel manière qu'il n'y ait pas moyen de construire un horaire car il n'y pas assez de périodes de temps.
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
