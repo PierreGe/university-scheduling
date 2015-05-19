@@ -862,7 +862,6 @@ $ (p3) = (p3a) \wedge (p3b) $
 \begin{displaymath}
 	\Phi_{N} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p7 \wedge p8 \wedge p9 \wedge p10 \wedge p11 \wedge p12
 \end{displaymath}
-\subsection{Implémentation}
 \subsection{Exemple de résultats}
 
 \begin{lstlisting}[
@@ -917,7 +916,7 @@ OUTPUT : 2,9;1,15;1,14;1,12;1,9;
 Dans cet exemple on voit que l'étudiant 1 a l'examen 1 et 3 dans deux salles différentes. Il y a bien la durée d'examen 1 + une unité de temps entre le début l'examen 1 et le début de l'examen 3, c'est à dire 4 + 1 temps.
 
 \section{Q10}
-\subsection{Certains examens dans certaines salles (ex. salle informatique)}
+\subsection{Certains examens ne peuvent se dérouler que dans certaines salles (ex. salle informatique)}
 Pour modéliser la contrainte, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
 	\item \( XS_{x,s}\) tel que l'examen x peut se dérouler dans la salle s.
@@ -932,7 +931,7 @@ Pour modéliser la contrainte, nous avons besoins de définir une nouvelle varia
 \begin{itemize}
 	\item \( SC_{s1,s2}\) tel que s1 est sur un campus différent de s2.
 \end{itemize}
-Pou réaliser cela, nous devons modifier la contrainte p3 (pas d'examen qui se chevauche) : 
+Pou réaliser cela, nous devons modifier la contrainte p3 de la Q9 (pas d'examen qui se chevauche). Nous pouvons diviser cette contrainte en trois sous-contraintes : 
 
 (p3a) Pas de changement de salle
 \begin{displaymath}
