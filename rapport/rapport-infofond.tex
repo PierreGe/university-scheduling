@@ -495,9 +495,14 @@ Pour construire la formule en FNC, nous avons besoins de définir une nouvelle v
 	\item \( PS_{s_{max}}\) tel que $PS$ donne toute les permutation de salle de taille $s_{max}$ tel que cette taille correspond au nombre d'examen d'un étudiant,
 	\item \( PX_{e}\) tel que $PX$ donne toute les permutations d'examen d'un étudiant $e$.
 \end{itemize}
-\begin{displaymath}
-	\bigwedge\limits_{e_{1}=1}^{E}\bigwedge\limits_{pt \in PT(NA(e))}^{}\bigwedge\limits_{ps \in PS(NA(e))}^{}\bigwedge\limits_{px \in PX(e)}^{}\bigvee\limits_{\substack{i=1 \\ x_{i} \in PX, s_{i} \in PS, t_{i} \in PT }}^{NA(e)} \neg M_{i}, s_{i}, t_{i}}
 
+\begin{displaymath}
+	\bigwedge\limits_{e=1}^{E}
+	\bigwedge\limits_{pt \in PT(NA(e))}^{}
+	\bigwedge\limits_{ps \in PS(NA(e))}^{}
+	\bigwedge\limits_{px \in PX(e)}^{}
+	\bigvee\limits_{\substack{i=1 \\ x_{i} \in PX, s_{i} \in PS, t_{i} \in PT }}^{NA(e)} 
+	\neg M_{x_{i}, s_{i}, t_{i}}
 \end{displaymath}
 
 \subsection{FNC}
