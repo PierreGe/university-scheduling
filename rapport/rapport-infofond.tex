@@ -57,23 +57,22 @@ Pour testez facilement l'ensemble de nos implémentation, utilisez le script bas
 $ sh TestMe.sh	
 \end{lstlisting}
 Ce script bash compile les programmes pour les différentes questions et les exécute avec des inputs choisis en fonction de la question. Il demande d'appuyer sur enter entre chaque question afin de consulter plus facilement les inputs et les outputs.
-Les programmes sont numérotés en fonction de la question de l'énoncé. Par exemple, l'exécutable projq5.out contient les contraintes de la question 5.
-Les programmes sont incrémentaux, c'est-à-dire que, sauf indiqué, chaque programme contient les contraintes de ses précédents.
 
 \subsection{Parser}
 Pour le parser, nous avons décidé de ne pas utiliser l'ensemble du code du parser fournit. Nous avons donc seulement gardé la classe ShedSpec en créant nous même la structure de donnée nécessaire pour son constructeur.
 
-Pour la question 7 et 9, nous avons ajouté le paramètre k a la fin de l'input et modifié le parser en conséquence.
+Pour les questions 7 et 9, nous avons ajouté le paramètre k a la fin de l'input et modifié le parser en conséquence.
 
 \subsection{Exécutable}
 
-Nous avons créer un cmake qui crée un exécutable par question.
+Nous avons créé un cmake qui crée un exécutable par question.
 Cela s'utilise de la manière suivante :
 \begin{lstlisting}
 $ cmake . 
 $ make 
 \end{lstlisting}
-Les éxecutables se nomment ./projq4.out à ./projq9.out .
+Les programmes se nomment ./projq4.out à ./projq9.out. Les programmes sont numérotés en fonction de la question de l'énoncé. Par exemple, le programme projq5.out contient les contraintes de la question 5.
+Les programmes sont incrémentaux, c'est-à-dire que, sauf indiqué dans ce rapport, chaque programme contient les contraintes de ses précédents.
 
 \section{Q1}
 Les contraintes sont les suivantes :
