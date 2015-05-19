@@ -65,14 +65,17 @@ Pour les questions 7 et 9, nous avons ajouté le paramètre k a la fin de l'inpu
 
 \subsection{Exécutable}
 
-Nous avons créé un cmake qui crée un exécutable par question.
+Nous avons créé un fichier cmake qui crée un exécutable par question.
 Cela s'utilise de la manière suivante :
 \begin{lstlisting}
 $ cmake . 
 $ make 
 \end{lstlisting}
-Les programmes se nomment ./projq4.out à ./projq9.out. Les programmes sont numérotés en fonction de la question de l'énoncé. Par exemple, le programme projq5.out contient les contraintes de la question 5.
+Les programmes se nomment \textbf{./projq4.out} à \textbf{./projq9.out.} Leur seul argument est une chaine de caractères contenant les données d'entrée au format demandé. Les programmes sont numérotés en fonction de la question de l'énoncé. Par exemple, le programme \textbf{projq5.out} contient les contraintes de la question 5.
 Les programmes sont incrémentaux, c'est-à-dire que, sauf indiqué dans ce rapport, chaque programme contient les contraintes de ses précédents.
+
+\subsection{Tests}
+Un certain nombre de fichiers contenant des données d'entrée de tests sont disponibles dans le dossier \textbf{fixtures}.
 
 \section{Q1}
 Les contraintes sont les suivantes :
