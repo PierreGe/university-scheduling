@@ -443,7 +443,7 @@ En supposant que les périodes de temps commencent à minuit le premier jour des
 
 Pour construire la formule en FNC, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
-	\item \( J_{t}\) tel que $t$  ne se trouve pas dans les périodes interdites, donc qu'il est possible d'avoir un examen en période $t$.
+	\item \( J_{t}\) tel que $t$ ne se trouve pas dans les périodes interdites, donc qu'il est possible d'avoir un examen en période $t$.
 \end{itemize}
 
 \subsection{Modification de contrainte}
@@ -452,9 +452,13 @@ Aucune contrainte déjà existante n'a du être modifiée pour ce problème.
 \subsection{Nouvelle contrainte}
 
 \subsubsection{Aucun examen ne peut se dérouler durant certains intervalles de temps}
+Cette contrainte permet d'interdire tous les créneaux horaires qui ont lieux dans les périodes interdites, c'est à dire la nuit.
+
 (p11)
 \begin{displaymath}
-\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{t=0 \\ \neg J(t) }}^{T} \end{displaymath}
+\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{\substack{t=0 \\ \neg J(t) }}^{T} 
+\neg M_{x, s, t}
+\end{displaymath}
 
 \subsection{FNC}
 \begin{displaymath}
