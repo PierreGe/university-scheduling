@@ -159,65 +159,56 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelles v
 
 
 \subsection{Ensemble de FNC}
-\subsubsection{(p1)}
-Contrainte d'existence : chaque examen se déroule dans au moins une salle et durant au moins une période de temps.
+\subsubsection{(p1) Contrainte d'existence : chaque examen se déroule dans au moins une salle et durant au moins une période de temps}
 Il s'agit de dire qu'il existe au moins une proposition valable pour chaque examen, quel que soit la période de temps ou salle.
 \begin{displaymath}
 	\bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T} M_{s,x,t}
 \end{displaymath}
 
 
-\subsubsection{(p2)}
-Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité.
+\subsubsection{(p2) Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité}
 Il s'agit de dire qu'une proposition de salle et temps n'est pas valable pour chaque examen et chaque période de temps si la salle n'a pas la capacité d'accepter le nombre d'étudiants ayant cet examen.
 \begin{displaymath}
 	\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x=1}^{X}\bigwedge\limits_{\substack{s=1 \\ \neg C_{s,N_{x}}}}^{S}  \neg M_{x,s,t}
 \end{displaymath}
 
-\subsubsection{(p3)}
-Un étudiant ne peut pas avoir deux examens au même moment.
+\subsubsection{(p3) Un étudiant ne peut pas avoir deux examens au même moment}
 Il s'agit de dire qu'il existe au maximum une proposition valable pour tous les examens de chaque étudiant se déroulant au même moment, quelle que soit la salle.
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{s_{2}=1}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x_{1}}}}^{X}\bigwedge\limits_{\substack{x_{2}=x_{1}+1 \\ A_{e,x_{2}}}}^{X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
-\subsubsection{(p4)}
-Un professeur ne peut pas avoir deux examens au même moment.
+\subsubsection{(p4) Un professeur ne peut pas avoir deux examens au même moment}
 Il s'agit de dire qu'il existe au maximum une proposition valable pour tous les examens de chaque professeur se déroulant au même moment, quelle que soit la salle.
 \begin{displaymath}
 \bigwedge\limits_{p=1}^{P}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{s_{2}=1}^{S}\bigwedge\limits_{\substack{x_{1}=1 \\ B_{p,x_{1}}}}^{X}\bigwedge\limits_{\substack{x_{2}=x_{1}+1 \\ B_{p,x_{2}}}}^{X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
-\subsubsection{(p5)}
-Un examen doit avoir au moins un professeur.
+\subsubsection{(p5) Un examen doit avoir au moins un professeur}
 Il s'agit de dire qu'il existe au minimum une proposition valable pour chaque examen quelque soit la salle ou la période de temps telle qu'un professeur donne cet examen.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T}\bigvee\limits_{\substack{p=1 \\ B_{p,x}}}^{P} M_{x, s, t}
 \end{displaymath}
 
-\subsubsection{(p6)}
-Un examen doit avoir au moins un étudiant.
+\subsubsection{(p6) Un examen doit avoir au moins un étudiant}
 Il s'agit de dire qu'il existe au minimum une proposition valable pour chaque examen quelque soit la salle ou la période de temps telle qu'un étudiant passe cet examen.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigvee\limits_{s=1}^{S}\bigvee\limits_{t=1}^{T}\bigvee\limits_{\substack{e=1 \\ A_{e,x}}}^{E} M_{x, s, t}
 \end{displaymath}
 
-\subsubsection{(p7)}
-Chaque examen doit se dérouler une seule fois.
+\subsubsection{(p7) Chaque examen doit se dérouler une seule fois}
 Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque examen pour chaque temps quelle que soit la salle.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t_{1}=1}^{T}\bigwedge\limits_{t_{2}=t_{1}+1}^{T} \neg M_{x, s, t_{1}} \vee \neg M_{x, s, t_{2}}
 \end{displaymath}
 
-\subsubsection{(p8)}
-Chaque examen doit se dérouler dans une seule salle.
+\subsubsection{(p8) Chaque examen doit se dérouler dans une seule salle}
 Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque examen pour chaque salle quelle que soit la période de temps.
 \begin{displaymath}
 \bigwedge\limits_{x=1}^{X}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{s_{2}=t1+1}^{S} \neg M_{x, s_{1}, t} \vee \neg M_{x, s_{2}, t}
 \end{displaymath}
 
-\subsubsection{(p9)}
-Dans une salle, il ne peut se déroule qu'un seul examen a la fois.
+\subsubsection{(p9) Dans une salle, il ne peut se dérouler qu'un seul examen a la fois}
 Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque salle pour chaque examen quelle que soit la période de temps.
 \begin{displaymath}
 \bigwedge\limits_{s=1}^{S}\bigwedge\limits_{t=1}^{T}\bigwedge\limits_{x_{1}=1}^{X}\bigwedge\limits_{x_{2}=t1+1}^{X} \neg M_{x_{1}, s, t} \vee \neg M_{x_{2}, s, t}
@@ -227,7 +218,7 @@ Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque sa
 La redondance n'est pas un problème car MiniSat supprime les doublons de clauses.
 
 \subsection{FNC final}
-La forme normal conjonctive de la formule est:
+La forme normale conjonctive de la formule est:
 \begin{displaymath}
 \Phi_{I} = p1 \wedge p2 \wedge p3 \wedge p4 \wedge p5 \wedge p6 \wedge p7 \wedge p8 \wedge p9
 \end{displaymath}
@@ -235,7 +226,7 @@ La forme normal conjonctive de la formule est:
 \section{Q4}
 
 \subsection{Construction d'un horaire possible}
-Input fournis avec l'énoncé.
+Données d'entrée fournies avec l'énoncé.
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
 ]
@@ -514,7 +505,7 @@ Dans cet exemple on voit bien les périodes de temps sans examens correspondant 
 Pour cette contrainte il nous faut trouver toutes possibilités d'examens et de salles dans l'ordre chronologique pour chaque étudiant. Ainsi, pour chaque possiblité, on peut déterminer si le nombre de changement de salles est plus grand k. Dans ce cas, on invalide la proposition.
 Pour construire la formule en FNC, nous avons besoins de définir de nouvelles variables :  
 \begin{itemize}
-	\item \( NA_{e}\) tel que $NA$ donne le nombre d'examen d'un étudiant,
+	\item \( NA_{e}\) tel que $NA$ donne le nombre d'examen de l'étudiant $e$,
 	\item \( PT_{t_{max}}\) tel que $PT$ donne toute les permutation de temps dans l'ordre chronologique de taille $t_{max}$,
 	\item \( PS_{s_{max}}\) tel que $PS$ donne toute les permutation de salle de taille $s_{max}$,
 	\item \( PX_{e}\) tel que $PX$ donne toute les permutations d'examen de l'étudiant $e$.
