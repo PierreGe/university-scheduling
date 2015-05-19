@@ -72,7 +72,7 @@ Les contraintes sont les suivantes :
   \item Un examen doit avoir au moins un étudiant
   \item Chaque examen doit se dérouler exactement une seule fois,
   \item Chaque examen doit se dérouler exactement dans une seule salle,
-  \item Dans une salle, il ne peut se déroule qu'un seul examen a la fois.
+  \item Dans une salle, il ne peut se dérouler qu'un seul examen a la fois.
 \end{itemize}
 
 
@@ -83,8 +83,9 @@ Les contraintes sont les suivantes :
 \end{displaymath}
 
 \subsection {Le nombre d'étudiant dans une salle ne peut pas dépasser sa capacité}
+On pose $ EX(x) $ comme étant l'ensemble des étudiants passant l'examen $x$.
 \begin{displaymath}
-\forall x \in X , \forall s \in S ,\forall e \in E, \forall t \in \{1,...,T\} : \mu(x) = (s,t) \Rightarrow (\sum a(e) \mapsto \{x\}) \leq c(s)
+\forall x \in X , \forall s \in S, \forall t \in \{1,...,T\} : \mu(x) = (s,t) \Rightarrow (|EX(x)|) \leq c(s)
 \end{displaymath}	
 
 \subsection {Un étudiant ne peut pas avoir deux examens au même moment}
@@ -505,6 +506,7 @@ Pour construire la formule en FNC, nous avons besoins de définir de nouvelles v
 	\bigvee\limits_{\substack{i=1 \\ x_{i} \in px, s_{i} \in ps, t_{i} \in pt }}^{NA(e)} 
 	\neg M_{x_{i}, s_{i}, t_{i}}
 \end{displaymath}
+où $ x_{i}, s_{i}, t_{i} $ sont la $i^{eme}$ permutation de respectivement $ px, ps et pt $
 
 \subsection{FNC}
 \begin{displaymath}
