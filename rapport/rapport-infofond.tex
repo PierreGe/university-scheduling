@@ -735,23 +735,23 @@ Pour modéliser la contrainte, nous avons besoins de définir une nouvelle varia
 \subsection{Si deux examens se suivent et sont sur des campus différents, il y a 2 temps entre ces deux examens}
 Pour modéliser la contrainte, nous avons besoins de définir une nouvelle variable :  
 \begin{itemize}
-	\item \( SC_{s1,s2}\) tel que s1 est sur un campus différent de s2.
+	\item \( SC_{s_{1},s_{2}}\) tel que s1 est sur un campus différent de s2.
 \end{itemize}
 Pou réaliser cela, nous devons modifier la contrainte p3 de la Q9 (pas d'examen qui se chevauche). Nous pouvons diviser cette contrainte en trois sous-contraintes : 
 
 (p3a) Pas de changement de salle
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2)-1 \wedge \\ t1 + D(x1)-1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{!X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t_{1}=1}^{T}\bigwedge\limits_{\substack{t_{2}=1 \\ t_{1} \leq t_{2} + D(x2)-1 \wedge \\ t_{1} + D(x_{1})-1 \geq t_{2}}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s_{2}=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x_{1}=1 \\ A_{e,x_{1}}}}^{X}\bigwedge\limits_{\substack{x_{2}=x1+1 \\ A_{e,x_{2}}}}^{!X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
 (p3b) Changement de salle mais pas de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) \wedge \\ t1 + D(x1) \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) \wedge \\ t1 + D(x1) \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge \neg SC_{s1,s2} }}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
 (p3c) Changement de salle et de campus
 \begin{displaymath}
-\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
+\bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) +1 \wedge \\ t1 + D(x1) +1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2} \wedge SC_{s1,s2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x_{1}, s_{1}, t} \vee \neg M_{x_{2}, s_{2}, t}
 \end{displaymath}
 
 
