@@ -536,7 +536,7 @@ $ ./projq7.out "20 ;3 ;10 ;30 ;100 ;100 ;2 ;4 ;1; 1; 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;
 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;
 2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;
 3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;
-3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;2,4; 2; 4; 2; 3;"                                                                        
+3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;2,4; 2; 4; 2; 3;0;"                                                                        
 ---------------------------------------- Result ----------------------------------------
 T = 20
 |S| = 3
@@ -584,7 +584,7 @@ $ ./projq7.out "20 ;3 ;10 ;30 ;100 ;100 ;2 ;4 ;1; 1; 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;
 1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;1 ;2,3 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;
 2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;2 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;
 3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;
-3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;2,4; 2; 4; 2; 3;"                                                                      
+3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;3,4 ;1,3 ;2,4; 2; 4; 2; 3;0;"                                                                      
 ---------------------------------------- Result ----------------------------------------
 T = 20
 |S| = 3
@@ -652,13 +652,13 @@ Evidemment, ce n'est pas la manière optimale de minimiser une variable.
 \subsubsection{Les examens d'un étudiant ne se chevauchent pas}
 On reprend la contrainte (p3) définie dans la Q5 et on la divise en deux cas. 
 
-Le premier est lorsque les deux examens se déroulent dans une salle différente. Dans ce cas on modifie la condition de chevauchement de telle manière que il y ait une période en plus. En effet en utilisant $ t2 + D(x2) $ au lieu de $ t2 + D(x2) - 1 $, les deux examens se chevauchent si il y a moins d'une période de temps les séparant.
+Le premier est lorsque les deux examens se déroulent dans une salle différente. Dans ce cas on modifie la condition de chevauchement de telle manière que il y ait une période en plus. En effet en utilisant $t1+D(x1)$ au lieu de $t1 + D(x1) -1 $ et $ t2 + D(x2) $ au lieu de $ t2 + D(x2) - 1 $, les deux examens se chevauchent si il y a moins d'une période de temps les séparant, ce qui oblige à avoir une heure de battement entre les deux.\\
 (p3a)
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2) \wedge t1 + D(x1) \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} \neq s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
+Dans le deuxième cas, si les salles sont identiques, on fait comme à la question 5.\\
 (p3b)
-Dans le deuxième cas, si les salles sont identiques, on fait comme à la question 5.
 \begin{displaymath}
 \bigwedge\limits_{e=1}^{E}\bigwedge\limits_{t1=1}^{T}\bigwedge\limits_{\substack{t2=1 \\ t1 \leq t2 + D(x2)-1 \wedge t1 + D(x1)-1 \geq t2}}^{T}\bigwedge\limits_{s_{1}=1}^{S}\bigwedge\limits_{\substack{s2=1 \\ s_{1} = s_{2}}}^{S}\bigwedge\limits_{\substack{x1=1 \\ A_{e,x1}}}^{X}\bigwedge\limits_{\substack{x2=x1+1 \\ A_{e,x2}}}^{X} \neg M_{x1, s1, t} \vee \neg M_{x2, s2, t}
 \end{displaymath}
