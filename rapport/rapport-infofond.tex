@@ -224,7 +224,7 @@ Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque sa
 \end{displaymath}
 
 \subsection{Note}
-La redondance de contrainte n'est pas un problème car minisat supprime les contrainte identique.
+La redondance n'est pas un problème car MiniSat supprime les doublons de clauses.
 
 \subsection{FNC final}
 La forme normal conjonctive de la formule est:
@@ -293,7 +293,7 @@ Cela est également vrai pour le professeur 1 qui a l'examen 1 et 3.
 Enfin, on remarque bien que dans chaque salle il n'y a que un examen pour chaque temps.
 
 \subsection{Construction d'un horaire impossible}
-Input créé de tel manière qu'il n'y ait pas moyen de construire un horaire car il n'y pas assez de périodes de temps.
+Cet input a été créé de tel manière qu'il n'y ait pas moyen de construire un horaire car il n'y pas assez de périodes de temps.
 \begin{lstlisting}[
     basicstyle=\tiny, %or \small or \footnotesize etc.
 ]
@@ -321,7 +321,7 @@ Uh .. The problem could not be solve under those constraints
 
 OUTPUT : 0
 \end{lstlisting}
-Cet exemple ne fonctionne pas car l'étudiant 1 à deux examens à passer et il n'y a que un seul temps pour les placer.
+On peut remarquer que l'étudiant 1 à deux examens à passer et il n'y a que un seul temps pour les placer.
 
 \section{Q5}
 
