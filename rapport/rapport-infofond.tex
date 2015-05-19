@@ -221,13 +221,7 @@ Il s'agit de dire qu'il existe au maximum une proposition valable pour chaque sa
 \end{displaymath}
 
 \subsection{Note}
-L'input se prend en stdin en argument 1 du programme. Exemple :
-
-\begin{lstlisting}
-$ ./projq4.out "1;3;1;10;50;2;2;2;1,2;1;1;2;"
-\end{lstlisting}
-
-Nous avons créer plusieurs inputs différents illustrant chacun une propriété intéressante.
+La redondance de contrainte n'est pas un problème car minisat supprime les contrainte identique.
 
 \subsection{FNC final}
 La forme normal conjonctive de la formule est:
@@ -238,7 +232,13 @@ La forme normal conjonctive de la formule est:
 \section{Q4}
 
 \subsection{Intro}
-Nous avons créé une liste d'input possible pour cette question. Voici quelque exemple
+L'input se prend en stdin en argument 1 du programme. Exemple :
+
+\begin{lstlisting}
+$ ./projq4.out "1;3;1;10;50;2;2;2;1,2;1;1;2;"
+\end{lstlisting}
+
+Nous avons créer plusieurs inputs différents illustrant chacun une propriété intéressante.
 \subsection{Construction d'un horaire possible}
 Input fournis avec l'énoncé.
 \begin{lstlisting}[
